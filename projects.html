@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Projects — Gabakssteel Construction Co. Ltd</title>
+  <meta name="description" content="See recent steel fabrication projects in Lagos: gates & doors, windows & burglary proofs, rails & staircases, street-light poles, overhead tanks, warehouse roofing and more." />
+  <link rel="canonical" href="https://gabakssteel.example/projects.html" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Gabakssteel Projects" />
+  <meta property="og:description" content="Filterable gallery: gates, burglary proofs, rails, street-light poles, overhead tanks, warehouses." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://gabakssteel.example/projects.html" />
+  <meta property="og:image" content="/images/og-projects.jpg" />
+
+  <style>
+    /* ------------------ THEME TOKENS ------------------ */
+    :root{
+      --bg:#0B0F14;          /* page background */
+      --bg-2:#0e1319;        /* section background */
+      --surface:rgba(255,255,255,.06);
+      --border:rgba(255,255,255,.12);
+      --text:#e7eaf0;        /* base text */
+      --muted:#a6afba;       /* secondary text */
+      --accent:#F97316;      /* safety orange */
+      --radius:18px;         /* card radius */
+      --radius-sm:12px;
+      --shadow:0 16px 50px rgba(0,0,0,.35);
+      --container:1200px;    /* max layout width */
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; color:var(--text); font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Noto Sans;
+      line-height:1.6; background:
+        radial-gradient(1000px 500px at 10% -10%, #16202b 0%, transparent 60%),
+        radial-gradient(900px 500px at 100% 0%, #121a23 0%, transparent 60%),
+        var(--bg);
+    }
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
+    .container{max-width:var(--container); margin-inline:auto; padding:0 20px}
+    .btn{display:inline-flex; align-items:center; gap:.6rem; justify-content:center; padding:.9rem 1.2rem; border-radius:999px; font-weight:600; cursor:pointer; background:linear-gradient(135deg, var(--accent), #ffb673); color:#1b1205; box-shadow:0 10px 30px rgba(249,115,22,.35); transition:transform .18s ease, box-shadow .18s ease}
+    .btn:is(:hover,:focus-visible){transform:translateY(-1px); box-shadow:0 16px 36px rgba(249,115,22,.38)}
+    .btn-outline{background:transparent; color:var(--text); border:1px solid var(--border); box-shadow:none}
+
+    /* ------------------ NAV ------------------ */
+    .nav{position:sticky; top:0; z-index:60; backdrop-filter:saturate(140%) blur(10px); background:linear-gradient(to bottom, rgba(15,19,26,.78), rgba(15,19,26,.4)); border-bottom:1px solid var(--border)}
+    .nav .inner{display:flex; align-items:center; justify-content:space-between; padding:.8rem 0}
+    .brand{font-family:Outfit, Inter, system-ui; font-weight:700; letter-spacing:.4px; font-size:1.2rem}
+    .brand span{color:var(--accent)}
+    .navlinks{display:flex; gap:1.2rem; align-items:center}
+    .navlinks a{color:var(--muted)}
+    .navlinks a:hover{color:var(--text)}
+    .mobile-toggle{display:none}
+
+    /* ------------------ PAGE HEADER ------------------ */
+    header.hero{position:relative; overflow:hidden}
+    .hero-wrap{display:grid; grid-template-columns:1fr; gap:1rem; align-items:center; padding:clamp(3.4rem, 4.8vw + 1rem, 6rem) 0}
+    .headline{font-family:Outfit, Inter; font-size:clamp(2rem, 2.8vw + 1rem, 3.2rem); line-height:1.05; margin:.2rem 0 .4rem}
+    .sub{color:var(--muted); max-width:70ch}
+    .mesh{position:absolute; inset:auto -40% -30% -40%; height:46vh; z-index:-1; filter:blur(70px) saturate(130%); opacity:.55; background: conic-gradient(from 180deg at 50% 50%, rgba(201,162,39,.5), rgba(249,115,22,.35), rgba(201,162,39,.5)); mask-image: radial-gradient(60% 60% at 50% 50%, #000 30%, transparent 100%)}
+
+    /* ------------------ FILTER BAR ------------------ */
+    .toolbar{display:flex; gap:.8rem; align-items:center; justify-content:space-between; flex-wrap:wrap; margin-top:.6rem}
+    .chips{display:flex; flex-wrap:wrap; gap:.6rem}
+    .chip{display:inline-flex; padding:.4rem .85rem; border:1px solid var(--border); border-radius:999px; color:var(--muted); font-size:.92rem; cursor:pointer; user-select:none}
+    .chip.active{border-color:rgba(255,255,255,.28); color:var(--text); background:rgba(255,255,255,.06)}
+    .search{display:flex; gap:.5rem; align-items:center}
+    .search input{width:220px; max-width:60vw; background:rgba(255,255,255,.04); color:var(--text); border:1px solid var(--border); border-radius:12px; padding:.6rem .8rem; outline:none}
+    .sort{background:rgba(255,255,255,.04); color:var(--text); border:1px solid var(--border); border-radius:12px; padding:.6rem .8rem}
+
+    /* ------------------ GALLERY (Masonry) ------------------ */
+    .gallery{margin-top:1rem}
+    .masonry{columns:1; column-gap:1rem}
+    .masonry .item{break-inside:avoid; margin:0 0 1rem; position:relative; cursor:pointer; border-radius:16px; overflow:hidden; border:1px solid var(--border); background:var(--surface); box-shadow:0 12px 28px rgba(0,0,0,.18)}
+    .masonry .item img{width:100%; height:auto; transition:transform .28s ease}
+    .masonry .item:hover img{transform:scale(1.03)}
+    .caption{position:absolute; left:10px; bottom:10px; background:rgba(0,0,0,.5); color:#fff; padding:.35rem .6rem; border-radius:999px; font-size:.8rem}
+
+    /* ------------------ LOAD MORE ------------------ */
+    .load-more{display:flex; justify-content:center; margin:1rem 0}
+
+    /* ------------------ LIGHTBOX ------------------ */
+    .lightbox{position:fixed; inset:0; background:rgba(0,0,0,.8); display:none; z-index:80; align-items:center; justify-content:center}
+    .lightbox.open{display:flex}
+    .lightbox-inner{position:relative; max-width:92vw; max-height:86vh}
+    .lightbox img{max-width:92vw; max-height:86vh; border-radius:16px; box-shadow:var(--shadow)}
+    .lb-cap{position:absolute; left:0; right:0; bottom:-38px; color:#e6e6e6; text-align:center; font-size:.95rem}
+    .lb-close, .lb-prev, .lb-next{position:absolute; top:50%; transform:translateY(-50%); background:rgba(17,17,17,.6); border:1px solid var(--border); color:#fff; width:40px; height:40px; border-radius:999px; display:grid; place-items:center; cursor:pointer}
+    .lb-close{top:-14px; right:-14px; transform:none}
+    .lb-prev{left:-14px}
+    .lb-next{right:-14px}
+
+    /* ------------------ FOOTER ------------------ */
+    footer{border-top:1px solid var(--border); background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02))}
+    .foot{display:grid; gap:1rem; grid-template-columns:2fr 1fr 1fr}
+    .small{color:var(--muted); font-size:.95rem}
+
+    /* Reveal on scroll */
+    .reveal{opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease}
+    .reveal.show{opacity:1; transform:none}
+
+    /* Responsive */
+    @media (max-width: 1024px){ }
+    @media (max-width: 680px){
+      .navlinks{display:none}
+      .mobile-toggle{display:inline-flex; background:transparent; border:1px solid var(--border); color:var(--text); padding:.4rem .7rem; border-radius:10px}
+      .masonry{columns:2}
+      .lb-prev{left:6px}
+      .lb-next{right:6px}
+    }
+    @media (min-width: 681px){ .masonry{columns:3} }
+    @media (prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important} }
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <nav class="nav" aria-label="Primary">
+    <div class="container inner">
+      <a class="brand" href="index.html" aria-label="Gabakssteel logo">GABAKS<span>STEEL</span></a>
+      <button class="mobile-toggle" aria-controls="menu" aria-expanded="false" id="mobileToggle">Menu</button>
+      <div class="navlinks" id="menu">
+        <a href="services.html">Services</a>
+        <a href="projects.html">Projects</a>
+        <a href="about.html">About</a>
+        <a href="contact.html" class="btn" style="padding:.6rem 1rem;">Request a Quote</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <header class="hero">
+    <div class="mesh" aria-hidden="true"></div>
+    <div class="container hero-wrap">
+      <h1 class="headline">Projects</h1>
+      <p class="sub">Browse our recent installations. Filter by category or search by location (e.g., Oshodi, Ikeja). Tap any image to open the viewer.</p>
+
+      <div class="toolbar">
+        <div class="chips" role="tablist" aria-label="Project categories">
+          <button class="chip active" data-filter="all" role="tab" aria-selected="true">All</button>
+          <button class="chip" data-filter="gates" role="tab">Gates & Doors</button>
+          <button class="chip" data-filter="windows" role="tab">Windows & Burglary</button>
+          <button class="chip" data-filter="rails" role="tab">Rails & Staircases</button>
+          <button class="chip" data-filter="poles" role="tab">Street‑light Poles</button>
+          <button class="chip" data-filter="tanks" role="tab">Overhead Tanks</button>
+          <button class="chip" data-filter="warehouses" role="tab">Warehouses & Roofing</button>
+        </div>
+        <div class="search">
+          <input id="search" type="search" placeholder="Search location or notes…" aria-label="Search projects" />
+          <select id="sort" class="sort" aria-label="Sort projects">
+            <option value="new">Newest first</option>
+            <option value="old">Oldest first</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- GALLERY -->
+  <main class="container gallery">
+    <div class="masonry" id="grid">
+      <!-- ====== SAMPLE ITEMS (replace images & captions) ====== -->
+      <!-- Use data-cat (category), data-date (YYYY-MM-DD), data-tags (for search) -->
+      
+      <figure class="item reveal" data-cat="gates" data-date="2025-09-01" data-tags="gate oshodi estate modern">
+        <picture>
+          <source srcset="/images/projects/gate-01.webp" type="image/webp">
+          <img src="/images/projects/gate-01.jpg" alt="Decorative steel gate — Oshodi estate" loading="lazy" width="800" height="600"/>
+        </picture>
+        <figcaption class="caption">Gate • Oshodi (2025)</figcaption>
+      </figure>
+
+      <figure class="item reveal" data-cat="rails" data-date="2025-08-21" data-tags="stair rail ikeja laser-cut">
+        <picture>
+          <source srcset="/images/projects/rail-01.webp" type="image/webp">
+          <img src="/images/projects/rail-01.jpg" alt="Laser-cut stair rail — Ikeja" loading="lazy" width="800" height="600"/>
+        </picture>
+        <figcaption class="caption">Rails • Ikeja (2025)</figcaption>
+      </figure>
+
+      <figure class="item reveal" data-cat="poles" data-date="2025-08-10" data-tags="street light pole isolo double arm">
+        <picture>
+          <source srcset="/images/projects/pole-01.webp" type="image/webp">
+          <img src="/images/projects/pole-01.jpg" alt="Street‑light pole — Isolo" loading="lazy" width="800" height="600"/>
+        </picture>
+        <figcaption class="caption">Light Pole • Isolo (2025)</figcaption>
+      </figure>
+
+      <figure class="item reveal" data-cat="tanks" data-date="2025-07-30" data-tags="overhead tank tower ladder">
+        <picture>
+          <source srcset="/images/projects/tank-01.webp" type="image/webp">
+          <img src="/images/projects/tank-01.jpg" alt="Overhead water tank tower" loading="lazy" width="800" height="600"/>
+        </picture>
+        <figcaption class="caption">Overhead Tank (2025)</figcaption>
+      </figure>
+
+      <figure class="item reveal" data-cat="warehouses" data-date="2025-07-02" data-tags="warehouse roofing truss">
+        <picture>
+          <source srcset="/images/projects/warehouse-01.webp" type="image/webp">
+          <img src="/images/projects/warehouse-01.jpg" alt="Steel warehouse roofing" loading="lazy" width="800" height="600"/>
+        </picture>
+        <figcaption class="caption">Warehouse Roofing (2025)</figcaption>
+      </figure>
+
+      <figure class="item reveal" data-cat="windows" data-date="2025-06-19" data-tags="window burglary proof retrofitting">
+        <picture>
+          <source srcset="/images/projects/window-01.webp" type="image/webp">
+          <img src="/images/projects/window-01.jpg" alt="Burglar‑proof window" loading="lazy" width="800" height="600"/>
+        </picture>
+        <figcaption class="caption">Windows • Surulere (2025)</figcaption>
+      </figure>
+
+      <!-- Additional placeholders -->
+      <figure class="item reveal" data-cat="gates" data-date="2025-05-10" data-tags="gate lekki decorative">
+        <img src="/images/projects/gate-02.jpg" alt="Modern estate gate — Lekki" loading="lazy" width="800" height="600"/>
+        <figcaption class="caption">Gate • Lekki (2025)</figcaption>
+      </figure>
+      <figure class="item reveal" data-cat="rails" data-date="2025-05-02" data-tags="balustrade victoria island stair">
+        <img src="/images/projects/rail-02.jpg" alt="Balustrade — Victoria Island" loading="lazy" width="800" height="600"/>
+        <figcaption class="caption">Rails • VI (2025)</figcaption>
+      </figure>
+      <figure class="item reveal" data-cat="poles" data-date="2025-04-13" data-tags="street light ajah single arm">
+        <img src="/images/projects/pole-02.jpg" alt="Street‑light pole — Ajah" loading="lazy" width="800" height="600"/>
+        <figcaption class="caption">Light Pole • Ajah (2025)</figcaption>
+      </figure>
+      <figure class="item reveal" data-cat="tanks" data-date="2025-03-25" data-tags="tank ogba platform ladder">
+        <img src="/images/projects/tank-02.jpg" alt="Overhead tank — Ogba" loading="lazy" width="800" height="600"/>
+        <figcaption class="caption">Overhead Tank • Ogba (2025)</figcaption>
+      </figure>
+      <figure class="item reveal" data-cat="warehouses" data-date="2025-03-11" data-tags="warehouse ikeja trusses">
+        <img src="/images/projects/warehouse-02.jpg" alt="Warehouse trusses — Ikeja" loading="lazy" width="800" height="600"/>
+        <figcaption class="caption">Warehouse • Ikeja (2025)</figcaption>
+      </figure>
+      <figure class="item reveal" data-cat="windows" data-date="2025-02-16" data-tags="window burglary abule-egba">
+        <img src="/images/projects/window-02.jpg" alt="Burglar‑proof window — Abule‑Egba" loading="lazy" width="800" height="600"/>
+        <figcaption class="caption">Windows • Abule‑Egba (2025)</figcaption>
+      </figure>
+
+      <!-- Add as many items as you want following the pattern above -->
+    </div>
+
+    <div class="load-more">
+      <button id="loadMore" class="chip" aria-label="Load more projects">Load more</button>
+    </div>
+  </main>
+
+  <!-- CTA STRIP -->
+  <section>
+    <div class="container" style="margin-top: .2rem">
+      <div class="strip" style="border:1px solid var(--border); background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03)); border-radius:var(--radius); padding:1rem; display:flex; align-items:center; justify-content:space-between; gap:1rem">
+        <div>
+          <strong>Have a project in mind?</strong>
+          <p class="small" style="margin:.2rem 0 0; color:var(--muted)">Share your measurements and a photo reference — we’ll reply quickly by phone or WhatsApp.</p>
+        </div>
+        <div style="display:flex; gap:.6rem; flex-wrap:wrap">
+          <a class="btn" href="contact.html">Request a Quote</a>
+          <a class="btn btn-outline" href="https://wa.me/2340000000000?text=Hi%20Gabakssteel%2C%20I%20need%20a%20quote." target="_blank" rel="noopener">Chat on WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container" style="padding:2rem 0">
+      <div class="foot">
+        <div>
+          <a class="brand" href="index.html">GABAKS<span>STEEL</span></a>
+          <p class="small">No. 10 Shamura Street, Mafoluku, Oshodi, Lagos • Mon–Sat 8am–6pm</p>
+          <p class="small">Phone/WhatsApp: <a href="tel:+2340000000000">+234 000 000 0000</a> • <a href="mailto:info@gabakssteel.com">info@gabakssteel.com</a></p>
+        </div>
+        <div>
+          <p class="small"><strong>Company</strong><br><a href="about.html">About</a><br><a href="projects.html">Projects</a><br><a href="services.html">Services</a></p>
+        </div>
+        <div>
+          <p class="small"><strong>Legal</strong><br><a href="privacy.html">Privacy</a><br><a href="terms.html">Terms</a></p>
+        </div>
+      </div>
+      <p class="small" style="margin-top:1rem; opacity:.85">© <span id="year"></span> Gabakssteel Construction Company Ltd. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" aria-modal="true" role="dialog" aria-label="Image viewer">
+    <div class="lightbox-inner">
+      <img src="" alt="" id="lbImg">
+      <div class="lb-cap" id="lbCap"></div>
+      <button class="lb-close" id="lbClose" aria-label="Close">✕</button>
+      <button class="lb-prev" id="lbPrev" aria-label="Previous">‹</button>
+      <button class="lb-next" id="lbNext" aria-label="Next">›</button>
+    </div>
+  </div>
+
+  <script>
+    // Mobile menu
+    const toggle = document.getElementById('mobileToggle');
+    const menu = document.getElementById('menu');
+    toggle?.addEventListener('click', ()=>{
+      const open = menu.style.display === 'flex';
+      menu.style.display = open ? 'none' : 'flex';
+      toggle.setAttribute('aria-expanded', String(!open));
+    });
+
+    // Reveal on scroll
+    const io = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target) }});
+    }, {threshold:.15});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+    // Filtering, search, sort, and progressive loading
+    const grid = document.getElementById('grid');
+    const items = Array.from(grid.querySelectorAll('.item'));
+    const chips = Array.from(document.querySelectorAll('.chip[data-filter]'));
+    const search = document.getElementById('search');
+    const sortSel = document.getElementById('sort');
+    const loadBtn = document.getElementById('loadMore');
+
+    let currentFilter = 'all';
+    let visibleCount = 9; // initial items to show
+
+    function apply(){
+      const q = (search.value || '').toLowerCase().trim();
+      let list = items.filter(it => {
+        const catOk = currentFilter === 'all' || it.dataset.cat === currentFilter;
+        const qOk = !q || (it.alt?.toLowerCase().includes(q)) || (it.dataset.tags?.includes(q));
+        return catOk && qOk;
+      });
+      list.sort((a,b)=>{
+        const da = a.dataset.date || '1970-01-01';
+        const db = b.dataset.date || '1970-01-01';
+        return sortSel.value === 'new' ? (db>da?1:-1) : (da>db?1:-1);
+      });
+
+      items.forEach(it=>it.style.display='none');
+      list.forEach((it,i)=>{ it.style.display = i < visibleCount ? '' : 'none'; });
+
+      loadBtn.style.display = list.length > visibleCount ? 'inline-flex' : 'none';
+    }
+
+    chips.forEach(ch => ch.addEventListener('click', ()=>{
+      chips.forEach(c=>c.classList.remove('active')); ch.classList.add('active');
+      currentFilter = ch.dataset.filter; visibleCount = 9; apply();
+    }));
+    search.addEventListener('input', ()=>{ visibleCount = 9; apply(); });
+    sortSel.addEventListener('change', ()=>{ apply(); });
+    loadBtn.addEventListener('click', ()=>{ visibleCount += 9; apply(); });
+
+    // Initialize
+    apply();
+
+    // Lightbox
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lbImg');
+    const lbCap = document.getElementById('lbCap');
+    const lbClose = document.getElementById('lbClose');
+    const lbPrev = document.getElementById('lbPrev');
+    const lbNext = document.getElementById('lbNext');
+
+    let sequence = []; // current ordered list of visible items
+    let index = 0;
+
+    function openAt(el){
+      const q = (search.value || '').toLowerCase().trim();
+      sequence = items.filter(it => {
+        const catOk = currentFilter === 'all' || it.dataset.cat === currentFilter;
+        const qOk = !q || (it.alt?.toLowerCase().includes(q)) || (it.dataset.tags?.includes(q));
+        return catOk && qOk;
+      }).sort((a,b)=>{
+        const da = a.dataset.date || '1970-01-01';
+        const db = b.dataset.date || '1970-01-01';
+        return sortSel.value === 'new' ? (db>da?1:-1) : (da>db?1:-1);
+      });
+      index = Math.max(0, sequence.indexOf(el));
+      show();
+      lb.classList.add('open');
+    }
+    function show(){
+      const el = sequence[index]; if(!el) return;
+      const img = el.querySelector('img');
+      lbImg.src = img.currentSrc || img.src; lbImg.alt = img.alt || '';
+      const cap = el.querySelector('.caption')?.textContent || '';
+      lbCap.textContent = cap + `  •  ${index+1}/${sequence.length}`;
+      // pre-load neighbors
+      const n1 = sequence[index+1]?.querySelector('img'); if(n1){ const p=new Image(); p.src = n1.currentSrc || n1.src; }
+      const p1 = sequence[index-1]?.querySelector('img'); if(p1){ const p=new Image(); p.src = p1.currentSrc || p1.src; }
+    }
+    function close(){ lb.classList.remove('open'); }
+
+    grid.addEventListener('click', e=>{
+      const fig = e.target.closest('.item'); if(!fig) return; openAt(fig);
+    });
+    lbClose.addEventListener('click', close);
+    lb.addEventListener('click', e=>{ if(e.target === lb) close(); });
+    lbNext.addEventListener('click', ()=>{ index = (index+1) % sequence.length; show(); });
+    lbPrev.addEventListener('click', ()=>{ index = (index-1 + sequence.length) % sequence.length; show(); });
+    document.addEventListener('keydown', e=>{
+      if(!lb.classList.contains('open')) return;
+      if(e.key==='Escape') close();
+      if(e.key==='ArrowRight') { index = (index+1) % sequence.length; show(); }
+      if(e.key==='ArrowLeft') { index = (index-1 + sequence.length) % sequence.length; show(); }
+    });
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

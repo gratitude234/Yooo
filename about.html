@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About — Gabakssteel Construction Co. Ltd</title>
+  <meta name="description" content="Gabakssteel Construction Company Ltd — 15+ years delivering precision steel fabrication in Lagos: gates, windows & burglary proofs, rails & staircases, street‑light poles, overhead tanks, roofing & warehouses." />
+  <link rel="canonical" href="https://gabakssteel.example/about.html" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="About Gabakssteel" />
+  <meta property="og:description" content="15+ years of steel fabrication in Lagos — dependable quality, clean finishes, fair pricing." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://gabakssteel.example/about.html" />
+  <meta property="og:image" content="/images/og-about.jpg" />
+
+  <style>
+    :root{
+      --bg:#0B0F14; --bg-2:#0e1319; --surface:rgba(255,255,255,.06); --border:rgba(255,255,255,.12);
+      --text:#e7eaf0; --muted:#a6afba; --accent:#F97316; --accent-2:#C9A227;
+      --radius:18px; --radius-sm:12px; --shadow:0 16px 50px rgba(0,0,0,.35); --container:1200px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0; color:var(--text); font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Noto Sans; line-height:1.6; background:
+      radial-gradient(1000px 500px at 10% -10%, #16202b 0%, transparent 60%),
+      radial-gradient(900px 500px at 100% 0%, #121a23 0%, transparent 60%), var(--bg);
+    }
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
+    .container{max-width:var(--container); margin-inline:auto; padding:0 20px}
+    .btn{display:inline-flex; align-items:center; gap:.6rem; justify-content:center; padding:.9rem 1.2rem; border-radius:999px; font-weight:600; cursor:pointer; background:linear-gradient(135deg, var(--accent), #ffb673); color:#1b1205; box-shadow:0 10px 30px rgba(249,115,22,.35); transition:transform .18s ease, box-shadow .18s ease}
+    .btn:is(:hover,:focus-visible){transform:translateY(-1px); box-shadow:0 16px 36px rgba(249,115,22,.38)}
+    .btn-outline{background:transparent; color:var(--text); border:1px solid var(--border); box-shadow:none}
+
+    /* NAV */
+    .nav{position:sticky; top:0; z-index:60; backdrop-filter:saturate(140%) blur(10px); background:linear-gradient(to bottom, rgba(15,19,26,.78), rgba(15,19,26,.4)); border-bottom:1px solid var(--border)}
+    .nav .inner{display:flex; align-items:center; justify-content:space-between; padding:.8rem 0}
+    .brand{font-family:Outfit, Inter, system-ui; font-weight:700; letter-spacing:.4px; font-size:1.2rem}
+    .brand span{color:var(--accent)}
+    .navlinks{display:flex; gap:1.2rem; align-items:center}
+    .navlinks a{color:var(--muted)}
+    .navlinks a:hover{color:var(--text)}
+    .mobile-toggle{display:none}
+
+    /* HERO */
+    header.hero{position:relative; overflow:hidden}
+    .hero-wrap{display:grid; grid-template-columns:1.12fr .88fr; gap:2.2rem; align-items:center; padding:clamp(3.4rem, 4.8vw + 1rem, 6rem) 0}
+    .headline{font-family:Outfit, Inter; font-size:clamp(2rem, 2.8vw + 1rem, 3.2rem); line-height:1.05; margin:.2rem 0 .6rem}
+    .sub{color:var(--muted); max-width:70ch}
+    .mesh{position:absolute; inset:auto -40% -30% -40%; height:46vh; z-index:-1; filter:blur(70px) saturate(130%); opacity:.55; background: conic-gradient(from 180deg at 50% 50%, rgba(201,162,39,.5), rgba(249,115,22,.35), rgba(201,162,39,.5)); mask-image: radial-gradient(60% 60% at 50% 50%, #000 30%, transparent 100%)}
+    .hero-media{border:1px solid var(--border); background:var(--surface); border-radius:var(--radius); padding:1rem; box-shadow:var(--shadow)}
+    .hero-media img{border-radius:var(--radius-sm)}
+
+    /* STATS */
+    .stats{display:grid; grid-template-columns:repeat(12,1fr); gap:1rem}
+    .stat{grid-column:span 3; border:1px solid var(--border); background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03)); border-radius:var(--radius); padding:1rem; text-align:center}
+    .stat .num{font-family:Outfit; font-size:2rem}
+    .stat .label{color:var(--muted)}
+
+    /* STORY */
+    section{padding:clamp(2.4rem, 5vw, 4rem) 0; position:relative}
+    .section-title{font-family:Outfit; font-size:clamp(1.4rem, 1.4vw + 1rem, 2rem); margin:0 0 .6rem}
+    .section-sub{color:var(--muted); margin:0 0 1.2rem}
+
+    .story{display:grid; grid-template-columns:1.1fr .9fr; gap:2rem; align-items:start}
+    .card{border:1px solid var(--border); background:var(--surface); border-radius:var(--radius); padding:1rem; box-shadow:0 12px 28px rgba(0,0,0,.18)}
+
+    /* TIMELINE */
+    .timeline{position:relative; padding-left:1.2rem}
+    .timeline::before{content:""; position:absolute; left:6px; top:0; bottom:0; width:2px; background:rgba(255,255,255,.12)}
+    .titem{position:relative; margin:0 0 1rem}
+    .titem::before{content:""; position:absolute; left:-2px; top:.2rem; width:10px; height:10px; border-radius:999px; background:var(--accent)}
+
+    /* BADGES */
+    .badges{display:flex; flex-wrap:wrap; gap:.6rem}
+    .badge{display:inline-flex; padding:.35rem .75rem; border:1px solid var(--border); border-radius:999px; color:var(--muted); font-size:.9rem}
+
+    /* TEAM */
+    .team{display:grid; grid-template-columns:repeat(12,1fr); gap:1rem}
+    .member{grid-column:span 3; text-align:center}
+    .avatar{aspect-ratio:1/1; border-radius:14px; border:1px solid var(--border); overflow:hidden; background:var(--surface)}
+    .role{color:var(--muted); font-size:.95rem}
+
+    /* TESTIMONIALS */
+    .slider{position:relative; overflow:hidden; border:1px solid var(--border); background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03)); border-radius:var(--radius); padding:1rem}
+    .slides{display:flex; gap:1rem; transition:transform .5s ease}
+    .slide{min-width:100%}
+    blockquote{margin:0; font-size:1.05rem}
+    blockquote footer{margin-top:.6rem; color:var(--muted)}
+
+    /* CTA STRIP */
+    .strip{border:1px solid var(--border); background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03)); border-radius:var(--radius); padding:1rem; display:flex; align-items:center; justify-content:space-between; gap:1rem}
+
+    /* FOOTER */
+    footer{border-top:1px solid var(--border); background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02))}
+    .foot{display:grid; gap:1rem; grid-template-columns:2fr 1fr 1fr}
+    .small{color:var(--muted); font-size:.95rem}
+
+    /* Reveal */
+    .reveal{opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease}
+    .reveal.show{opacity:1; transform:none}
+
+    /* Responsive */
+    @media (max-width: 1024px){
+      .hero-wrap{grid-template-columns:1fr}
+      .stat{grid-column:span 6}
+      .story{grid-template-columns:1fr}
+      .member{grid-column:span 6}
+    }
+    @media (max-width: 680px){
+      .navlinks{display:none}
+      .mobile-toggle{display:inline-flex; background:transparent; border:1px solid var(--border); color:var(--text); padding:.4rem .7rem; border-radius:10px}
+      .stat{grid-column:span 6}
+      .member{grid-column:span 12}
+      .strip{flex-direction:column; align-items:stretch}
+    }
+    @media (prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important} }
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <nav class="nav" aria-label="Primary">
+    <div class="container inner">
+      <a class="brand" href="index.html" aria-label="Gabakssteel logo">GABAKS<span>STEEL</span></a>
+      <button class="mobile-toggle" aria-controls="menu" aria-expanded="false" id="mobileToggle">Menu</button>
+      <div class="navlinks" id="menu">
+        <a href="services.html">Services</a>
+        <a href="projects.html">Projects</a>
+        <a href="about.html">About</a>
+        <a href="contact.html" class="btn" style="padding:.6rem 1rem;">Request a Quote</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="mesh" aria-hidden="true"></div>
+    <div class="container hero-wrap">
+      <div>
+        <h1 class="headline">About Gabakssteel</h1>
+        <p class="sub">Founded in Lagos over <strong>15 years</strong> ago, we deliver dependable steel fabrication with clean finishes and on‑time installation for homes, estates and industrial sites.</p>
+        <div class="badges" style="margin-top:1rem">
+          <span class="badge">Insured Installations</span>
+          <span class="badge">Warranty</span>
+          <span class="badge">Safety‑first Team</span>
+          <span class="badge">Fair Pricing</span>
+        </div>
+        <div style="display:flex; gap:.8rem; margin-top:1rem; flex-wrap:wrap">
+          <a class="btn" href="contact.html">Request a Quote</a>
+          <a class="btn btn-outline" href="https://wa.me/2340000000000?text=Hi%20Gabakssteel%2C%20I%20need%20a%20quote." target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+      </div>
+      <aside class="hero-media reveal">
+        <picture>
+          <source srcset="/images/about/hero.webp" type="image/webp">
+          <img src="/images/about/hero.jpg" alt="Workshop and fabrication team" width="1080" height="720" loading="lazy"/>
+        </picture>
+      </aside>
+    </div>
+  </header>
+
+  <!-- STATS -->
+  <section>
+    <div class="container stats">
+      <div class="stat reveal">
+        <div class="num" data-count="15">0</div>
+        <div class="label">Years in business</div>
+      </div>
+      <div class="stat reveal">
+        <div class="num" data-count="1200">0</div>
+        <div class="label">Projects completed</div>
+      </div>
+      <div class="stat reveal">
+        <div class="num" data-count="25">0</div>
+        <div class="label">Municipal & estate clients</div>
+      </div>
+      <div class="stat reveal">
+        <div class="num" data-count="48">0</div>
+        <div class="label">Local government areas served</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY / PROCESS -->
+  <section>
+    <div class="container story">
+      <div class="card reveal">
+        <h2 class="section-title">Our story</h2>
+        <p class="section-sub">From small residential gates to full warehouse roofing, Gabakssteel has grown through referrals by delivering consistent quality and standing by our work.</p>
+        <p>We operate from Mafoluku, Oshodi — serving Lagos and nearby states. Our team handles design, cutting, welding, surface finishing and on‑site installation with safety compliance.</p>
+        <div class="badges" style="margin-top:.6rem">
+          <span class="badge">Powder‑coat options</span>
+          <span class="badge">Hot‑dip galvanizing</span>
+          <span class="badge">Anti‑corrosion prep</span>
+          <span class="badge">After‑sales support</span>
+        </div>
+      </div>
+      <div class="card reveal">
+        <h2 class="section-title">Timeline</h2>
+        <ol class="timeline">
+          <li class="titem"><strong>2010</strong> — Company founded; first estate gate contracts in Oshodi/Isolo.</li>
+          <li class="titem"><strong>2014</strong> — Added street‑light pole fabrication and municipal installs.</li>
+          <li class="titem"><strong>2018</strong> — Expanded to overhead tank towers and warehouse roofing.</li>
+          <li class="titem"><strong>2023</strong> — Laser‑cut patterns and stainless railing offerings.</li>
+          <li class="titem"><strong>Today</strong> — Full service steel fabrication for homes and industry across Lagos.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section>
+    <div class="container">
+      <h2 class="section-title">Leadership & team</h2>
+      <p class="section-sub">Skilled fabricators, installers and project managers who care about neat work and safety.</p>
+      <div class="team">
+        <div class="member reveal">
+          <div class="avatar"><img src="/images/team/lead-1.jpg" alt="Managing Director" loading="lazy"></div>
+          <h3 style="margin:.6rem 0 .2rem; font-family:Outfit">Managing Director</h3>
+          <p class="role">Project oversight & client relations</p>
+        </div>
+        <div class="member reveal">
+          <div class="avatar"><img src="/images/team/lead-2.jpg" alt="Head of Fabrication" loading="lazy"></div>
+          <h3 style="margin:.6rem 0 .2rem; font-family:Outfit">Head of Fabrication</h3>
+          <p class="role">Cutting • Welding • QC</p>
+        </div>
+        <div class="member reveal">
+          <div class="avatar"><img src="/images/team/lead-3.jpg" alt="Installation Lead" loading="lazy"></div>
+          <h3 style="margin:.6rem 0 .2rem; font-family:Outfit">Installation Lead</h3>
+          <p class="role">On‑site install • Safety</p>
+        </div>
+        <div class="member reveal">
+          <div class="avatar"><img src="/images/team/lead-4.jpg" alt="Finishing & Coatings" loading="lazy"></div>
+          <h3 style="margin:.6rem 0 .2rem; font-family:Outfit">Finishing & Coatings</h3>
+          <p class="role">Primer • Paint • Powder‑coat</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section>
+    <div class="container slider reveal" aria-label="Testimonials">
+      <div class="slides" id="slides">
+        <div class="slide">
+          <blockquote>
+            “They delivered our estate gate on schedule with very clean welds. Installation was smooth and the finish has held up well.”
+            <footer>— Estate Manager, Oshodi</footer>
+          </blockquote>
+        </div>
+        <div class="slide">
+          <blockquote>
+            “The overhead tank tower is sturdy and neatly braced. Team followed safety rules and left the site tidy.”
+            <footer>— Facilities Lead, Ikeja</footer>
+          </blockquote>
+        </div>
+        <div class="slide">
+          <blockquote>
+            “Street‑light poles were fabricated to spec and installed with proper anchoring. Good communication throughout.”
+            <footer>— Project Supervisor, Isolo</footer>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATION / CONTACT STRIP -->
+  <section>
+    <div class="container strip reveal">
+      <div>
+        <strong>Visit or call</strong>
+        <p class="small" style="margin:.2rem 0 0">No. 10 Shamura Street, Mafoluku, Oshodi, Lagos • Mon–Sat 8am–6pm</p>
+      </div>
+      <div style="display:flex; gap:.6rem; flex-wrap:wrap">
+        <a class="btn" href="contact.html">Request a Quote</a>
+        <a class="btn btn-outline" href="https://wa.me/2340000000000?text=Hi%20Gabakssteel%2C%20I%20need%20a%20quote." target="_blank" rel="noopener">Chat on WhatsApp</a>
+        <a class="btn btn-outline" href="https://maps.google.com/?q=No.+10+Shamura+Street,+Mafoluku,+Oshodi,+Lagos" target="_blank" rel="noopener">Open in Maps</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container" style="padding:2rem 0">
+      <div class="foot">
+        <div>
+          <a class="brand" href="index.html">GABAKS<span>STEEL</span></a>
+          <p class="small">No. 10 Shamura Street, Mafoluku, Oshodi, Lagos • Mon–Sat 8am–6pm</p>
+          <p class="small">Phone/WhatsApp: <a href="tel:+2340000000000">+234 000 000 0000</a> • <a href="mailto:info@gabakssteel.com">info@gabakssteel.com</a></p>
+        </div>
+        <div>
+          <p class="small"><strong>Company</strong><br><a href="about.html">About</a><br><a href="projects.html">Projects</a><br><a href="services.html">Services</a></p>
+        </div>
+        <div>
+          <p class="small"><strong>Legal</strong><br><a href="privacy.html">Privacy</a><br><a href="terms.html">Terms</a></p>
+        </div>
+      </div>
+      <p class="small" style="margin-top:1rem; opacity:.85">© <span id="year"></span> Gabakssteel Construction Company Ltd. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu
+    const toggle = document.getElementById('mobileToggle');
+    const menu = document.getElementById('menu');
+    toggle?.addEventListener('click', ()=>{
+      const open = menu.style.display === 'flex';
+      menu.style.display = open ? 'none' : 'flex';
+      toggle.setAttribute('aria-expanded', String(!open));
+    });
+
+    // Reveal on scroll
+    const io = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target) }});
+    }, {threshold:.15});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+    // Animated counters
+    const counters = document.querySelectorAll('.num');
+    const cIO = new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(!entry.isIntersecting) return; const el = entry.target; cIO.unobserve(el);
+        const target = parseInt(el.getAttribute('data-count'), 10) || 0; let v = 0; const dur = 1200; const t0 = performance.now();
+        const step = (t)=>{ const p = Math.min(1, (t - t0)/dur); v = Math.floor(target * (0.2 + 0.8 * p*p)); el.textContent = v.toLocaleString(); if(p<1) requestAnimationFrame(step) };
+        requestAnimationFrame(step);
+      })
+    }, {threshold:.6});
+    counters.forEach(el=>cIO.observe(el));
+
+    // Testimonials slider (auto)
+    const track = document.getElementById('slides');
+    let idx = 0; setInterval(()=>{ idx = (idx+1)%3; track.style.transform = `translateX(-${idx*100}%)`; }, 4500);
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+  <!-- Structured data (Organization) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Gabakssteel Construction Company Ltd",
+    "url": "https://gabakssteel.example/",
+    "logo": "/images/logo.png",
+    "description": "Steel fabricator with 15+ years experience in Lagos.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "No. 10 Shamura Street, Mafoluku, Oshodi",
+      "addressLocality": "Lagos",
+      "addressCountry": "NG"
+    },
+    "contactPoint": [{
+      "@type": "ContactPoint",
+      "telephone": "+2340000000000",
+      "contactType": "customer service",
+      "areaServed": "NG"
+    }]
+  }
+  </script>
+</body>
+</html>

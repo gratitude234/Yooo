@@ -1,0 +1,541 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Services — Gabakssteel Construction Co. Ltd</title>
+  <meta name="description" content="Custom steel fabrication services in Lagos: gates & doors, windows & burglary proofs, rails & staircases, street-light poles, overhead water tanks, warehouse roofing & general steel works." />
+  <link rel="canonical" href="https://gabakssteel.example/services.html" />
+  <meta name="theme-color" content="#0B0F14" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Gabakssteel Services" />
+  <meta property="og:description" content="Gates & doors, windows & burglary proofs, rails & staircases, street-light poles, overhead tanks, roofing & warehouses — built with precision." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://gabakssteel.example/services.html" />
+  <meta property="og:image" content="/images/og-services.jpg" />
+
+  <style>
+    /* ------------------ THEME TOKENS ------------------ */
+    :root{
+      --bg:#0B0F14;          /* page background */
+      --bg-2:#0e1319;        /* section background */
+      --surface:rgba(255,255,255,.06);
+      --border:rgba(255,255,255,.12);
+      --text:#e7eaf0;        /* base text */
+      --muted:#a6afba;       /* secondary text */
+      --accent:#F97316;      /* safety orange */
+      --accent-2:#C9A227;    /* premium gold (alt) */
+      --radius:18px;         /* card radius */
+      --radius-sm:12px;
+      --shadow:0 16px 50px rgba(0,0,0,.35);
+      --container:1200px;    /* max layout width */
+      --nav-h:64px;          /* sticky nav height */
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; color:var(--text); font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Noto Sans;
+      line-height:1.6; background:
+        radial-gradient(1000px 500px at 10% -10%, #16202b 0%, transparent 60%),
+        radial-gradient(900px 500px at 100% 0%, #121a23 0%, transparent 60%),
+        var(--bg);
+    }
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
+    .container{max-width:var(--container); margin-inline:auto; padding:0 20px}
+
+    .btn{
+      position:relative; /* sheen */
+      display:inline-flex; align-items:center; gap:.6rem; justify-content:center;
+      padding:.9rem 1.2rem; border-radius:999px; font-weight:600; cursor:pointer;
+      background:linear-gradient(135deg, var(--accent), #ffb673);
+      color:#1b1205; box-shadow:0 10px 30px rgba(249,115,22,.35);
+      transition:transform .18s ease, box-shadow .18s ease;
+      overflow:hidden;
+    }
+    .btn:is(:hover,:focus-visible){transform:translateY(-1px); box-shadow:0 16px 36px rgba(249,115,22,.38)}
+    .btn::before{content:""; position:absolute; inset:-2px; border-radius:inherit; pointer-events:none; background:linear-gradient(120deg, rgba(255,255,255,0) 30%, rgba(255,255,255,.35) 50%, rgba(255,255,255,0) 70%); transform:translateX(-120%); transition:transform .45s ease}
+    .btn:hover::before{transform:translateX(120%)}
+    .btn-outline{background:transparent; color:var(--text); border:1px solid var(--border); box-shadow:none}
+    .btn-block{width:100%}
+
+    /* Screen-reader only */
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+    /* ------------------ NAV ------------------ */
+    .nav{position:sticky; top:0; z-index:80; backdrop-filter:saturate(140%) blur(10px);
+      background:linear-gradient(to bottom, rgba(15,19,26,.78), rgba(15,19,26,.4));
+      border-bottom:1px solid var(--border);
+    }
+    .nav .inner{display:flex; align-items:center; justify-content:space-between; padding:.5rem 0; min-height:var(--nav-h)}
+    .brand{font-family:Outfit, Inter, system-ui; font-weight:700; letter-spacing:.4px; font-size:1.2rem}
+    .brand span{color:var(--accent)}
+
+    /* Desktop links */
+    .navlinks{display:flex; gap:1.2rem; align-items:center}
+    .navlinks a{color:var(--muted); transition:color .2s ease, transform .2s ease}
+    .navlinks a:hover{color:var(--text); transform:translateY(-1px)}
+
+    /* Mobile trigger */
+    .mobile-toggle{display:none; position:relative; width:42px; height:42px; place-items:center; border-radius:12px; border:1px solid var(--border); background:transparent; color:var(--text)}
+    .mobile-toggle .bars{display:block; width:20px; height:2px; background:currentColor; position:relative}
+    .mobile-toggle .bars:before, .mobile-toggle .bars:after{content:""; position:absolute; left:0; width:20px; height:2px; background:currentColor; transition:transform .2s ease, top .2s ease, opacity .2s ease}
+    .mobile-toggle .bars:before{top:-6px}
+    .mobile-toggle .bars:after{top:6px}
+    body.menu-open .mobile-toggle .bars{background:transparent}
+    body.menu-open .mobile-toggle .bars:before{top:0; transform:rotate(45deg)}
+    body.menu-open .mobile-toggle .bars:after{top:0; transform:rotate(-45deg)}
+
+    /* Mobile overlay menu */
+    .backdrop{position:fixed; inset:0; background:rgba(2,6,12,.5); backdrop-filter:blur(4px); z-index:79; opacity:0; pointer-events:none; transition:opacity .2s ease}
+    .mobile-panel{position:fixed; inset:0 0 0 30%; max-width:480px; margin-left:auto; background:linear-gradient(180deg, rgba(18,24,31,.98), rgba(18,24,31,.96)); border-left:1px solid var(--border); z-index:90; transform:translateX(105%); transition:transform .25s ease; display:flex; flex-direction:column}
+    .mobile-panel header{display:flex; align-items:center; justify-content:space-between; padding:1rem 1.25rem; border-bottom:1px solid var(--border)}
+    .mobile-panel nav{display:flex; flex-direction:column; padding:1rem 1.25rem; gap:.2rem}
+    .mobile-panel a{padding:.9rem 1rem; border-radius:12px; color:var(--text); border:1px solid transparent; opacity:0; transform:translateX(8px)}
+    .mobile-panel a:hover{background:var(--surface); border-color:var(--border)}
+    .mobile-panel .quick{margin-top:auto; padding:1rem 1.25rem; border-top:1px solid var(--border); display:grid; gap:.6rem}
+
+    body.menu-open{overflow:hidden}
+    body.menu-open .backdrop{opacity:1; pointer-events:auto}
+    body.menu-open .mobile-panel{transform:translateX(0)}
+
+    /* ------------------ PAGE HEADER ------------------ */
+    header.hero{position:relative; overflow:hidden}
+    .hero-wrap{display:grid; grid-template-columns:1fr; gap:1rem; align-items:center; padding:clamp(3.4rem, 4.8vw + 1rem, 6rem) 0}
+    .headline{font-family:Outfit, Inter; font-size:clamp(2rem, 2.8vw + 1rem, 3.2rem); line-height:1.05; margin:.2rem 0 .4rem}
+    .sub{color:var(--muted); max-width:70ch}
+    .mesh{position:absolute; inset:auto -40% -30% -40%; height:46vh; z-index:-1; filter:blur(70px) saturate(130%); opacity:.55; background: conic-gradient(from 180deg at 50% 50%, rgba(201,162,39,.5), rgba(249,115,22,.35), rgba(201,162,39,.5)); mask-image: radial-gradient(60% 60% at 50% 50%, #000 30%, transparent 100%); animation: meshFloat 14s ease-in-out infinite alternate}
+
+    /* ------------------ SUBNAV ------------------ */
+    .chips{display:flex; flex-wrap:wrap; gap:.6rem; margin-top:1rem}
+    .chip{display:inline-flex; padding:.35rem .75rem; border:1px solid var(--border); border-radius:999px; color:var(--muted); font-size:.9rem; transition:transform .2s ease, border-color .2s ease}
+    .chip:hover{border-color:rgba(255,255,255,.22); color:var(--text); transform:translateY(-1px)}
+
+    /* ------------------ SECTIONS ------------------ */
+    section{padding:clamp(2.4rem, 5vw, 4rem) 0; position:relative; content-visibility:auto; contain-intrinsic-size:1px 1000px}
+    .section-title{font-family:Outfit; font-size:clamp(1.4rem, 1.4vw + 1rem, 2rem); margin:0 0 .6rem}
+    .section-sub{color:var(--muted); margin:0 0 1.2rem}
+
+    .service{display:grid; grid-template-columns:1.05fr .95fr; gap:2rem; align-items:center}
+    .service.alt{grid-template-columns:.95fr 1.05fr}
+
+    .media{border:1px solid var(--border); background:var(--surface); border-radius:var(--radius); padding:1rem; box-shadow:var(--shadow); transform:perspective(1000px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)); transition:transform .08s ease-out}
+    .media img{border-radius:var(--radius-sm); width:100%; height:auto}
+
+    .specs{display:grid; grid-template-columns:repeat(12,1fr); gap:1rem}
+    .spec{grid-column:span 4; border:1px solid var(--border); background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03)); border-radius:var(--radius); padding:1rem; transition:transform .18s ease, border-color .18s ease, box-shadow .18s ease}
+    .spec:hover{transform:translateY(-3px); border-color:rgba(255,255,255,.22); box-shadow:0 18px 40px rgba(0,0,0,.28)}
+    .spec h4{font-family:Outfit; margin:.2rem 0 .4rem}
+    .small{color:var(--muted); font-size:.95rem}
+
+    /* Quote strip */
+    .strip{border:1px solid var(--border); background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03)); border-radius:var(--radius); padding:1rem; display:flex; align-items:center; justify-content:space-between; gap:1rem}
+
+    /* Footer */
+    footer{border-top:1px solid var(--border); background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02))}
+    .foot{display:grid; gap:1.2rem; grid-template-columns:2fr 1fr 1fr}
+    .foot .group{padding:4px 0}
+    .foot .group strong{display:block; margin-bottom:.4rem}
+    .foot a{color:var(--text)}
+    .foot-bottom{display:flex; justify-content:space-between; align-items:center; gap:1rem; border-top:1px solid var(--border); padding-top:1rem; margin-top:1rem}
+
+    /* Reveal on scroll (supports --d) */
+    .reveal{opacity:0; transform:translateY(14px); will-change:opacity, transform; transition:opacity .6s cubic-bezier(.22,.61,.36,1), transform .6s cubic-bezier(.22,.61,.36,1); transition-delay:var(--d,0s)}
+    .reveal.show{opacity:1; transform:none}
+
+    /* Sticky mobile CTA bar */
+    .cta-bar{position:fixed; bottom:calc(12px + env(safe-area-inset-bottom)); left:50%; transform:translateX(-50%); z-index:70; display:none}
+    .cta-bar .btn{padding:.75rem 1rem}
+
+    /* Animations */
+    @keyframes meshFloat{0%{transform:translateY(0) scale(1)}100%{transform:translateY(-18px) scale(1.02)}}
+    @keyframes slideIn{from{opacity:0; transform:translateX(8px)} to{opacity:1; transform:translateX(0)}}
+
+    /* Responsive */
+    @media (max-width: 1024px){
+      .service, .service.alt{grid-template-columns:1fr}
+      .spec{grid-column:span 6}
+    }
+    @media (max-width: 680px){
+      .navlinks{display:none}
+      .mobile-toggle{display:grid}
+      .specs{grid-template-columns:repeat(6,1fr)}
+      .spec{grid-column:span 6}
+      .strip{flex-direction:column; align-items:stretch}
+      .foot{grid-template-columns:1fr}
+      .foot .group{border-top:1px dashed var(--border); padding-top:.8rem}
+      .foot .group:first-child{border-top:none; padding-top:0}
+      .foot-bottom{flex-direction:column; align-items:flex-start}
+      .cta-bar{display:flex; gap:.6rem}
+    }
+
+    /* Motion safety */
+    @media (prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important} }
+  </style>
+</head>
+<body>
+  <a href="#content" class="sr-only">Skip to content</a>
+
+  <!-- NAV -->
+  <nav class="nav" aria-label="Primary">
+    <div class="container inner">
+      <a class="brand" href="index.html" aria-label="Gabakssteel logo">GABAKS<span>STEEL</span></a>
+
+      <!-- Desktop links -->
+      <div class="navlinks">
+        <a href="services.html">Services</a>
+        <a href="projects.html">Projects</a>
+        <a href="about.html">About</a>
+        <a href="contact.html" class="btn" style="padding:.6rem 1rem;">Request a Quote</a>
+      </div>
+
+      <!-- Mobile trigger -->
+      <button class="mobile-toggle" aria-controls="mobilePanel" aria-expanded="false" id="mobileToggle">
+        <span class="sr-only">Toggle menu</span>
+        <span class="bars" aria-hidden="true"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile overlay -->
+  <div class="backdrop" id="backdrop" hidden></div>
+  <aside class="mobile-panel" id="mobilePanel" hidden>
+    <header>
+      <span class="brand">GABAKS<span>STEEL</span></span>
+      <button class="mobile-toggle" id="closePanel" aria-label="Close menu">
+        <span class="bars" aria-hidden="true"></span>
+      </button>
+    </header>
+    <nav>
+      <a href="services.html">Services</a>
+      <a href="projects.html">Projects</a>
+      <a href="about.html">About</a>
+      <a href="contact.html" class="btn btn-block">Request a Quote</a>
+    </nav>
+    <div class="quick">
+      <a class="btn btn-block" href="tel:+2340000000000" title="Call">Call us</a>
+      <a class="btn btn-outline btn-block" href="https://wa.me/2340000000000?text=Hi%20Gabakssteel%2C%20I%20need%20a%20quote." target="_blank" rel="noopener" title="WhatsApp">Chat on WhatsApp</a>
+    </div>
+  </aside>
+
+  <!-- PAGE HEADER -->
+  <header class="hero" id="content">
+    <div class="mesh" aria-hidden="true"></div>
+    <div class="container hero-wrap">
+      <h1 class="headline">Our Services</h1>
+      <p class="sub">From custom gates to industrial roofing, we deliver end‑to‑end steel fabrication: design, welding, finishing and on‑site installation.</p>
+      <nav class="chips" aria-label="Service shortcuts">
+        <a class="chip" href="#gates">Gates & Doors</a>
+        <a class="chip" href="#windows">Windows & Burglary</a>
+        <a class="chip" href="#rails">Rails & Staircases</a>
+        <a class="chip" href="#poles">Street-light Poles</a>
+        <a class="chip" href="#tanks">Overhead Tanks</a>
+        <a class="chip" href="#warehouses">Warehouses & Roofing</a>
+        <a class="chip" href="#general">General Steel Works</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- GATES & DOORS -->
+  <section id="gates">
+    <div class="container service">
+      <div class="media reveal">
+        <picture>
+          <source srcset="/images/services/gates.webp" type="image/webp">
+          <img src="/images/services/gates.jpg" alt="Custom steel gates & doors" width="1080" height="720" loading="lazy" />
+        </picture>
+      </div>
+      <div class="reveal">
+        <h2 class="section-title">Custom Gates & Doors</h2>
+        <p class="section-sub">Security-grade frames, decorative laser-cut panels, swing/slide mechanisms, smart lock prep, smooth alignment.</p>
+        <div class="specs">
+          <div class="spec"><h4>Options</h4><p class="small">Single/Double swing • Sliding • Pedestrian doors • Laser-cut inserts • Louvers</p></div>
+          <div class="spec"><h4>Finishes</h4><p class="small">Primer + paint • Powder-coat • Galvanized hardware • Wood/metal hybrid</p></div>
+          <div class="spec"><h4>Use cases</h4><p class="small">Residential estates • Schools • Churches • Industrial sites</p></div>
+        </div>
+        <div style="display:flex; gap:.6rem; margin-top:1rem; flex-wrap:wrap">
+          <a class="btn" href="projects.html">See projects</a>
+          <a class="btn btn-outline" href="contact.html">Get a quote</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WINDOWS & BURGLARY PROOFS -->
+  <section id="windows">
+    <div class="container service alt">
+      <div class="reveal">
+        <h2 class="section-title">Windows & Burglary Proofs</h2>
+        <p class="section-sub">Neat welds, accurate spacing, anti-corrosion protection and optional powder‑coat for a durable, clean look.</p>
+        <div class="specs">
+          <div class="spec"><h4>Profiles</h4><p class="small">Square bar • Pipe • Angle • Decorative motifs</p></div>
+          <div class="spec"><h4>Finishes</h4><p class="small">Polyurethane paint • Powder-coat • Zinc-rich primer</p></div>
+          <div class="spec"><h4>Extras</h4><p class="small">Mosquito mesh frames • Quick‑release options • Child‑safe spacing</p></div>
+        </div>
+        <div style="display:flex; gap:.6rem; margin-top:1rem; flex-wrap:wrap">
+          <a class="btn" href="projects.html">See projects</a>
+          <a class="btn btn-outline" href="contact.html">Get a quote</a>
+        </div>
+      </div>
+      <div class="media reveal">
+        <picture>
+          <source srcset="/images/services/windows.webp" type="image/webp">
+          <img src="/images/services/windows.jpg" alt="Steel windows and burglary proofs" width="1080" height="720" loading="lazy" />
+        </picture>
+      </div>
+    </div>
+  </section>
+
+  <!-- RAILS & STAIRCASES -->
+  <section id="rails">
+    <div class="container service">
+      <div class="media reveal">
+        <picture>
+          <source srcset="/images/services/rails.webp" type="image/webp">
+          <img src="/images/services/rails.jpg" alt="Rails and staircases" width="1080" height="720" loading="lazy" />
+        </picture>
+      </div>
+      <div class="reveal">
+        <h2 class="section-title">Rails & Staircases</h2>
+        <p class="section-sub">Precision balustrades, stainless/painted handrails and laser‑cut patterns for interior and exterior installations.</p>
+        <div class="specs">
+          <div class="spec"><h4>Materials</h4><p class="small">Mild steel • Stainless steel • Glass infill options</p></div>
+          <div class="spec"><h4>Compliance</h4><p class="small">Consistent riser/tread • Handrail height • Sturdy anchors</p></div>
+          <div class="spec"><h4>Finishes</h4><p class="small">Powder‑coat • Brushed stainless • Clear‑coat</p></div>
+        </div>
+        <div style="display:flex; gap:.6rem; margin-top:1rem; flex-wrap:wrap">
+          <a class="btn" href="projects.html">See projects</a>
+          <a class="btn btn-outline" href="contact.html">Get a quote</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STREET-LIGHT POLES -->
+  <section id="poles">
+    <div class="container service alt">
+      <div class="reveal">
+        <h2 class="section-title">Street‑light Poles</h2>
+        <p class="section-sub">Engineered for wind‑load with quality welds and corrosion‑resistant finishes; installation hardware supplied.</p>
+        <div class="specs">
+          <div class="spec"><h4>Types</h4><p class="small">Single/Double arm • Octagonal • Conical • Decorative</p></div>
+          <div class="spec"><h4>Heights</h4><p class="small">4–12 m (custom on request) • Base‑plate or planted</p></div>
+          <div class="spec"><h4>Finishes</h4><p class="small">Hot‑dip galvanizing • Powder‑coat • Epoxy paint system</p></div>
+        </div>
+        <div style="display:flex; gap:.6rem; margin-top:1rem; flex-wrap:wrap">
+          <a class="btn" href="projects.html">See projects</a>
+          <a class="btn btn-outline" href="contact.html">Get a quote</a>
+        </div>
+      </div>
+      <div class="media reveal">
+        <picture>
+          <source srcset="/images/services/poles.webp" type="image/webp">
+          <img src="/images/services/poles.jpg" alt="Street-light poles" width="1080" height="720" loading="lazy" />
+        </picture>
+      </div>
+    </div>
+  </section>
+
+  <!-- OVERHEAD TANKS -->
+  <section id="tanks">
+    <div class="container service">
+      <div class="media reveal">
+        <picture>
+          <source srcset="/images/services/tanks.webp" type="image/webp">
+          <img src="/images/services/tanks.jpg" alt="Overhead water tanks" width="1080" height="720" loading="lazy" />
+        </picture>
+      </div>
+      <div class="reveal">
+        <h2 class="section-title">Overhead Water Tanks</h2>
+        <p class="section-sub">Towers, platforms, ladders and safety rails built to spec; strong bracing and anti‑corrosion protection.</p>
+        <div class="specs">
+          <div class="spec"><h4>Capacity</h4><p class="small">500 L – 50,000 L (single/multiple tanks)</p></div>
+          <div class="spec"><h4>Structure</h4><p class="small">Square/rectangular towers • Cross‑bracing • Access ladder</p></div>
+          <div class="spec"><h4>Finish</h4><p class="small">Primer + industrial paint • Galvanized options</p></div>
+        </div>
+        <div style="display:flex; gap:.6rem; margin-top:1rem; flex-wrap:wrap">
+          <a class="btn" href="projects.html">See projects</a>
+          <a class="btn btn-outline" href="contact.html">Get a quote</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WAREHOUSES & ROOFING -->
+  <section id="warehouses">
+    <div class="container service alt">
+      <div class="reveal">
+        <h2 class="section-title">Warehouses & Roofing</h2>
+        <p class="section-sub">Industrial trusses, purlins and complete roofing with precise alignment and secure anchoring.</p>
+        <div class="specs">
+          <div class="spec"><h4>Scope</h4><p class="small">Design & fabrication • Erection • Roof sheeting • Flashings</p></div>
+          <div class="spec"><h4>Profiles</h4><p class="small">Open web • Portal frames • Tubular trusses</p></div>
+          <div class="spec"><h4>Finish</h4><p class="small">Primer + topcoat • Galvanized members • Anti‑rust systems</p></div>
+        </div>
+        <div style="display:flex; gap:.6rem; margin-top:1rem; flex-wrap:wrap">
+          <a class="btn" href="projects.html">See projects</a>
+          <a class="btn btn-outline" href="contact.html">Get a quote</a>
+        </div>
+      </div>
+      <div class="media reveal">
+        <picture>
+          <source srcset="/images/services/warehouses.webp" type="image/webp">
+          <img src="/images/services/warehouses.jpg" alt="Warehouse roofing and trusses" width="1080" height="720" loading="lazy" />
+        </picture>
+      </div>
+    </div>
+  </section>
+
+  <!-- GENERAL STEEL WORKS -->
+  <section id="general">
+    <div class="container service">
+      <div class="media reveal">
+        <picture>
+          <source srcset="/images/services/general.webp" type="image/webp">
+          <img src="/images/services/general.jpg" alt="General steel works" width="1080" height="720" loading="lazy" />
+        </picture>
+      </div>
+      <div class="reveal">
+        <h2 class="section-title">General Steel Works</h2>
+        <p class="section-sub">If it’s steel, we build it — grills, canopies, frames, platforms, security doors, custom fixtures and site solutions.</p>
+        <div class="specs">
+          <div class="spec"><h4>Fabrication</h4><p class="small">Cutting • Folding • Welding • Grinding • Fit‑up</p></div>
+          <div class="spec"><h4>Materials</h4><p class="small">Mild steel • Stainless steel • Aluminium (select tasks)</p></div>
+          <div class="spec"><h4>Delivery</h4><p class="small">Shop build + on‑site installation • Warranty • After‑sales</p></div>
+        </div>
+        <div style="display:flex; gap:.6rem; margin-top:1rem; flex-wrap:wrap">
+          <a class="btn" href="projects.html">See projects</a>
+          <a class="btn btn-outline" href="contact.html">Get a quote</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA STRIP -->
+  <section>
+    <div class="container strip reveal">
+      <div>
+        <strong>Ready to start?</strong>
+        <p class="small" style="margin:.2rem 0 0">Send your measurements and a photo reference — we’ll reply quickly by phone or WhatsApp.</p>
+      </div>
+      <div style="display:flex; gap:.6rem; flex-wrap:wrap">
+        <a class="btn" href="contact.html">Request a Quote</a>
+        <a class="btn btn-outline" href="https://wa.me/2340000000000?text=Hi%20Gabakssteel%2C%20I%20need%20a%20quote." target="_blank" rel="noopener">Chat on WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container" style="padding:2rem 0">
+      <div class="foot">
+        <div class="group">
+          <a class="brand" href="index.html">GABAKS<span>STEEL</span></a>
+          <p class="small">No. 10 Shamura Street, Mafoluku, Oshodi, Lagos • Mon–Sat 8am–6pm</p>
+          <p class="small">Phone/WhatsApp: <a href="tel:+2340000000000">+234 000 000 0000</a> • <a href="mailto:info@gabakssteel.com">info@gabakssteel.com</a></p>
+        </div>
+        <div class="group">
+          <p class="small"><strong>Company</strong><br><a href="about.html">About</a><br><a href="projects.html">Projects</a><br><a href="services.html">Services</a></p>
+        </div>
+        <div class="group">
+          <p class="small"><strong>Legal</strong><br><a href="privacy.html">Privacy</a><br><a href="terms.html">Terms</a></p>
+        </div>
+      </div>
+      <div class="foot-bottom small">
+        <span>© <span id="year"></span> Gabakssteel Construction Company Ltd.</span>
+        <div style="display:flex; gap:.6rem; flex-wrap:wrap">
+          <a class="btn btn-outline" href="tel:+2340000000000">Call</a>
+          <a class="btn" href="contact.html">Get a Quote</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Sticky CTA for mobile -->
+  <div class="cta-bar" aria-hidden="true">
+    <a class="btn" href="tel:+2340000000000" title="Call">Call</a>
+    <a class="btn btn-outline" href="https://wa.me/2340000000000?text=Hi%20Gabakssteel%2C%20I%20need%20a%20quote." target="_blank" rel="noopener" title="WhatsApp">WhatsApp</a>
+    <a class="btn" href="contact.html" title="Request a Quote">Quote</a>
+  </div>
+
+  <script>
+    // Helpers
+    const $ = (s, r=document) => r.querySelector(s);
+
+    // Mobile menu (overlay)
+    const toggle = $('#mobileToggle');
+    const closeBtn = $('#closePanel');
+    const panel = $('#mobilePanel');
+    const backdrop = $('#backdrop');
+
+    function openMenu(open){
+      document.body.classList.toggle('menu-open', open);
+      toggle?.setAttribute('aria-expanded', String(open));
+      panel.hidden = !open;
+      backdrop.hidden = !open;
+      const links = panel?.querySelectorAll('nav a') || [];
+      links.forEach((a, i)=>{
+        a.style.animation = 'none'; a.offsetHeight; // reflow
+        a.style.animation = `slideIn .28s both`;
+        a.style.animationDelay = `${i * 0.05}s`;
+      });
+    }
+    toggle?.addEventListener('click', ()=> openMenu(!document.body.classList.contains('menu-open')));
+    closeBtn?.addEventListener('click', ()=> openMenu(false));
+    backdrop?.addEventListener('click', ()=> openMenu(false));
+    window.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') openMenu(false) });
+
+    // Reveal on scroll (with stagger support)
+    const io = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target) }});
+    }, {threshold:.15});
+
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+    // Header sequence on load
+    window.addEventListener('DOMContentLoaded', ()=>{
+      const seq = ['.headline', '.sub', '.chips'];
+      seq.forEach((sel, i)=>{
+        const el = document.querySelector(sel);
+        if(!el) return; el.classList.add('reveal'); el.style.setProperty('--d', `${i * 0.08}s`); io.observe(el);
+      });
+
+      // Stagger per service block
+      document.querySelectorAll('.service').forEach(section=>{
+        const items = section.querySelectorAll('.reveal');
+        items.forEach((el, i)=>{ el.style.setProperty('--d', `${i * 0.06}s`); io.observe(el); });
+      });
+    });
+
+    // Parallax tilt on media (desktop, no reduced motion)
+    (function(){
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const pointerFine = window.matchMedia('(pointer: fine)').matches;
+      if(prefersReduced || !pointerFine) return;
+      document.querySelectorAll('.media').forEach((media)=>{
+        function move(e){
+          const r = media.getBoundingClientRect();
+          const x = (e.clientX - r.left) / r.width;  // 0..1
+          const y = (e.clientY - r.top) / r.height; // 0..1
+          const ry = (x - .5) * 6; // rotateY
+          const rx = - (y - .5) * 6; // rotateX
+          media.style.setProperty('--rx', rx.toFixed(2) + 'deg');
+          media.style.setProperty('--ry', ry.toFixed(2) + 'deg');
+        }
+        function reset(){ media.style.setProperty('--rx', '0deg'); media.style.setProperty('--ry', '0deg'); }
+        media.addEventListener('mousemove', move);
+        media.addEventListener('mouseleave', reset);
+      });
+    })();
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

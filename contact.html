@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact — Gabakssteel Construction Co. Ltd</title>
+  <meta name="description" content="Contact Gabakssteel: request a quote for gates, windows & burglary proofs, rails & staircases, street‑light poles, overhead tanks, warehouses. Fast responses via phone, WhatsApp or email." />
+  <link rel="canonical" href="https://gabakssteel.example/contact.html" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Contact Gabakssteel" />
+  <meta property="og:description" content="Request a quote — we reply quickly by phone or WhatsApp." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://gabakssteel.example/contact.html" />
+  <meta property="og:image" content="/images/og-contact.jpg" />
+
+  <style>
+    :root{
+      --bg:#0B0F14; --bg-2:#0e1319; --surface:rgba(255,255,255,.06); --border:rgba(255,255,255,.12);
+      --text:#e7eaf0; --muted:#a6afba; --accent:#F97316; --accent-2:#C9A227;
+      --radius:18px; --radius-sm:12px; --shadow:0 16px 50px rgba(0,0,0,.35); --container:1200px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0; color:var(--text); font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Noto Sans; line-height:1.6; background:
+      radial-gradient(1000px 500px at 10% -10%, #16202b 0%, transparent 60%),
+      radial-gradient(900px 500px at 100% 0%, #121a23 0%, transparent 60%), var(--bg);
+    }
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
+    .container{max-width:var(--container); margin-inline:auto; padding:0 20px}
+    .btn{display:inline-flex; align-items:center; gap:.6rem; justify-content:center; padding:.9rem 1.2rem; border-radius:999px; font-weight:600; cursor:pointer; background:linear-gradient(135deg, var(--accent), #ffb673); color:#1b1205; box-shadow:0 10px 30px rgba(249,115,22,.35); transition:transform .18s ease, box-shadow .18s ease}
+    .btn:is(:hover,:focus-visible){transform:translateY(-1px); box-shadow:0 16px 36px rgba(249,115,22,.38)}
+    .btn-outline{background:transparent; color:var(--text); border:1px solid var(--border); box-shadow:none}
+
+    /* NAV */
+    .nav{position:sticky; top:0; z-index:60; backdrop-filter:saturate(140%) blur(10px); background:linear-gradient(to bottom, rgba(15,19,26,.78), rgba(15,19,26,.4)); border-bottom:1px solid var(--border)}
+    .nav .inner{display:flex; align-items:center; justify-content:space-between; padding:.8rem 0}
+    .brand{font-family:Outfit, Inter, system-ui; font-weight:700; letter-spacing:.4px; font-size:1.2rem}
+    .brand span{color:var(--accent)}
+    .navlinks{display:flex; gap:1.2rem; align-items:center}
+    .navlinks a{color:var(--muted)}
+    .navlinks a:hover{color:var(--text)}
+    .mobile-toggle{display:none}
+
+    /* HERO */
+    header.hero{position:relative; overflow:hidden}
+    .hero-wrap{display:grid; grid-template-columns:1.12fr .88fr; gap:2.2rem; align-items:center; padding:clamp(3.4rem, 4.8vw + 1rem, 6rem) 0}
+    .headline{font-family:Outfit, Inter; font-size:clamp(2rem, 2.8vw + 1rem, 3.2rem); line-height:1.05; margin:.2rem 0 .6rem}
+    .sub{color:var(--muted); max-width:70ch}
+    .mesh{position:absolute; inset:auto -40% -30% -40%; height:46vh; z-index:-1; filter:blur(70px) saturate(130%); opacity:.55; background: conic-gradient(from 180deg at 50% 50%, rgba(201,162,39,.5), rgba(249,115,22,.35), rgba(201,162,39,.5)); mask-image: radial-gradient(60% 60% at 50% 50%, #000 30%, transparent 100%)}
+    .hero-media{border:1px solid var(--border); background:var(--surface); border-radius:var(--radius); padding:1rem; box-shadow:var(--shadow)}
+    .hero-media img{border-radius:var(--radius-sm)}
+
+    /* CONTACT CARDS */
+    .cards{display:grid; grid-template-columns:repeat(12,1fr); gap:1rem}
+    .card{grid-column:span 4; border:1px solid var(--border); background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03)); border-radius:var(--radius); padding:1rem}
+    .card h3{font-family:Outfit; margin:.2rem 0 .4rem}
+    .small{color:var(--muted); font-size:.95rem}
+
+    /* FORM */
+    section{padding:clamp(2.4rem, 5vw, 4rem) 0; position:relative}
+    .section-title{font-family:Outfit; font-size:clamp(1.4rem, 1.4vw + 1rem, 2rem); margin:0 0 .6rem}
+    .section-sub{color:var(--muted); margin:0 0 1.2rem}
+
+    form{display:grid; gap:1rem; grid-template-columns:repeat(12,1fr)}
+    label{display:block; font-weight:600; margin-bottom:.25rem}
+    input, select, textarea{width:100%; background:rgba(255,255,255,.04); color:var(--text); border:1px solid var(--border); border-radius:12px; padding:.9rem .9rem; outline:none; transition:border-color .15s ease, box-shadow .15s ease}
+    textarea{min-height:150px; resize:vertical}
+    input:focus, select:focus, textarea:focus{border-color:rgba(255,255,255,.25); box-shadow:0 0 0 3px rgba(249,115,22,.2)}
+    .col-6{grid-column:span 6}
+    .col-4{grid-column:span 4}
+    .col-8{grid-column:span 8}
+    .col-12{grid-column:span 12}
+    .help{color:var(--muted); font-size:.9rem; margin-top:.2rem}
+    .actions{display:flex; gap:.6rem; align-items:center; margin-top:.4rem; flex-wrap:wrap}
+    .success{display:none; border:1px solid rgba(16,185,129,.35); background:rgba(16,185,129,.08); color:#86efac; padding:.8rem 1rem; border-radius:12px}
+
+    /* MAP */
+    .mapwrap{border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; background:var(--surface)}
+    .mapwrap iframe{width:100%; height:360px; display:block}
+
+    /* FAQ */
+    .accord{border:1px solid var(--border); border-radius:var(--radius); overflow:hidden}
+    .acc-item + .acc-item{border-top:1px solid var(--border)}
+    .acc-btn{width:100%; text-align:left; background:rgba(255,255,255,.03); color:var(--text); border:0; padding:1rem; font-weight:600; cursor:pointer}
+    .acc-panel{display:none; padding:0 1rem 1rem; color:var(--muted)}
+
+    /* FOOTER */
+    footer{border-top:1px solid var(--border); background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02))}
+    .foot{display:grid; gap:1rem; grid-template-columns:2fr 1fr 1fr}
+
+    /* Reveal */
+    .reveal{opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease}
+    .reveal.show{opacity:1; transform:none}
+
+    /* Responsive */
+    @media (max-width: 1024px){
+      .hero-wrap{grid-template-columns:1fr}
+      .card{grid-column:span 6}
+      .col-6{grid-column:span 12}
+      .col-4{grid-column:span 12}
+      .col-8{grid-column:span 12}
+    }
+    @media (max-width: 680px){
+      .navlinks{display:none}
+      .mobile-toggle{display:inline-flex; background:transparent; border:1px solid var(--border); color:var(--text); padding:.4rem .7rem; border-radius:10px}
+      .card{grid-column:span 12}
+      .mapwrap iframe{height:300px}
+      .actions{flex-direction:column; align-items:stretch}
+    }
+    @media (prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important} }
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <nav class="nav" aria-label="Primary">
+    <div class="container inner">
+      <a class="brand" href="index.html" aria-label="Gabakssteel logo">GABAKS<span>STEEL</span></a>
+      <button class="mobile-toggle" aria-controls="menu" aria-expanded="false" id="mobileToggle">Menu</button>
+      <div class="navlinks" id="menu">
+        <a href="services.html">Services</a>
+        <a href="projects.html">Projects</a>
+        <a href="about.html">About</a>
+        <a href="contact.html" class="btn" style="padding:.6rem 1rem;">Request a Quote</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="mesh" aria-hidden="true"></div>
+    <div class="container hero-wrap">
+      <div>
+        <h1 class="headline">Contact & Quote</h1>
+        <p class="sub">Tell us about your project — dimensions, location and finish. We respond quickly by phone or WhatsApp.</p>
+        <div style="display:flex; gap:.8rem; margin-top:1rem; flex-wrap:wrap">
+          <a class="btn" href="#quote">Request a Quote</a>
+          <a class="btn btn-outline" href="https://wa.me/2340000000000?text=Hi%20Gabakssteel%2C%20I%20need%20a%20quote." target="_blank" rel="noopener">Chat on WhatsApp</a>
+        </div>
+      </div>
+      <aside class="hero-media reveal">
+        <picture>
+          <source srcset="/images/contact/hero.webp" type="image/webp">
+          <img src="/images/contact/hero.jpg" alt="Workshop office and contact desk" width="1080" height="720" loading="lazy"/>
+        </picture>
+      </aside>
+    </div>
+  </header>
+
+  <!-- CONTACT CHANNELS -->
+  <section>
+    <div class="container">
+      <div class="cards">
+        <div class="card reveal">
+          <h3>Call / WhatsApp</h3>
+          <p class="small">Mon–Sat • 8:00am – 6:00pm</p>
+          <p><a class="btn" href="tel:+2340000000000">Call now</a> <a class="btn btn-outline" style="margin-left:.4rem" href="https://wa.me/2340000000000?text=Hi%20Gabakssteel%2C%20I%20need%20a%20quote." target="_blank" rel="noopener">WhatsApp</a></p>
+        </div>
+        <div class="card reveal">
+          <h3>Email</h3>
+          <p class="small">We reply promptly with a detailed estimate.</p>
+          <p><a class="btn btn-outline" href="mailto:info@gabakssteel.com?subject=Quote%20Request">info@gabakssteel.com</a></p>
+        </div>
+        <div class="card reveal">
+          <h3>Visit</h3>
+          <p class="small">No. 10 Shamura Street, Mafoluku, Oshodi, Lagos</p>
+          <p><a class="btn btn-outline" href="https://maps.google.com/?q=No.+10+Shamura+Street,+Mafoluku,+Oshodi,+Lagos" target="_blank" rel="noopener">Open in Maps</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE FORM -->
+  <section id="quote">
+    <div class="container">
+      <h2 class="section-title">Request a quote</h2>
+      <p class="section-sub">Share as much detail as you can — we’ll confirm measurements and give you options.</p>
+
+      <form id="quoteForm" novalidate>
+        <div class="col-6">
+          <label for="name">Your name</label>
+          <input id="name" name="name" autocomplete="name" required placeholder="John Doe" />
+        </div>
+        <div class="col-6">
+          <label for="phone">Phone or WhatsApp</label>
+          <input id="phone" name="phone" required inputmode="tel" placeholder="+234 ..." />
+        </div>
+
+        <div class="col-6">
+          <label for="email">Email (optional)</label>
+          <input id="email" name="email" type="email" placeholder="you@example.com" />
+        </div>
+        <div class="col-6">
+          <label for="location">Site location</label>
+          <input id="location" name="location" required placeholder="e.g., Oshodi, Ikeja" />
+        </div>
+
+        <div class="col-6">
+          <label for="service">Service</label>
+          <select id="service" name="service" required>
+            <option value="">Select service</option>
+            <option>Custom Gates & Doors</option>
+            <option>Windows & Burglary Proofs</option>
+            <option>Rails & Staircases</option>
+            <option>Street‑light Poles</option>
+            <option>Overhead Water Tanks</option>
+            <option>Warehouses & Roofing</option>
+            <option>Other / General Steel Work</option>
+          </select>
+        </div>
+        <div class="col-6">
+          <label for="finish">Preferred finish</label>
+          <select id="finish" name="finish">
+            <option value="">Select finish</option>
+            <option>Primer + paint</option>
+            <option>Powder‑coat</option>
+            <option>Hot‑dip galvanizing</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+
+        <div class="col-4">
+          <label for="width">Width (cm)</label>
+          <input id="width" name="width" inputmode="decimal" placeholder="e.g., 350" />
+        </div>
+        <div class="col-4">
+          <label for="height">Height (cm)</label>
+          <input id="height" name="height" inputmode="decimal" placeholder="e.g., 220" />
+        </div>
+        <div class="col-4">
+          <label for="budget">Budget range</label>
+          <select id="budget" name="budget">
+            <option value="">Select</option>
+            <option>Under ₦300k</option>
+            <option>₦300k – ₦700k</option>
+            <option>₦700k – ₦1.5m</option>
+            <option>₦1.5m+</option>
+          </select>
+        </div>
+
+        <div class="col-12">
+          <label for="details">Project details</label>
+          <textarea id="details" name="details" placeholder="Brief description, measurements, reference style (send photos via WhatsApp or attach in email)." maxlength="1500"></textarea>
+          <div class="help"><span id="count">0</span>/1500 characters</div>
+        </div>
+
+        <div class="col-12 actions">
+          <button class="btn" type="button" id="sendEmail">Send via Email</button>
+          <button class="btn btn-outline" type="button" id="sendWhatsApp">Send via WhatsApp</button>
+          <button class="btn btn-outline" type="button" id="copyText">Copy summary</button>
+          <span class="success" id="success">Summary copied. You can paste into WhatsApp.</span>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- MAP -->
+  <section>
+    <div class="container">
+      <h2 class="section-title">Find us</h2>
+      <p class="section-sub">No. 10 Shamura Street, Mafoluku, Oshodi, Lagos</p>
+      <div class="mapwrap reveal">
+        <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=No.+10+Shamura+Street,+Mafoluku,+Oshodi,+Lagos&output=embed" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section>
+    <div class="container">
+      <h2 class="section-title">FAQ</h2>
+      <div class="accord reveal" id="faq">
+        <div class="acc-item">
+          <button class="acc-btn">How long does fabrication take?</button>
+          <div class="acc-panel">Most residential gates and windows are completed within 7–14 working days after measurements and deposit. Larger projects like poles, tanks or roofing vary by scope.</div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-btn">Do you visit the site for measurements?</button>
+          <div class="acc-panel">Yes. We schedule a site visit to confirm dimensions, access, and installation details before fabrication starts.</div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-btn">What finishes are available?</button>
+          <div class="acc-panel">Primer + industrial paint is standard. We also offer powder‑coat and hot‑dip galvanizing for maximum corrosion resistance.</div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-btn">Is there a warranty?</button>
+          <div class="acc-panel">Yes. We provide a workmanship warranty covering weld integrity and install alignment. Finish durability depends on selected coating and maintenance.</div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-btn">What payment methods do you accept?</button>
+          <div class="acc-panel">Bank transfer is preferred. Projects typically start with a deposit and balance on installation.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container" style="padding:2rem 0">
+      <div class="foot">
+        <div>
+          <a class="brand" href="index.html">GABAKS<span>STEEL</span></a>
+          <p class="small">No. 10 Shamura Street, Mafoluku, Oshodi, Lagos • Mon–Sat 8am–6pm</p>
+          <p class="small">Phone/WhatsApp: <a href="tel:+2340000000000">+234 000 000 0000</a> • <a href="mailto:info@gabakssteel.com">info@gabakssteel.com</a></p>
+        </div>
+        <div>
+          <p class="small"><strong>Company</strong><br><a href="about.html">About</a><br><a href="projects.html">Projects</a><br><a href="services.html">Services</a></p>
+        </div>
+        <div>
+          <p class="small"><strong>Legal</strong><br><a href="privacy.html">Privacy</a><br><a href="terms.html">Terms</a></p>
+        </div>
+      </div>
+      <p class="small" style="margin-top:1rem; opacity:.85">© <span id="year"></span> Gabakssteel Construction Company Ltd. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu
+    const toggle = document.getElementById('mobileToggle');
+    const menu = document.getElementById('menu');
+    toggle?.addEventListener('click', ()=>{
+      const open = menu.style.display === 'flex';
+      menu.style.display = open ? 'none' : 'flex';
+      toggle.setAttribute('aria-expanded', String(!open));
+    });
+
+    // Reveal on scroll
+    const io = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target) }});
+    }, {threshold:.15});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+    // FAQ accordion
+    document.getElementById('faq').addEventListener('click', e=>{
+      const btn = e.target.closest('.acc-btn'); if(!btn) return;
+      const panel = btn.nextElementSibling; const open = panel.style.display === 'block';
+      document.querySelectorAll('.acc-panel').forEach(p=>p.style.display='none');
+      panel.style.display = open ? 'none' : 'block';
+    });
+
+    // Character count
+    const details = document.getElementById('details');
+    const count = document.getElementById('count');
+    details.addEventListener('input', ()=>{ count.textContent = details.value.length; });
+
+    // Build summary text
+    function buildSummary(){
+      const fd = new FormData(document.getElementById('quoteForm'));
+      const get = k => (fd.get(k) || '').toString().trim();
+      const dims = [get('width'), get('height')].filter(Boolean).join(' x ');
+      return (
+        `Name: ${get('name')}\n`
+        + `Phone: ${get('phone')}\n`
+        + (get('email')?`Email: ${get('email')}\n`:``)
+        + `Location: ${get('location')}\n`
+        + `Service: ${get('service')}\n`
+        + (get('finish')?`Finish: ${get('finish')}\n`:``)
+        + (dims?`Dimensions (cm): ${dims}\n`:``)
+        + `Budget: ${get('budget') || 'N/A'}\n\n`
+        + `Details:\n${get('details')}`
+      );
+    }
+
+    // Validate minimal required fields
+    function validate(){
+      const req = ['name','phone','location','service'];
+      for(const id of req){
+        const el = document.getElementById(id);
+        if(!el.value.trim()) { el.focus(); el.scrollIntoView({behavior:'smooth', block:'center'}); return false; }
+      }
+      return true;
+    }
+
+    // Send via Email
+    document.getElementById('sendEmail').addEventListener('click', ()=>{
+      if(!validate()) return;
+      const body = encodeURIComponent(buildSummary());
+      window.location.href = `mailto:info@gabakssteel.com?subject=Quote%20Request&body=${body}`;
+    });
+
+    // Send via WhatsApp
+    document.getElementById('sendWhatsApp').addEventListener('click', ()=>{
+      if(!validate()) return;
+      const text = encodeURIComponent(buildSummary());
+      // Replace the number with your WhatsApp business line
+      window.open(`https://wa.me/2340000000000?text=${text}`, '_blank');
+    });
+
+    // Copy summary
+    document.getElementById('copyText').addEventListener('click', async ()=>{
+      try{ await navigator.clipboard.writeText(buildSummary());
+        const s = document.getElementById('success'); s.style.display='inline-block';
+        setTimeout(()=>{ s.style.display='none'; }, 2500);
+      }catch(e){ alert('Copy failed. Please select and copy manually.'); }
+    });
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+  <!-- Structured data: ContactPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Contact Gabakssteel Construction Company Ltd",
+    "url": "https://gabakssteel.example/contact.html",
+    "about": {
+      "@type": "LocalBusiness",
+      "name": "Gabakssteel Construction Company Ltd",
+      "telephone": "+2340000000000",
+      "email": "info@gabakssteel.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "No. 10 Shamura Street, Mafoluku, Oshodi",
+        "addressLocality": "Lagos",
+        "addressCountry": "NG"
+      }
+    }
+  }
+  </script>
+</body>
+</html>
