@@ -8,10 +8,12 @@
   <link rel="canonical" href="https://gabakssteel.example/about.html" />
   <meta name="theme-color" content="#0B0F14" />
 
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
+  <!-- Open Graph -->
   <meta property="og:title" content="About Gabakssteel" />
   <meta property="og:description" content="15+ years of steel fabrication in Lagos — dependable quality, clean finishes, fair pricing." />
   <meta property="og:type" content="website" />
@@ -94,12 +96,13 @@
     /* HERO */
     header.hero{position:relative; overflow:hidden}
     .hero-wrap{display:grid; grid-template-columns:1.12fr .88fr; gap:2.2rem; align-items:center; padding:clamp(3.4rem, 4.8vw + 1rem, 6rem) 0}
-    .headline{font-family:Outfit, Inter; font-size:clamp(2rem, 2.8vw + 1rem, 3.2rem); line-height:1.05; margin:.2rem 0 .6rem}
+    .headline{font-family:Outfit, Inter; font-size:clamp(1.8rem, 2.8vw + 1rem, 3.2rem); line-height:1.05; margin:.2rem 0 .6rem}
     .sub{color:var(--muted); max-width:70ch}
-    .hero-actions{display:flex; gap:.8rem; margin-top:1rem; flex-wrap:wrap}
     .mesh{position:absolute; inset:auto -40% -30% -40%; height:46vh; z-index:-1; filter:blur(70px) saturate(130%); opacity:.55; background: conic-gradient(from 180deg at 50% 50%, rgba(201,162,39,.5), rgba(249,115,22,.35), rgba(201,162,39,.5)); mask-image: radial-gradient(60% 60% at 50% 50%, #000 30%, transparent 100%)}
     .hero-media{border:1px solid var(--border); background:var(--surface); border-radius:var(--radius); padding:1rem; box-shadow:var(--shadow)}
     .hero-media img{border-radius:var(--radius-sm)}
+    .hero-content .actions {display:flex; align-items:center; gap:.8rem; flex-wrap:wrap; justify-content:flex-start}
+    .hero-content .badges {justify-content:flex-start}
 
     /* STATS */
     .stats{display:grid; grid-template-columns:repeat(12,1fr); gap:1rem}
@@ -163,6 +166,7 @@
       .stat{grid-column:span 6}
       .story{grid-template-columns:1fr}
       .member{grid-column:span 6}
+      .mesh {inset:auto -20% -20% -20%; height:30vh}
     }
     @media (max-width: 680px){
       .navlinks{display:none}
@@ -174,16 +178,13 @@
       .cta-bar{display:flex; gap:.6rem}
       /* reserve space so CTA doesn't cover content */
       body{ padding-bottom:84px; }
-
-      /* === RESPONSIVE FIX START === */
-      .hero-wrap > div {
-        text-align: center;
-      }
-      .hero-wrap .badges,
-      .hero-wrap .hero-actions {
-        justify-content: center;
-      }
-      /* === RESPONSIVE FIX END === */
+      .hero-content {text-align:center}
+      .hero-content .badges {justify-content:center}
+      .hero-content .actions {justify-content:center}
+      .mesh {inset:-20% -40% auto -40%; height:60vh}
+    }
+    @media (max-width: 480px){
+      .stat{grid-column:1 / -1}
     }
     @media (prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important} }
 
@@ -196,10 +197,12 @@
 <body>
   <a href="#content" class="sr-only">Skip to content</a>
 
+  <!-- NAV -->
   <nav class="nav" aria-label="Primary">
     <div class="container inner">
       <a class="brand" href="index.html" aria-label="Gabakssteel logo">GABAKS<span>STEEL</span></a>
 
+      <!-- Desktop links -->
       <div class="navlinks">
         <a href="services.html">Services</a>
         <a href="projects.html">Projects</a>
@@ -207,6 +210,7 @@
         <a href="contact.html" class="btn" style="padding:.6rem 1rem;">Request a Quote</a>
       </div>
 
+      <!-- Mobile trigger -->
       <button class="mobile-toggle" aria-controls="mobilePanel" aria-expanded="false" id="mobileToggle">
         <span class="sr-only">Toggle menu</span>
         <span class="bars" aria-hidden="true"></span>
@@ -214,6 +218,7 @@
     </div>
   </nav>
 
+  <!-- Mobile overlay -->
   <div class="backdrop" id="backdrop" hidden></div>
   <aside class="mobile-panel" id="mobilePanel" hidden>
     <header>
@@ -234,10 +239,11 @@
     </div>
   </aside>
 
+  <!-- HERO -->
   <header class="hero" id="content">
     <div class="mesh" aria-hidden="true"></div>
     <div class="container hero-wrap">
-      <div>
+      <div class="hero-content">
         <h1 class="headline">About Gabakssteel</h1>
         <p class="sub">Founded in Lagos over <strong>15 years</strong> ago, we deliver dependable steel fabrication with clean finishes and on-time installation for homes, estates and industrial sites.</p>
         <div class="badges" style="margin-top:1rem">
@@ -246,7 +252,7 @@
           <span class="badge">Safety-first Team</span>
           <span class="badge">Fair Pricing</span>
         </div>
-        <div class="hero-actions">
+        <div class="actions" style="margin-top:1rem">
           <a class="btn" href="contact.html">Request a Quote</a>
           <a class="btn btn-outline" href="https://wa.me/2348025532696?text=Hi%20Gabakssteel%2C%20I%20need%20a%20quote." target="_blank" rel="noopener">WhatsApp</a>
         </div>
@@ -260,6 +266,7 @@
     </div>
   </header>
 
+  <!-- STATS -->
   <section>
     <div class="container stats">
       <div class="stat reveal">
@@ -281,6 +288,7 @@
     </div>
   </section>
 
+  <!-- STORY / PROCESS -->
   <section>
     <div class="container story">
       <div class="card reveal">
@@ -307,6 +315,7 @@
     </div>
   </section>
 
+  <!-- TEAM -->
   <section>
     <div class="container">
       <h2 class="section-title">Leadership & team</h2>
@@ -336,6 +345,7 @@
     </div>
   </section>
 
+  <!-- TESTIMONIALS -->
   <section>
     <div class="container slider reveal" aria-label="Testimonials">
       <div class="slides" id="slides">
@@ -361,6 +371,7 @@
     </div>
   </section>
 
+  <!-- LOCATION / CONTACT STRIP -->
   <section>
     <div class="container strip reveal">
       <div>
@@ -375,6 +386,7 @@
     </div>
   </section>
 
+  <!-- FOOTER -->
   <footer>
     <div class="container" style="padding:2rem 0">
       <div class="foot">
@@ -394,6 +406,7 @@
     </div>
   </footer>
 
+  <!-- Sticky CTA for mobile -->
   <div class="cta-bar" aria-hidden="true">
     <a class="btn" href="tel:+2347010104012" title="Call">Call</a>
     <a class="btn btn-outline" href="https://wa.me/2348025532696?text=Hi%20Gabakssteel%2C%20I%20need%20a%20quote." target="_blank" rel="noopener" title="WhatsApp">WhatsApp</a>
@@ -456,6 +469,7 @@
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 
+  <!-- Structured data (Organization) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
