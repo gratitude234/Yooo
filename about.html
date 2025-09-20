@@ -96,7 +96,7 @@
     /* HERO */
     header.hero{position:relative; overflow:hidden}
     .hero-wrap{display:grid; grid-template-columns:1.12fr .88fr; gap:2.2rem; align-items:center; padding:clamp(3.4rem, 4.8vw + 1rem, 6rem) 0}
-    .headline{font-family:Outfit, Inter; font-size:clamp(1.8rem, 2.8vw + 1rem, 3.2rem); line-height:1.05; margin:.2rem 0 .6rem}
+    .headline{font-family:Outfit, Inter; font-size:clamp(1.6rem, 2.8vw + 1rem, 3.2rem); line-height:1.05; margin:.2rem 0 .6rem}
     .sub{color:var(--muted); max-width:70ch}
     .mesh{position:absolute; inset:auto -40% -30% -40%; height:46vh; z-index:-1; filter:blur(70px) saturate(130%); opacity:.55; background: conic-gradient(from 180deg at 50% 50%, rgba(201,162,39,.5), rgba(249,115,22,.35), rgba(201,162,39,.5)); mask-image: radial-gradient(60% 60% at 50% 50%, #000 30%, transparent 100%)}
     .hero-media{border:1px solid var(--border); background:var(--surface); border-radius:var(--radius); padding:1rem; box-shadow:var(--shadow)}
@@ -181,7 +181,12 @@
       .hero-content {text-align:center}
       .hero-content .badges {justify-content:center}
       .hero-content .actions {justify-content:center}
-      .mesh {inset:-20% -40% auto -40%; height:60vh}
+      .mesh {inset:-50% -50% auto -50%; height:80vh; filter:blur(50px); opacity:.65}
+      .hero-wrap {padding:2rem 0}
+      .sub {font-size:0.95rem; line-height:1.4}
+      .badges {gap:.4rem; margin-top:.8rem}
+      .badge {font-size:.85rem; padding:.25rem .6rem}
+      .headline, .sub {text-shadow: 0 1px 3px rgba(0,0,0,.6)}
     }
     @media (max-width: 480px){
       .stat{grid-column:1 / -1}
