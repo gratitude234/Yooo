@@ -18,7 +18,7 @@
   <meta property="og:description" content="Gates, windows & burglary proofs, rails, street-light poles, overhead tanks, roofing & warehouses." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://gabakssteel.example/" />
-  <meta property="og:image" content="/images/og-home.jpg" />
+  <meta property="og:image" content="images/og-home.jpg" />
 
   <style>
     /* ------------------ THEME TOKENS ------------------ */
@@ -225,10 +225,16 @@
       .foot-bottom{flex-direction:column; align-items:flex-start}
 
       .cta-bar{display:flex; gap:.6rem}
+      /* Reserve space so CTA doesn't cover content */
+      body{ padding-bottom:84px; }
     }
 
     /* Motion safety */
     @media (prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important} }
+
+    /* Fix: lock background scroll when menu is open & anchor offset for sticky nav */
+    html.menu-open, body.menu-open { overflow:hidden; }
+    html{ scroll-padding-top: var(--nav-h); }
   </style>
 </head>
 <body>
@@ -286,7 +292,7 @@
         <p class="sub">We design, fabricate and install custom <strong>gates</strong>, <strong>windows & burglary proofs</strong>, <strong>rails & staircases</strong>, <strong>street-light poles</strong>, <strong>overhead tanks</strong> and <strong>warehouse roofing</strong> across Lagos and beyond.</p>
         <div style="display:flex; gap:.8rem; margin-top:1rem; flex-wrap:wrap">
           <a class="btn" href="contact.html">Request a Quote</a>
-          <a class="btn btn-outline" href="https://wa.me/23408025532696?text=Hi%20Gabakssteel%2C%20I%20need%20a%20quote." target="_blank" rel="noopener">WhatsApp</a>
+          <a class="btn btn-outline" href="https://wa.me/2348025532696?text=Hi%20Gabakssteel%2C%20I%20need%20a%20quote." target="_blank" rel="noopener">WhatsApp</a>
         </div>
         <div class="chips" style="margin-top:1rem">
           <span class="chip">Powder-coated finish</span>
@@ -297,8 +303,8 @@
 
       <aside class="hero-media reveal">
         <picture>
-          <source srcset="hero-gate-black.webp" type="image/webp">
-          <img src="hero-gate-black.jpg" alt="Modern steel gate by Gabakssteel" width="1080" height="720" loading="eager" />
+          <source srcset="hero-gate-black.webp" type="image/webp" sizes="(max-width:680px) 100vw, 540px">
+          <img src="hero-gate-black.jpg" alt="Modern steel gate by Gabakssteel" width="1080" height="720" loading="eager" fetchpriority="high" sizes="(max-width:680px) 100vw, 540px" />
         </picture>
       </aside>
     </div>
@@ -425,7 +431,11 @@
         <div class="group">
           <a class="brand" href="index.html">GABAKS<span>STEEL</span></a>
           <p class="small">No. 10 Shamura Street, Mafoluku, Oshodi, Lagos • Mon–Sat 8am–6pm</p>
-          <p class="small">Phone/WhatsApp: <a href="tel:+23408025532696">+234 000 000 0000</a> • <a href="mailto:info@gabakssteel.com">info@gabakssteel.com</a></p>
+          <p class="small">
+            Phone: <a href="tel:+2347010104012">07010104012</a> •
+            WhatsApp: <a href="https://wa.me/2348025532696" target="_blank" rel="noopener">08025532696</a> •
+            <a href="mailto:Gabakssteel@yahoo.com">Gabakssteel@yahoo.com</a>
+          </p>
         </div>
         <div class="group">
           <p class="small"><strong>Company</strong><br><a href="about.html">About</a><br><a href="projects.html">Projects</a><br><a href="services.html">Services</a></p>
@@ -437,7 +447,7 @@
       <div class="foot-bottom small">
         <span>© <span id="year"></span> Gabakssteel Construction Company Ltd.</span>
         <div style="display:flex; gap:.6rem; flex-wrap:wrap">
-          <a class="btn btn-outline" href="tel:+23407010104012">Call</a>
+          <a class="btn btn-outline" href="tel:+2347010104012">Call</a>
           <a class="btn" href="contact.html">Get a Quote</a>
         </div>
       </div>
@@ -446,8 +456,8 @@
 
   <!-- Sticky CTA for mobile -->
   <div class="cta-bar" aria-hidden="true">
-    <a class="btn" href="tel:+23407010104012" title="Call">Call</a>
-    <a class="btn btn-outline" href="https://wa.me/23408025532696?text=Hi%20Gabakssteel%2C%20I%20need%20a%20quote." target="_blank" rel="noopener" title="WhatsApp">WhatsApp</a>
+    <a class="btn" href="tel:+2347010104012" title="Call">Call</a>
+    <a class="btn btn-outline" href="https://wa.me/2348025532696?text=Hi%20Gabakssteel%2C%20I%20need%20a%20quote." target="_blank" rel="noopener" title="WhatsApp">WhatsApp</a>
     <a class="btn" href="contact.html" title="Request a Quote">Quote</a>
   </div>
 
@@ -463,6 +473,7 @@
 
     function openMenu(open){
       document.body.classList.toggle('menu-open', open);
+      document.documentElement.classList.toggle('menu-open', open); // lock html too
       toggle?.setAttribute('aria-expanded', String(open));
       panel.hidden = !open;
       backdrop.hidden = !open;
@@ -535,16 +546,16 @@
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 
-  <!-- LocalBusiness Schema (update phone/email/URL) -->
+  <!-- LocalBusiness Schema -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "Gabakssteel Construction Company Ltd",
-    "image": "/images/og-home.jpg",
+    "image": "images/og-home.jpg",
     "url": "https://gabakssteel.example/",
-    "telephone": "+23407010104012",
-    "email": "info@gabakssteel.com",
+    "telephone": "+2347010104012",
+    "email": "Gabakssteel@yahoo.com",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "No. 10 Shamura Street, Mafoluku, Oshodi",
@@ -558,7 +569,7 @@
     ],
     "description": "Steel fabricator with 15+ years experience: gates, burglary proofs, rails, street-light poles, overhead tanks, roofing & warehouses.",
     "foundingDate": "2010",
-    "logo": "/images/logo.png"
+    "logo": "images/logo.png"
   }
   </script>
 </body>
