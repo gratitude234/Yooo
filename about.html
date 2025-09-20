@@ -4,8 +4,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>About — Gabakssteel Construction Co. Ltd</title>
-  <meta name="description" content="Gabakssteel Construction Company Ltd — 15+ years delivering precision steel fabrication in Lagos: gates, windows & burglary proofs, rails & staircases, street‑light poles, overhead tanks, roofing & warehouses." />
+  <meta name="description" content="Gabakssteel Construction Company Ltd — 15+ years delivering precision steel fabrication in Lagos: gates, windows & burglary proofs, rails & staircases, street-light poles, overhead tanks, roofing & warehouses." />
   <link rel="canonical" href="https://gabakssteel.example/about.html" />
+  <meta name="theme-color" content="#0B0F14" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,36 +18,80 @@
   <meta property="og:description" content="15+ years of steel fabrication in Lagos — dependable quality, clean finishes, fair pricing." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://gabakssteel.example/about.html" />
-  <meta property="og:image" content="/images/og-about.jpg" />
+  <meta property="og:image" content="images/og-about.jpg" />
 
   <style>
     :root{
       --bg:#0B0F14; --bg-2:#0e1319; --surface:rgba(255,255,255,.06); --border:rgba(255,255,255,.12);
       --text:#e7eaf0; --muted:#a6afba; --accent:#F97316; --accent-2:#C9A227;
       --radius:18px; --radius-sm:12px; --shadow:0 16px 50px rgba(0,0,0,.35); --container:1200px;
+      --nav-h:64px;
     }
     *{box-sizing:border-box}
     html,body{height:100%}
-    body{margin:0; color:var(--text); font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Noto Sans; line-height:1.6; background:
+    body{
+      margin:0; color:var(--text); font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Noto Sans; line-height:1.6; background:
       radial-gradient(1000px 500px at 10% -10%, #16202b 0%, transparent 60%),
       radial-gradient(900px 500px at 100% 0%, #121a23 0%, transparent 60%), var(--bg);
     }
     a{color:inherit; text-decoration:none}
     img{max-width:100%; display:block}
     .container{max-width:var(--container); margin-inline:auto; padding:0 20px}
-    .btn{display:inline-flex; align-items:center; gap:.6rem; justify-content:center; padding:.9rem 1.2rem; border-radius:999px; font-weight:600; cursor:pointer; background:linear-gradient(135deg, var(--accent), #ffb673); color:#1b1205; box-shadow:0 10px 30px rgba(249,115,22,.35); transition:transform .18s ease, box-shadow .18s ease}
+
+    .btn{
+      position:relative; display:inline-flex; align-items:center; gap:.6rem; justify-content:center;
+      padding:.9rem 1.2rem; border-radius:999px; font-weight:600; cursor:pointer;
+      background:linear-gradient(135deg, var(--accent), #ffb673);
+      color:#1b1205; box-shadow:0 10px 30px rgba(249,115,22,.35);
+      transition:transform .18s ease, box-shadow .18s ease; overflow:hidden;
+    }
     .btn:is(:hover,:focus-visible){transform:translateY(-1px); box-shadow:0 16px 36px rgba(249,115,22,.38)}
     .btn-outline{background:transparent; color:var(--text); border:1px solid var(--border); box-shadow:none}
+    .btn::before{
+      content:""; position:absolute; inset:-2px; border-radius:inherit; pointer-events:none;
+      background:linear-gradient(120deg, rgba(255,255,255,0) 30%, rgba(255,255,255,.35) 50%, rgba(255,255,255,0) 70%);
+      transform:translateX(-120%); transition:transform .45s ease;
+    }
+    .btn:hover::before{transform:translateX(120%)}
 
-    /* NAV */
-    .nav{position:sticky; top:0; z-index:60; backdrop-filter:saturate(140%) blur(10px); background:linear-gradient(to bottom, rgba(15,19,26,.78), rgba(15,19,26,.4)); border-bottom:1px solid var(--border)}
-    .nav .inner{display:flex; align-items:center; justify-content:space-between; padding:.8rem 0}
+    /* Screen-reader only + anchor offset */
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    html{ scroll-padding-top: var(--nav-h); }
+    [id]{ scroll-margin-top: calc(var(--nav-h) + 8px); }
+
+    /* NAV (site-wide) */
+    .nav{position:sticky; top:0; z-index:80; backdrop-filter:saturate(140%) blur(10px); background:linear-gradient(to bottom, rgba(15,19,26,.78), rgba(15,19,26,.4)); border-bottom:1px solid var(--border)}
+    .nav .inner{display:flex; align-items:center; justify-content:space-between; padding:.5rem 0; min-height:var(--nav-h)}
     .brand{font-family:Outfit, Inter, system-ui; font-weight:700; letter-spacing:.4px; font-size:1.2rem}
     .brand span{color:var(--accent)}
     .navlinks{display:flex; gap:1.2rem; align-items:center}
-    .navlinks a{color:var(--muted)}
-    .navlinks a:hover{color:var(--text)}
-    .mobile-toggle{display:none}
+    .navlinks a{color:var(--muted); transition:color .2s ease, transform .2s ease}
+    .navlinks a:hover{color:var(--text); transform:translateY(-1px)}
+    .navlinks a[aria-current="page"]{ color:var(--text); font-weight:600 }
+
+    /* Mobile trigger */
+    .mobile-toggle{display:none; position:relative; width:42px; height:42px; place-items:center; border-radius:12px; border:1px solid var(--border); background:transparent; color:var(--text)}
+    .mobile-toggle .bars{display:block; width:20px; height:2px; background:currentColor; position:relative}
+    .mobile-toggle .bars:before, .mobile-toggle .bars:after{content:""; position:absolute; left:0; width:20px; height:2px; background:currentColor; transition:transform .2s ease, top .2s ease, opacity .2s ease}
+    .mobile-toggle .bars:before{top:-6px}
+    .mobile-toggle .bars:after{top:6px}
+    body.menu-open .mobile-toggle .bars{background:transparent}
+    body.menu-open .mobile-toggle .bars:before{top:0; transform:rotate(45deg)}
+    body.menu-open .mobile-toggle .bars:after{top:0; transform:rotate(-45deg)}
+
+    /* Mobile overlay menu */
+    .backdrop{position:fixed; inset:0; background:rgba(2,6,12,.5); backdrop-filter:blur(4px); z-index:79; opacity:0; pointer-events:none; transition:opacity .2s ease}
+    .mobile-panel{position:fixed; inset:0 0 0 30%; max-width:480px; margin-left:auto; background:linear-gradient(180deg, rgba(18,24,31,.98), rgba(18,24,31,.96)); border-left:1px solid var(--border); z-index:90; transform:translateX(105%); transition:transform .25s ease; display:flex; flex-direction:column}
+    .mobile-panel header{display:flex; align-items:center; justify-content:space-between; padding:1rem 1.25rem; border-bottom:1px solid var(--border)}
+    .mobile-panel nav{display:flex; flex-direction:column; padding:1rem 1.25rem; gap:.2rem}
+    .mobile-panel a{padding:.9rem 1rem; border-radius:12px; color:var(--text); border:1px solid transparent; opacity:0; transform:translateX(8px)}
+    .mobile-panel a:hover{background:var(--surface); border-color:var(--border)}
+    .mobile-panel a[aria-current="page"]{ background:var(--surface); border-color:var(--border); }
+    .mobile-panel .quick{margin-top:auto; padding:1rem 1.25rem; border-top:1px solid var(--border); display:grid; gap:.6rem}
+
+    body.menu-open{overflow:hidden}
+    body.menu-open .backdrop{opacity:1; pointer-events:auto}
+    body.menu-open .mobile-panel{transform:translateX(0)}
 
     /* HERO */
     header.hero{position:relative; overflow:hidden}
@@ -106,6 +151,13 @@
     .reveal{opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease}
     .reveal.show{opacity:1; transform:none}
 
+    /* Sticky mobile CTA bar */
+    .cta-bar{position:fixed; bottom:calc(12px + env(safe-area-inset-bottom)); left:50%; transform:translateX(-50%); z-index:70; display:none}
+    .cta-bar .btn{padding:.75rem 1rem}
+
+    /* Animations */
+    @keyframes slideIn{from{opacity:0; transform:translateX(8px)} to{opacity:1; transform:translateX(0)}}
+
     /* Responsive */
     @media (max-width: 1024px){
       .hero-wrap{grid-template-columns:1fr}
@@ -115,51 +167,88 @@
     }
     @media (max-width: 680px){
       .navlinks{display:none}
-      .mobile-toggle{display:inline-flex; background:transparent; border:1px solid var(--border); color:var(--text); padding:.4rem .7rem; border-radius:10px}
+      .mobile-toggle{display:grid}
       .stat{grid-column:span 6}
       .member{grid-column:span 12}
       .strip{flex-direction:column; align-items:stretch}
+      .foot{grid-template-columns:1fr}
+      .cta-bar{display:flex; gap:.6rem}
+      /* reserve space so CTA doesn't cover content */
+      body{ padding-bottom:84px; }
     }
     @media (prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important} }
+
+    /* Lock background scroll when menu is open */
+    html.menu-open, body.menu-open { overflow:hidden; }
   </style>
 </head>
 <body>
+  <a href="#content" class="sr-only">Skip to content</a>
+
   <!-- NAV -->
   <nav class="nav" aria-label="Primary">
     <div class="container inner">
       <a class="brand" href="index.html" aria-label="Gabakssteel logo">GABAKS<span>STEEL</span></a>
-      <button class="mobile-toggle" aria-controls="menu" aria-expanded="false" id="mobileToggle">Menu</button>
-      <div class="navlinks" id="menu">
+
+      <!-- Desktop links -->
+      <div class="navlinks">
         <a href="services.html">Services</a>
         <a href="projects.html">Projects</a>
-        <a href="about.html">About</a>
+        <a href="about.html" aria-current="page">About</a>
         <a href="contact.html" class="btn" style="padding:.6rem 1rem;">Request a Quote</a>
       </div>
+
+      <!-- Mobile trigger -->
+      <button class="mobile-toggle" aria-controls="mobilePanel" aria-expanded="false" id="mobileToggle">
+        <span class="sr-only">Toggle menu</span>
+        <span class="bars" aria-hidden="true"></span>
+      </button>
     </div>
   </nav>
 
+  <!-- Mobile overlay -->
+  <div class="backdrop" id="backdrop" hidden></div>
+  <aside class="mobile-panel" id="mobilePanel" hidden>
+    <header>
+      <span class="brand">GABAKS<span>STEEL</span></span>
+      <button class="mobile-toggle" id="closePanel" aria-label="Close menu">
+        <span class="bars" aria-hidden="true"></span>
+      </button>
+    </header>
+    <nav>
+      <a href="services.html">Services</a>
+      <a href="projects.html">Projects</a>
+      <a href="about.html" aria-current="page">About</a>
+      <a href="contact.html" class="btn btn-block">Request a Quote</a>
+    </nav>
+    <div class="quick">
+      <a class="btn btn-block" href="tel:+2347010104012" title="Call">Call us</a>
+      <a class="btn btn-outline btn-block" href="https://wa.me/2348025532696?text=Hi%20Gabakssteel%2C%20I%20need%20a%20quote." target="_blank" rel="noopener" title="WhatsApp">Chat on WhatsApp</a>
+    </div>
+  </aside>
+
   <!-- HERO -->
-  <header class="hero">
+  <header class="hero" id="content">
     <div class="mesh" aria-hidden="true"></div>
     <div class="container hero-wrap">
       <div>
         <h1 class="headline">About Gabakssteel</h1>
-        <p class="sub">Founded in Lagos over <strong>15 years</strong> ago, we deliver dependable steel fabrication with clean finishes and on‑time installation for homes, estates and industrial sites.</p>
+        <p class="sub">Founded in Lagos over <strong>15 years</strong> ago, we deliver dependable steel fabrication with clean finishes and on-time installation for homes, estates and industrial sites.</p>
         <div class="badges" style="margin-top:1rem">
           <span class="badge">Insured Installations</span>
           <span class="badge">Warranty</span>
-          <span class="badge">Safety‑first Team</span>
+          <span class="badge">Safety-first Team</span>
           <span class="badge">Fair Pricing</span>
         </div>
         <div style="display:flex; gap:.8rem; margin-top:1rem; flex-wrap:wrap">
           <a class="btn" href="contact.html">Request a Quote</a>
-          <a class="btn btn-outline" href="https://wa.me/2340000000000?text=Hi%20Gabakssteel%2C%20I%20need%20a%20quote." target="_blank" rel="noopener">WhatsApp</a>
+          <a class="btn btn-outline" href="https://wa.me/2348025532696?text=Hi%20Gabakssteel%2C%20I%20need%20a%20quote." target="_blank" rel="noopener">WhatsApp</a>
         </div>
       </div>
       <aside class="hero-media reveal">
         <picture>
-          <source srcset="/images/about/hero.webp" type="image/webp">
-          <img src="/images/about/hero.jpg" alt="Workshop and fabrication team" width="1080" height="720" loading="lazy"/>
+          <source srcset="images/about/hero.webp" type="image/webp" sizes="(max-width:680px) 100vw, 560px">
+          <img src="images/about/hero.jpg" alt="Workshop and fabrication team" width="1080" height="720" loading="lazy" sizes="(max-width:680px) 100vw, 560px"/>
         </picture>
       </aside>
     </div>
@@ -193,21 +282,21 @@
       <div class="card reveal">
         <h2 class="section-title">Our story</h2>
         <p class="section-sub">From small residential gates to full warehouse roofing, Gabakssteel has grown through referrals by delivering consistent quality and standing by our work.</p>
-        <p>We operate from Mafoluku, Oshodi — serving Lagos and nearby states. Our team handles design, cutting, welding, surface finishing and on‑site installation with safety compliance.</p>
+        <p>We operate from Mafoluku, Oshodi — serving Lagos and nearby states. Our team handles design, cutting, welding, surface finishing and on-site installation with safety compliance.</p>
         <div class="badges" style="margin-top:.6rem">
-          <span class="badge">Powder‑coat options</span>
-          <span class="badge">Hot‑dip galvanizing</span>
-          <span class="badge">Anti‑corrosion prep</span>
-          <span class="badge">After‑sales support</span>
+          <span class="badge">Powder-coat options</span>
+          <span class="badge">Hot-dip galvanizing</span>
+          <span class="badge">Anti-corrosion prep</span>
+          <span class="badge">After-sales support</span>
         </div>
       </div>
       <div class="card reveal">
         <h2 class="section-title">Timeline</h2>
         <ol class="timeline">
           <li class="titem"><strong>2010</strong> — Company founded; first estate gate contracts in Oshodi/Isolo.</li>
-          <li class="titem"><strong>2014</strong> — Added street‑light pole fabrication and municipal installs.</li>
+          <li class="titem"><strong>2014</strong> — Added street-light pole fabrication and municipal installs.</li>
           <li class="titem"><strong>2018</strong> — Expanded to overhead tank towers and warehouse roofing.</li>
-          <li class="titem"><strong>2023</strong> — Laser‑cut patterns and stainless railing offerings.</li>
+          <li class="titem"><strong>2023</strong> — Laser-cut patterns and stainless railing offerings.</li>
           <li class="titem"><strong>Today</strong> — Full service steel fabrication for homes and industry across Lagos.</li>
         </ol>
       </div>
@@ -221,24 +310,24 @@
       <p class="section-sub">Skilled fabricators, installers and project managers who care about neat work and safety.</p>
       <div class="team">
         <div class="member reveal">
-          <div class="avatar"><img src="/images/team/lead-1.jpg" alt="Managing Director" loading="lazy"></div>
+          <div class="avatar"><img src="images/team/lead-1.jpg" alt="Managing Director" loading="lazy"></div>
           <h3 style="margin:.6rem 0 .2rem; font-family:Outfit">Managing Director</h3>
           <p class="role">Project oversight & client relations</p>
         </div>
         <div class="member reveal">
-          <div class="avatar"><img src="/images/team/lead-2.jpg" alt="Head of Fabrication" loading="lazy"></div>
+          <div class="avatar"><img src="images/team/lead-2.jpg" alt="Head of Fabrication" loading="lazy"></div>
           <h3 style="margin:.6rem 0 .2rem; font-family:Outfit">Head of Fabrication</h3>
           <p class="role">Cutting • Welding • QC</p>
         </div>
         <div class="member reveal">
-          <div class="avatar"><img src="/images/team/lead-3.jpg" alt="Installation Lead" loading="lazy"></div>
+          <div class="avatar"><img src="images/team/lead-3.jpg" alt="Installation Lead" loading="lazy"></div>
           <h3 style="margin:.6rem 0 .2rem; font-family:Outfit">Installation Lead</h3>
-          <p class="role">On‑site install • Safety</p>
+          <p class="role">On-site install • Safety</p>
         </div>
         <div class="member reveal">
-          <div class="avatar"><img src="/images/team/lead-4.jpg" alt="Finishing & Coatings" loading="lazy"></div>
+          <div class="avatar"><img src="images/team/lead-4.jpg" alt="Finishing & Coatings" loading="lazy"></div>
           <h3 style="margin:.6rem 0 .2rem; font-family:Outfit">Finishing & Coatings</h3>
-          <p class="role">Primer • Paint • Powder‑coat</p>
+          <p class="role">Primer • Paint • Powder-coat</p>
         </div>
       </div>
     </div>
@@ -262,7 +351,7 @@
         </div>
         <div class="slide">
           <blockquote>
-            “Street‑light poles were fabricated to spec and installed with proper anchoring. Good communication throughout.”
+            “Street-light poles were fabricated to spec and installed with proper anchoring. Good communication throughout.”
             <footer>— Project Supervisor, Isolo</footer>
           </blockquote>
         </div>
@@ -279,7 +368,7 @@
       </div>
       <div style="display:flex; gap:.6rem; flex-wrap:wrap">
         <a class="btn" href="contact.html">Request a Quote</a>
-        <a class="btn btn-outline" href="https://wa.me/2340000000000?text=Hi%20Gabakssteel%2C%20I%20need%20a%20quote." target="_blank" rel="noopener">Chat on WhatsApp</a>
+        <a class="btn btn-outline" href="https://wa.me/2348025532696?text=Hi%20Gabakssteel%2C%20I%20need%20a%20quote." target="_blank" rel="noopener">Chat on WhatsApp</a>
         <a class="btn btn-outline" href="https://maps.google.com/?q=No.+10+Shamura+Street,+Mafoluku,+Oshodi,+Lagos" target="_blank" rel="noopener">Open in Maps</a>
       </div>
     </div>
@@ -292,10 +381,10 @@
         <div>
           <a class="brand" href="index.html">GABAKS<span>STEEL</span></a>
           <p class="small">No. 10 Shamura Street, Mafoluku, Oshodi, Lagos • Mon–Sat 8am–6pm</p>
-          <p class="small">Phone/WhatsApp: <a href="tel:+2340000000000">+234 000 000 0000</a> • <a href="mailto:info@gabakssteel.com">info@gabakssteel.com</a></p>
+          <p class="small">Phone: <a href="tel:+2347010104012">07010104012</a> • WhatsApp: <a href="https://wa.me/2348025532696" target="_blank" rel="noopener">08025532696</a> • <a href="mailto:Gabakssteel@yahoo.com">Gabakssteel@yahoo.com</a></p>
         </div>
         <div>
-          <p class="small"><strong>Company</strong><br><a href="about.html">About</a><br><a href="projects.html">Projects</a><br><a href="services.html">Services</a></p>
+          <p class="small"><strong>Company</strong><br><a href="about.html" aria-current="page">About</a><br><a href="projects.html">Projects</a><br><a href="services.html">Services</a></p>
         </div>
         <div>
           <p class="small"><strong>Legal</strong><br><a href="privacy.html">Privacy</a><br><a href="terms.html">Terms</a></p>
@@ -305,15 +394,42 @@
     </div>
   </footer>
 
+  <!-- Sticky CTA for mobile -->
+  <div class="cta-bar" aria-hidden="true">
+    <a class="btn" href="tel:+2347010104012" title="Call">Call</a>
+    <a class="btn btn-outline" href="https://wa.me/2348025532696?text=Hi%20Gabakssteel%2C%20I%20need%20a%20quote." target="_blank" rel="noopener" title="WhatsApp">WhatsApp</a>
+    <a class="btn" href="contact.html" title="Request a Quote">Quote</a>
+  </div>
+
   <script>
-    // Mobile menu
-    const toggle = document.getElementById('mobileToggle');
-    const menu = document.getElementById('menu');
-    toggle?.addEventListener('click', ()=>{
-      const open = menu.style.display === 'flex';
-      menu.style.display = open ? 'none' : 'flex';
-      toggle.setAttribute('aria-expanded', String(!open));
-    });
+    // Helpers
+    const $ = (s, r=document) => r.querySelector(s);
+
+    // Mobile menu (overlay)
+    const toggle = $('#mobileToggle');
+    const closeBtn = $('#closePanel');
+    const panel = $('#mobilePanel');
+    const backdrop = $('#backdrop');
+
+    function openMenu(open){
+      document.body.classList.toggle('menu-open', open);
+      document.documentElement.classList.toggle('menu-open', open); // lock <html> too
+      toggle?.setAttribute('aria-expanded', String(open));
+      panel.hidden = !open;
+      backdrop.hidden = !open;
+
+      // Animate links with stagger
+      const links = panel?.querySelectorAll('nav a') || [];
+      links.forEach((a, i)=>{
+        a.style.animation = 'none'; a.offsetHeight; // reflow
+        a.style.animation = `slideIn .28s both`;
+        a.style.animationDelay = `${i * 0.05}s`;
+      });
+    }
+    toggle?.addEventListener('click', ()=> openMenu(!document.body.classList.contains('menu-open')));
+    closeBtn?.addEventListener('click', ()=> openMenu(false));
+    backdrop?.addEventListener('click', ()=> openMenu(false));
+    window.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') openMenu(false) });
 
     // Reveal on scroll
     const io = new IntersectionObserver(entries=>{
@@ -348,7 +464,7 @@
     "@type": "Organization",
     "name": "Gabakssteel Construction Company Ltd",
     "url": "https://gabakssteel.example/",
-    "logo": "/images/logo.png",
+    "logo": "images/logo.png",
     "description": "Steel fabricator with 15+ years experience in Lagos.",
     "address": {
       "@type": "PostalAddress",
@@ -358,7 +474,7 @@
     },
     "contactPoint": [{
       "@type": "ContactPoint",
-      "telephone": "+2340000000000",
+      "telephone": "+2347010104012",
       "contactType": "customer service",
       "areaServed": "NG"
     }]
