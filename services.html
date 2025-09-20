@@ -18,7 +18,7 @@
   <meta property="og:description" content="Gates & doors, windows & burglary proofs, rails & staircases, street-light poles, overhead tanks, roofing & warehouses — built with precision." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://gabakssteel.example/services.html" />
-  <meta property="og:image" content="/images/og-services.jpg" />
+  <meta property="og:image" content="images/og-services.jpg" />
 
   <style>
     /* ------------------ THEME TOKENS ------------------ */
@@ -173,10 +173,16 @@
       .foot .group:first-child{border-top:none; padding-top:0}
       .foot-bottom{flex-direction:column; align-items:flex-start}
       .cta-bar{display:flex; gap:.6rem}
+      /* Reserve space so CTA doesn't cover content */
+      body{ padding-bottom:84px; }
     }
 
     /* Motion safety */
     @media (prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important} }
+
+    /* Fixes: lock background scroll when menu is open & anchor offset for sticky nav */
+    html.menu-open, body.menu-open { overflow:hidden; }
+    html{ scroll-padding-top: var(--nav-h); }
   </style>
 </head>
 <body>
@@ -219,8 +225,8 @@
       <a href="contact.html" class="btn btn-block">Request a Quote</a>
     </nav>
     <div class="quick">
-      <a class="btn btn-block" href="tel:+2340000000000" title="Call">Call us</a>
-      <a class="btn btn-outline btn-block" href="https://wa.me/2340000000000?text=Hi%20Gabakssteel%2C%20I%20need%20a%20quote." target="_blank" rel="noopener" title="WhatsApp">Chat on WhatsApp</a>
+      <a class="btn btn-block" href="tel:+2347010104012" title="Call">Call us</a>
+      <a class="btn btn-outline btn-block" href="https://wa.me/2348025532696?text=Hi%20Gabakssteel%2C%20I%20need%20a%20quote." target="_blank" rel="noopener" title="WhatsApp">Chat on WhatsApp</a>
     </div>
   </aside>
 
@@ -229,7 +235,7 @@
     <div class="mesh" aria-hidden="true"></div>
     <div class="container hero-wrap">
       <h1 class="headline">Our Services</h1>
-      <p class="sub">From custom gates to industrial roofing, we deliver end‑to‑end steel fabrication: design, welding, finishing and on‑site installation.</p>
+      <p class="sub">From custom gates to industrial roofing, we deliver end-to-end steel fabrication: design, welding, finishing and on-site installation.</p>
       <nav class="chips" aria-label="Service shortcuts">
         <a class="chip" href="#gates">Gates & Doors</a>
         <a class="chip" href="#windows">Windows & Burglary</a>
@@ -247,8 +253,8 @@
     <div class="container service">
       <div class="media reveal">
         <picture>
-          <source srcset="/images/services/gates.webp" type="image/webp">
-          <img src="/images/services/gates.jpg" alt="Custom steel gates & doors" width="1080" height="720" loading="lazy" />
+          <source srcset="images/services/gates.webp" type="image/webp">
+          <img src="images/services/gates.jpg" alt="Custom steel gates & doors" width="1080" height="720" loading="lazy" />
         </picture>
       </div>
       <div class="reveal">
@@ -272,11 +278,11 @@
     <div class="container service alt">
       <div class="reveal">
         <h2 class="section-title">Windows & Burglary Proofs</h2>
-        <p class="section-sub">Neat welds, accurate spacing, anti-corrosion protection and optional powder‑coat for a durable, clean look.</p>
+        <p class="section-sub">Neat welds, accurate spacing, anti-corrosion protection and optional powder-coat for a durable, clean look.</p>
         <div class="specs">
           <div class="spec"><h4>Profiles</h4><p class="small">Square bar • Pipe • Angle • Decorative motifs</p></div>
           <div class="spec"><h4>Finishes</h4><p class="small">Polyurethane paint • Powder-coat • Zinc-rich primer</p></div>
-          <div class="spec"><h4>Extras</h4><p class="small">Mosquito mesh frames • Quick‑release options • Child‑safe spacing</p></div>
+          <div class="spec"><h4>Extras</h4><p class="small">Mosquito mesh frames • Quick-release options • Child-safe spacing</p></div>
         </div>
         <div style="display:flex; gap:.6rem; margin-top:1rem; flex-wrap:wrap">
           <a class="btn" href="projects.html">See projects</a>
@@ -285,8 +291,8 @@
       </div>
       <div class="media reveal">
         <picture>
-          <source srcset="/images/services/windows.webp" type="image/webp">
-          <img src="/images/services/windows.jpg" alt="Steel windows and burglary proofs" width="1080" height="720" loading="lazy" />
+          <source srcset="images/services/windows.webp" type="image/webp">
+          <img src="images/services/windows.jpg" alt="Steel windows and burglary proofs" width="1080" height="720" loading="lazy" />
         </picture>
       </div>
     </div>
@@ -297,17 +303,17 @@
     <div class="container service">
       <div class="media reveal">
         <picture>
-          <source srcset="/images/services/rails.webp" type="image/webp">
-          <img src="/images/services/rails.jpg" alt="Rails and staircases" width="1080" height="720" loading="lazy" />
+          <source srcset="images/services/rails.webp" type="image/webp">
+          <img src="images/services/rails.jpg" alt="Rails and staircases" width="1080" height="720" loading="lazy" />
         </picture>
       </div>
       <div class="reveal">
         <h2 class="section-title">Rails & Staircases</h2>
-        <p class="section-sub">Precision balustrades, stainless/painted handrails and laser‑cut patterns for interior and exterior installations.</p>
+        <p class="section-sub">Precision balustrades, stainless/painted handrails and laser-cut patterns for interior and exterior installations.</p>
         <div class="specs">
           <div class="spec"><h4>Materials</h4><p class="small">Mild steel • Stainless steel • Glass infill options</p></div>
           <div class="spec"><h4>Compliance</h4><p class="small">Consistent riser/tread • Handrail height • Sturdy anchors</p></div>
-          <div class="spec"><h4>Finishes</h4><p class="small">Powder‑coat • Brushed stainless • Clear‑coat</p></div>
+          <div class="spec"><h4>Finishes</h4><p class="small">Powder-coat • Brushed stainless • Clear-coat</p></div>
         </div>
         <div style="display:flex; gap:.6rem; margin-top:1rem; flex-wrap:wrap">
           <a class="btn" href="projects.html">See projects</a>
@@ -321,12 +327,12 @@
   <section id="poles">
     <div class="container service alt">
       <div class="reveal">
-        <h2 class="section-title">Street‑light Poles</h2>
-        <p class="section-sub">Engineered for wind‑load with quality welds and corrosion‑resistant finishes; installation hardware supplied.</p>
+        <h2 class="section-title">Street-light Poles</h2>
+        <p class="section-sub">Engineered for wind-load with quality welds and corrosion-resistant finishes; installation hardware supplied.</p>
         <div class="specs">
           <div class="spec"><h4>Types</h4><p class="small">Single/Double arm • Octagonal • Conical • Decorative</p></div>
-          <div class="spec"><h4>Heights</h4><p class="small">4–12 m (custom on request) • Base‑plate or planted</p></div>
-          <div class="spec"><h4>Finishes</h4><p class="small">Hot‑dip galvanizing • Powder‑coat • Epoxy paint system</p></div>
+          <div class="spec"><h4>Heights</h4><p class="small">4–12 m (custom on request) • Base-plate or planted</p></div>
+          <div class="spec"><h4>Finishes</h4><p class="small">Hot-dip galvanizing • Powder-coat • Epoxy paint system</p></div>
         </div>
         <div style="display:flex; gap:.6rem; margin-top:1rem; flex-wrap:wrap">
           <a class="btn" href="projects.html">See projects</a>
@@ -335,8 +341,8 @@
       </div>
       <div class="media reveal">
         <picture>
-          <source srcset="/images/services/poles.webp" type="image/webp">
-          <img src="/images/services/poles.jpg" alt="Street-light poles" width="1080" height="720" loading="lazy" />
+          <source srcset="images/services/poles.webp" type="image/webp">
+          <img src="images/services/poles.jpg" alt="Street-light poles" width="1080" height="720" loading="lazy" />
         </picture>
       </div>
     </div>
@@ -347,16 +353,16 @@
     <div class="container service">
       <div class="media reveal">
         <picture>
-          <source srcset="/images/services/tanks.webp" type="image/webp">
-          <img src="/images/services/tanks.jpg" alt="Overhead water tanks" width="1080" height="720" loading="lazy" />
+          <source srcset="images/services/tanks.webp" type="image/webp">
+          <img src="images/services/tanks.jpg" alt="Overhead water tanks" width="1080" height="720" loading="lazy" />
         </picture>
       </div>
       <div class="reveal">
         <h2 class="section-title">Overhead Water Tanks</h2>
-        <p class="section-sub">Towers, platforms, ladders and safety rails built to spec; strong bracing and anti‑corrosion protection.</p>
+        <p class="section-sub">Towers, platforms, ladders and safety rails built to spec; strong bracing and anti-corrosion protection.</p>
         <div class="specs">
           <div class="spec"><h4>Capacity</h4><p class="small">500 L – 50,000 L (single/multiple tanks)</p></div>
-          <div class="spec"><h4>Structure</h4><p class="small">Square/rectangular towers • Cross‑bracing • Access ladder</p></div>
+          <div class="spec"><h4>Structure</h4><p class="small">Square/rectangular towers • Cross-bracing • Access ladder</p></div>
           <div class="spec"><h4>Finish</h4><p class="small">Primer + industrial paint • Galvanized options</p></div>
         </div>
         <div style="display:flex; gap:.6rem; margin-top:1rem; flex-wrap:wrap">
@@ -376,7 +382,7 @@
         <div class="specs">
           <div class="spec"><h4>Scope</h4><p class="small">Design & fabrication • Erection • Roof sheeting • Flashings</p></div>
           <div class="spec"><h4>Profiles</h4><p class="small">Open web • Portal frames • Tubular trusses</p></div>
-          <div class="spec"><h4>Finish</h4><p class="small">Primer + topcoat • Galvanized members • Anti‑rust systems</p></div>
+          <div class="spec"><h4>Finish</h4><p class="small">Primer + topcoat • Galvanized members • Anti-rust systems</p></div>
         </div>
         <div style="display:flex; gap:.6rem; margin-top:1rem; flex-wrap:wrap">
           <a class="btn" href="projects.html">See projects</a>
@@ -385,8 +391,8 @@
       </div>
       <div class="media reveal">
         <picture>
-          <source srcset="/images/services/warehouses.webp" type="image/webp">
-          <img src="/images/services/warehouses.jpg" alt="Warehouse roofing and trusses" width="1080" height="720" loading="lazy" />
+          <source srcset="images/services/warehouses.webp" type="image/webp">
+          <img src="images/services/warehouses.jpg" alt="Warehouse roofing and trusses" width="1080" height="720" loading="lazy" />
         </picture>
       </div>
     </div>
@@ -397,17 +403,17 @@
     <div class="container service">
       <div class="media reveal">
         <picture>
-          <source srcset="/images/services/general.webp" type="image/webp">
-          <img src="/images/services/general.jpg" alt="General steel works" width="1080" height="720" loading="lazy" />
+          <source srcset="images/services/general.webp" type="image/webp">
+          <img src="images/services/general.jpg" alt="General steel works" width="1080" height="720" loading="lazy" />
         </picture>
       </div>
       <div class="reveal">
         <h2 class="section-title">General Steel Works</h2>
         <p class="section-sub">If it’s steel, we build it — grills, canopies, frames, platforms, security doors, custom fixtures and site solutions.</p>
         <div class="specs">
-          <div class="spec"><h4>Fabrication</h4><p class="small">Cutting • Folding • Welding • Grinding • Fit‑up</p></div>
+          <div class="spec"><h4>Fabrication</h4><p class="small">Cutting • Folding • Welding • Grinding • Fit-up</p></div>
           <div class="spec"><h4>Materials</h4><p class="small">Mild steel • Stainless steel • Aluminium (select tasks)</p></div>
-          <div class="spec"><h4>Delivery</h4><p class="small">Shop build + on‑site installation • Warranty • After‑sales</p></div>
+          <div class="spec"><h4>Delivery</h4><p class="small">Shop build + on-site installation • Warranty • After-sales</p></div>
         </div>
         <div style="display:flex; gap:.6rem; margin-top:1rem; flex-wrap:wrap">
           <a class="btn" href="projects.html">See projects</a>
@@ -426,7 +432,7 @@
       </div>
       <div style="display:flex; gap:.6rem; flex-wrap:wrap">
         <a class="btn" href="contact.html">Request a Quote</a>
-        <a class="btn btn-outline" href="https://wa.me/2340000000000?text=Hi%20Gabakssteel%2C%20I%20need%20a%20quote." target="_blank" rel="noopener">Chat on WhatsApp</a>
+        <a class="btn btn-outline" href="https://wa.me/2348025532696?text=Hi%20Gabakssteel%2C%20I%20need%20a%20quote." target="_blank" rel="noopener">Chat on WhatsApp</a>
       </div>
     </div>
   </section>
@@ -438,7 +444,11 @@
         <div class="group">
           <a class="brand" href="index.html">GABAKS<span>STEEL</span></a>
           <p class="small">No. 10 Shamura Street, Mafoluku, Oshodi, Lagos • Mon–Sat 8am–6pm</p>
-          <p class="small">Phone/WhatsApp: <a href="tel:+2340000000000">+234 000 000 0000</a> • <a href="mailto:info@gabakssteel.com">info@gabakssteel.com</a></p>
+          <p class="small">
+            Phone: <a href="tel:+2347010104012">07010104012</a> •
+            WhatsApp: <a href="https://wa.me/2348025532696" target="_blank" rel="noopener">08025532696</a> •
+            <a href="mailto:Gabakssteel@yahoo.com">Gabakssteel@yahoo.com</a>
+          </p>
         </div>
         <div class="group">
           <p class="small"><strong>Company</strong><br><a href="about.html">About</a><br><a href="projects.html">Projects</a><br><a href="services.html">Services</a></p>
@@ -450,7 +460,7 @@
       <div class="foot-bottom small">
         <span>© <span id="year"></span> Gabakssteel Construction Company Ltd.</span>
         <div style="display:flex; gap:.6rem; flex-wrap:wrap">
-          <a class="btn btn-outline" href="tel:+2340000000000">Call</a>
+          <a class="btn btn-outline" href="tel:+2347010104012">Call</a>
           <a class="btn" href="contact.html">Get a Quote</a>
         </div>
       </div>
@@ -459,8 +469,8 @@
 
   <!-- Sticky CTA for mobile -->
   <div class="cta-bar" aria-hidden="true">
-    <a class="btn" href="tel:+2340000000000" title="Call">Call</a>
-    <a class="btn btn-outline" href="https://wa.me/2340000000000?text=Hi%20Gabakssteel%2C%20I%20need%20a%20quote." target="_blank" rel="noopener" title="WhatsApp">WhatsApp</a>
+    <a class="btn" href="tel:+2347010104012" title="Call">Call</a>
+    <a class="btn btn-outline" href="https://wa.me/2348025532696?text=Hi%20Gabakssteel%2C%20I%20need%20a%20quote." target="_blank" rel="noopener" title="WhatsApp">WhatsApp</a>
     <a class="btn" href="contact.html" title="Request a Quote">Quote</a>
   </div>
 
@@ -476,6 +486,7 @@
 
     function openMenu(open){
       document.body.classList.toggle('menu-open', open);
+      document.documentElement.classList.toggle('menu-open', open); // lock <html> too
       toggle?.setAttribute('aria-expanded', String(open));
       panel.hidden = !open;
       backdrop.hidden = !open;
