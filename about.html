@@ -181,15 +181,6 @@
     /* Lock background scroll when menu is open */
     html.menu-open, body.menu-open { overflow:hidden; }
 
-/* Give mobile a roomier gutter + notch safe areas */
-@media (max-width: 680px){
-  .container{
-    padding-left:  max(24px, env(safe-area-inset-left));
-    padding-right: max(24px, env(safe-area-inset-right));
-  }
-  /* (Optional) slightly shorten long paragraphs on small screens */
-  .sub{ max-width: 58ch; }
-}
 
   </style>
 </head>
