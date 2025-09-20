@@ -171,14 +171,16 @@
     .m-cta{display:grid; gap:.6rem; margin-top:1rem}
 
     /* Sticky chipbar */
-    .m-chipbar{
-      position:sticky; top:var(--nav-h); z-index:60;
-      background:linear-gradient(180deg, rgba(11,15,20,.96), rgba(11,15,20,.92));
-      border-bottom:1px solid var(--border);
-      overflow-x:auto; -webkit-overflow-scrolling:touch;
-    }
-    .m-chipbar .inner{display:flex; gap:.6rem; padding:.6rem 20px}
-    .m-chipbar .chip{white-space:nowrap; scroll-snap-align:center}
+    /* Chipbar (no sticky) */
+.m-chipbar{
+  position: static;      /* was: sticky */
+  top: auto;             /* was: var(--nav-h) */
+  z-index: auto;         /* no stacking */
+  background: transparent;
+  border-bottom: none;
+  overflow-x:auto; -webkit-overflow-scrolling:touch;
+}
+.m-chipbar .inner{display:flex; gap:.6rem; padding:.6rem 20px}
 
     /* Mobile accordion cards */
     .m-list{display:grid; gap:1rem; padding:1.2rem 0}
