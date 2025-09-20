@@ -47,23 +47,41 @@
     a{color:inherit; text-decoration:none}
     img{max-width:100%; display:block}
     .container{max-width:var(--container); margin-inline:auto; padding:0 20px}
+
     .btn{
-      display:inline-flex; align-items:center; gap:.6rem; justify-content:center;
+      position:relative; display:inline-flex; align-items:center; gap:.6rem; justify-content:center;
       padding:.9rem 1.2rem; border-radius:999px; font-weight:600; cursor:pointer;
-      background:linear-gradient(135deg, var(--accent), #ffb673); color:#1b1205;
-      box-shadow:0 10px 30px rgba(249,115,22,.35); transition:transform .18s ease, box-shadow .18s ease
+      background:linear-gradient(135deg, var(--accent), #ffb673);
+      color:#1b1205; box-shadow:0 10px 30px rgba(249,115,22,.35);
+      transition:transform .18s ease, box-shadow .18s ease;
+      overflow:hidden;
     }
     .btn:is(:hover,:focus-visible){transform:translateY(-1px); box-shadow:0 16px 36px rgba(249,115,22,.38)}
+    .btn::before{
+      content:""; position:absolute; inset:-2px; border-radius:inherit; pointer-events:none;
+      background:linear-gradient(120deg, rgba(255,255,255,0) 30%, rgba(255,255,255,.35) 50%, rgba(255,255,255,0) 70%);
+      transform:translateX(-120%); transition:transform .45s ease;
+    }
+    .btn:hover::before{transform:translateX(120%)}
     .btn-outline{background:transparent; color:var(--text); border:1px solid var(--border); box-shadow:none}
+    .btn-block{width:100%}
 
-    /* ------------------ NAV ------------------ */
-    .nav{position:sticky; top:0; z-index:80; backdrop-filter:saturate(140%) blur(10px); background:linear-gradient(to bottom, rgba(15,19,26,.78), rgba(15,19,26,.4)); border-bottom:1px solid var(--border)}
+    /* Screen-reader only */
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+    /* ------------------ NAV (MATCHES index.html) ------------------ */
+    .nav{position:sticky; top:0; z-index:80; backdrop-filter:saturate(140%) blur(10px);
+      background:linear-gradient(to bottom, rgba(15,19,26,.78), rgba(15,19,26,.4));
+      border-bottom:1px solid var(--border);
+    }
     .nav .inner{display:flex; align-items:center; justify-content:space-between; padding:.5rem 0; min-height:var(--nav-h)}
     .brand{font-family:Outfit, Inter, system-ui; font-weight:700; letter-spacing:.4px; font-size:1.2rem}
     .brand span{color:var(--accent)}
+
+    /* Desktop links */
     .navlinks{display:flex; gap:1.2rem; align-items:center}
-    .navlinks a{color:var(--muted)}
-    .navlinks a:hover{color:var(--text)}
+    .navlinks a{color:var(--muted); transition:color .2s ease, transform .2s ease}
+    .navlinks a:hover{color:var(--text); transform:translateY(-1px)}
 
     /* Mobile trigger */
     .mobile-toggle{display:none; position:relative; width:42px; height:42px; place-items:center; border-radius:12px; border:1px solid var(--border); background:transparent; color:var(--text)}
@@ -83,6 +101,7 @@
     .mobile-panel a{padding:.9rem 1rem; border-radius:12px; color:var(--text); border:1px solid transparent; opacity:0; transform:translateX(8px)}
     .mobile-panel a:hover{background:var(--surface); border-color:var(--border)}
     .mobile-panel .quick{margin-top:auto; padding:1rem 1.25rem; border-top:1px solid var(--border); display:grid; gap:.6rem}
+
     body.menu-open{overflow:hidden}
     body.menu-open .backdrop{opacity:1; pointer-events:auto}
     body.menu-open .mobile-panel{transform:translateX(0)}
@@ -125,17 +144,21 @@
     .lb-prev{left:-14px}
     .lb-next{right:-14px}
 
-    /* ------------------ FOOTER ------------------ */
+    /* ------------------ FOOTER (MATCHES index.html) ------------------ */
     footer{border-top:1px solid var(--border); background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02))}
-    .foot{display:grid; gap:1rem; grid-template-columns:2fr 1fr 1fr}
+    .foot{display:grid; gap:1.2rem; grid-template-columns:2fr 1fr 1fr}
+    .foot .group{padding:4px 0}
+    .foot .group strong{display:block; margin-bottom:.4rem}
+    .foot a{color:var(--text)}
+    .foot-bottom{display:flex; justify-content:space-between; align-items:center; gap:1rem; border-top:1px solid var(--border); padding-top:1rem; margin-top:1rem}
     .small{color:var(--muted); font-size:.95rem}
 
     /* Sticky mobile CTA bar */
     .cta-bar{position:fixed; bottom:calc(12px + env(safe-area-inset-bottom)); left:50%; transform:translateX(-50%); z-index:70; display:none}
     .cta-bar .btn{padding:.75rem 1rem}
 
-    /* Reveal on scroll */
-    .reveal{opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease}
+    /* Reveal on scroll (supports --d) */
+    .reveal{opacity:0; transform:translateY(14px); will-change:opacity, transform; transition:opacity .6s cubic-bezier(.22,.61,.36,1), transform .6s cubic-bezier(.22,.61,.36,1); transition-delay:var(--d,0s)}
     .reveal.show{opacity:1; transform:none}
 
     /* Responsive */
@@ -160,7 +183,7 @@
 <body>
   <a href="#content" class="sr-only">Skip to content</a>
 
-  <!-- NAV -->
+  <!-- NAV (same markup as index.html) -->
   <nav class="nav" aria-label="Primary">
     <div class="container inner">
       <a class="brand" href="index.html" aria-label="Gabakssteel logo">GABAKS<span>STEEL</span></a>
@@ -168,7 +191,7 @@
       <!-- Desktop links -->
       <div class="navlinks">
         <a href="services.html">Services</a>
-        <a href="projects.html">Projects</a>
+        <a href="projects.html" aria-current="page">Projects</a>
         <a href="about.html">About</a>
         <a href="contact.html" class="btn" style="padding:.6rem 1rem;">Request a Quote</a>
       </div>
@@ -181,7 +204,7 @@
     </div>
   </nav>
 
-  <!-- Mobile overlay -->
+  <!-- Mobile overlay (same as index.html) -->
   <div class="backdrop" id="backdrop" hidden></div>
   <aside class="mobile-panel" id="mobilePanel" hidden>
     <header>
@@ -233,9 +256,7 @@
   <!-- GALLERY -->
   <main class="container gallery">
     <div class="masonry" id="grid">
-      <!-- ====== SAMPLE ITEMS (replace images & captions) ====== -->
-      <!-- Use data-cat (category), data-date (YYYY-MM-DD), data-tags (for search) -->
-
+      <!-- SAMPLE ITEMS -->
       <figure class="item reveal" data-cat="gates" data-date="2025-09-01" data-tags="gate oshodi estate modern">
         <picture>
           <source srcset="images/projects/gate-01.webp" type="image/webp">
@@ -279,7 +300,7 @@
       <figure class="item reveal" data-cat="windows" data-date="2025-06-19" data-tags="window burglary proof retrofitting">
         <picture>
           <source srcset="images/projects/window-01.webp" type="image/webp">
-          <img src="images/projects/window-01.jpg" alt="Burglar-proof window" loading="lazy" width="800" height="600"/>
+          <img src="images/projects/window-01.jpg" alt="Burglar-proof window — Surulere" loading="lazy" width="800" height="600"/>
         </picture>
         <figcaption class="caption">Windows • Surulere (2025)</figcaption>
       </figure>
@@ -309,8 +330,6 @@
         <img src="images/projects/window-02.jpg" alt="Burglar-proof window — Abule-Egba" loading="lazy" width="800" height="600"/>
         <figcaption class="caption">Windows • Abule-Egba (2025)</figcaption>
       </figure>
-
-      <!-- Add as many items as you want following the pattern above -->
     </div>
 
     <div class="load-more">
@@ -320,7 +339,7 @@
 
   <!-- CTA STRIP -->
   <section>
-    <div class="container" style="margin-top: .2rem">
+    <div class="container" style="margin-top:.2rem">
       <div class="strip" style="border:1px solid var(--border); background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03)); border-radius:var(--radius); padding:1rem; display:flex; align-items:center; justify-content:space-between; gap:1rem">
         <div>
           <strong>Have a project in mind?</strong>
@@ -334,11 +353,11 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- FOOTER (same structure as index.html) -->
   <footer>
     <div class="container" style="padding:2rem 0">
       <div class="foot">
-        <div>
+        <div class="group">
           <a class="brand" href="index.html">GABAKS<span>STEEL</span></a>
           <p class="small">No. 10 Shamura Street, Mafoluku, Oshodi, Lagos • Mon–Sat 8am–6pm</p>
           <p class="small">
@@ -347,14 +366,20 @@
             <a href="mailto:Gabakssteel@yahoo.com">Gabakssteel@yahoo.com</a>
           </p>
         </div>
-        <div>
+        <div class="group">
           <p class="small"><strong>Company</strong><br><a href="about.html">About</a><br><a href="projects.html">Projects</a><br><a href="services.html">Services</a></p>
         </div>
-        <div>
+        <div class="group">
           <p class="small"><strong>Legal</strong><br><a href="privacy.html">Privacy</a><br><a href="terms.html">Terms</a></p>
         </div>
       </div>
-      <p class="small" style="margin-top:1rem; opacity:.85">© <span id="year"></span> Gabakssteel Construction Company Ltd. All rights reserved.</p>
+      <div class="foot-bottom small">
+        <span>© <span id="year"></span> Gabakssteel Construction Company Ltd.</span>
+        <div style="display:flex; gap:.6rem; flex-wrap:wrap">
+          <a class="btn btn-outline" href="tel:+2347010104012">Call</a>
+          <a class="btn" href="contact.html">Get a Quote</a>
+        </div>
+      </div>
     </div>
   </footer>
 
@@ -380,7 +405,7 @@
     // Helpers
     const $ = (s, r=document) => r.querySelector(s);
 
-    // Mobile menu (overlay)
+    // Mobile menu (overlay) — EXACT behavior as index.html
     const toggle = $('#mobileToggle');
     const closeBtn = $('#closePanel');
     const panel = $('#mobilePanel');
@@ -401,6 +426,7 @@
         a.style.animationDelay = `${i * 0.05}s`;
       });
     }
+
     toggle?.addEventListener('click', ()=> openMenu(!document.body.classList.contains('menu-open')));
     closeBtn?.addEventListener('click', ()=> openMenu(false));
     backdrop?.addEventListener('click', ()=> openMenu(false));
@@ -423,12 +449,10 @@
     let currentFilter = 'all';
     let visibleCount = 9; // initial items to show
 
-    function normalize(s){ return (s || '').toLowerCase(); }
+    const normalize = (s)=> (s||'').toLowerCase();
 
-    function apply(){
+    function filteredList(){
       const q = normalize(search.value).trim();
-
-      // filter list by category + query (alt text + data-tags)
       let list = items.filter(it => {
         const catOk = currentFilter === 'all' || it.dataset.cat === currentFilter;
         const alt = normalize(it.querySelector('img')?.alt);
@@ -436,18 +460,18 @@
         const qOk = !q || alt.includes(q) || tags.includes(q);
         return catOk && qOk;
       });
-
-      // sort by data-date
       list.sort((a,b)=>{
         const da = a.dataset.date || '1970-01-01';
         const db = b.dataset.date || '1970-01-01';
         return sortSel.value === 'new' ? (db>da?1:-1) : (da>db?1:-1);
       });
+      return list;
+    }
 
-      // show/hide
+    function apply(){
+      const list = filteredList();
       items.forEach(it=>it.style.display='none');
       list.forEach((it,i)=>{ it.style.display = i < visibleCount ? '' : 'none'; });
-
       loadBtn.style.display = list.length > visibleCount ? 'inline-flex' : 'none';
     }
 
@@ -457,7 +481,7 @@
       currentFilter = ch.dataset.filter; visibleCount = 9; apply();
     }));
     search.addEventListener('input', ()=>{ visibleCount = 9; apply(); });
-    sortSel.addEventListener('change', ()=>{ apply(); });
+    sortSel.addEventListener('change', apply);
     loadBtn.addEventListener('click', ()=>{ visibleCount += 9; apply(); });
 
     // Initialize
@@ -471,25 +495,10 @@
     const lbPrev = document.getElementById('lbPrev');
     const lbNext = document.getElementById('lbNext');
 
-    let sequence = []; // current ordered list of visible items
+    let sequence = [];
     let index = 0;
 
-    function buildSequence(){
-      const q = normalize(search.value).trim();
-      const list = items.filter(it => {
-        const catOk = currentFilter === 'all' || it.dataset.cat === currentFilter;
-        const alt = normalize(it.querySelector('img')?.alt);
-        const tags = normalize(it.dataset.tags);
-        const qOk = !q || alt.includes(q) || tags.includes(q);
-        return catOk && qOk;
-      }).sort((a,b)=>{
-        const da = a.dataset.date || '1970-01-01';
-        const db = b.dataset.date || '1970-01-01';
-        return sortSel.value === 'new' ? (db>da?1:-1) : (da>db?1:-1);
-      });
-      return list;
-    }
-
+    function buildSequence(){ return filteredList(); }
     function openAt(el){
       sequence = buildSequence();
       index = Math.max(0, sequence.indexOf(el));
@@ -523,7 +532,7 @@
     });
 
     // Year
-    document.getElementById('year')?.textContent = new Date().getFullYear();
+    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
