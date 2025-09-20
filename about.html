@@ -33,10 +33,15 @@
       margin:0; color:var(--text); font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Noto Sans; line-height:1.6; background:
       radial-gradient(1000px 500px at 10% -10%, #16202b 0%, transparent 60%),
       radial-gradient(900px 500px at 100% 0%, #121a23 0%, transparent 60%), var(--bg);
+      /* reserve space for sticky CTA on small screens */
     }
     a{color:inherit; text-decoration:none}
     img{max-width:100%; display:block}
-    .container{max-width:var(--container); margin-inline:auto; padding:0 20px}
+    .container{max-width:var(--container); margin-inline:auto; padding:0 clamp(22px, 5vw, 28px)}
+    @supports(padding: max(0px)) {
+      .container { padding-left: max(env(safe-area-inset-left), clamp(22px,5vw,28px));
+                   padding-right:max(env(safe-area-inset-right), clamp(22px,5vw,28px)); }
+    }
 
     .btn{
       position:relative; display:inline-flex; align-items:center; gap:.6rem; justify-content:center;
@@ -176,14 +181,13 @@
       .strip{flex-direction:column; align-items:stretch}
       .foot{grid-template-columns:1fr}
       .cta-bar{display:flex; gap:.6rem}
-      /* reserve space so CTA doesn't cover content */
-      body{ padding-bottom:84px; }
+      body{ padding-bottom:84px; } /* space for CTA */
       .hero-content {text-align:center}
       .hero-content .badges {justify-content:center}
       .hero-content .actions {justify-content:center}
       .mesh {inset:-50% -50% auto -50%; height:80vh; filter:blur(50px); opacity:.65}
       .hero-wrap {padding:2rem 0}
-      .sub {font-size:0.95rem; line-height:1.4}
+      .sub {font-size:0.95rem; line-height:1.5}
       .badges {gap:.4rem; margin-top:.8rem}
       .badge {font-size:.85rem; padding:.25rem .6rem}
       .headline, .sub {text-shadow: 0 1px 3px rgba(0,0,0,.6)}
@@ -195,8 +199,6 @@
 
     /* Lock background scroll when menu is open */
     html.menu-open, body.menu-open { overflow:hidden; }
-
-
   </style>
 </head>
 <body>
@@ -263,10 +265,14 @@
         </div>
       </div>
       <aside class="hero-media reveal">
-        <picture>
-          <source srcset="images/about/hero.webp" type="image/webp" sizes="(max-width:680px) 100vw, 560px">
-          <img src="images/about/hero.jpg" alt="Workshop and fabrication team" width="1080" height="720" loading="lazy" sizes="(max-width:680px) 100vw, 560px"/>
-        </picture>
+        <!-- Removed <source webp> to avoid broken selection; load hero eagerly -->
+        <img
+          src="images/about/hero.jpg"
+          alt="Workshop and fabrication team"
+          width="1080" height="720"
+          loading="eager" decoding="async"
+          sizes="(max-width:680px) 100vw, 560px"
+          style="aspect-ratio:1080/720; width:100%; height:auto;"/>
       </aside>
     </div>
   </header>
