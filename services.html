@@ -23,36 +23,36 @@
   <style>
     /* ------------------ THEME TOKENS ------------------ */
     :root{
-      --bg:#0B0F14;
-      --bg-2:#0e1319;
+      --bg:#0B0F14;          /* page background */
+      --bg-2:#0e1319;        /* section background */
       --surface:rgba(255,255,255,.06);
       --border:rgba(255,255,255,.12);
-      --text:#e7eaf0;
-      --muted:#a6afba;
-      --accent:#F97316;
-      --accent-2:#C9A227;
-      --radius:18px;
+      --text:#e7eaf0;        /* base text */
+      --muted:#a6afba;       /* secondary text */
+      --accent:#F97316;      /* safety orange */
+      --accent-2:#C9A227;    /* premium gold (alt) */
+      --radius:18px;         /* card radius */
       --radius-sm:12px;
       --shadow:0 16px 50px rgba(0,0,0,.35);
-      --container:1200px;
-      --nav-h:64px;
+      --container:1200px;    /* max layout width */
+      --nav-h:64px;          /* sticky nav height */
     }
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
       margin:0; color:var(--text); font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Noto Sans;
-      line-height:1.6;
-      background:
+      line-height:1.6; background:
         radial-gradient(1000px 500px at 10% -10%, #16202b 0%, transparent 60%),
         radial-gradient(900px 500px at 100% 0%, #121a23 0%, transparent 60%),
         var(--bg);
+      padding-bottom:0; /* increased on mobile for sticky CTA */
     }
     a{color:inherit; text-decoration:none}
     img{max-width:100%; display:block}
     .container{max-width:var(--container); margin-inline:auto; padding:0 20px}
 
     .btn{
-      position:relative;
+      position:relative; /* sheen */
       display:inline-flex; align-items:center; gap:.6rem; justify-content:center;
       padding:.9rem 1.2rem; border-radius:999px; font-weight:600; cursor:pointer;
       background:linear-gradient(135deg, var(--accent), #ffb673);
@@ -61,11 +61,7 @@
       overflow:hidden;
     }
     .btn:is(:hover,:focus-visible){transform:translateY(-1px); box-shadow:0 16px 36px rgba(249,115,22,.38)}
-    .btn::before{
-      content:""; position:absolute; inset:-2px; border-radius:inherit; pointer-events:none;
-      background:linear-gradient(120deg, rgba(255,255,255,0) 30%, rgba(255,255,255,.35) 50%, rgba(255,255,255,0) 70%);
-      transform:translateX(-120%); transition:transform .45s ease;
-    }
+    .btn::before{content:""; position:absolute; inset:-2px; border-radius:inherit; pointer-events:none; background:linear-gradient(120deg, rgba(255,255,255,0) 30%, rgba(255,255,255,.35) 50%, rgba(255,255,255,0) 70%); transform:translateX(-120%); transition:transform .45s ease}
     .btn:hover::before{transform:translateX(120%)}
     .btn-outline{background:transparent; color:var(--text); border:1px solid var(--border); box-shadow:none}
     .btn-block{width:100%}
@@ -74,7 +70,7 @@
     .only-mobile{display:none}
     .only-desktop{display:block}
 
-    /* Screen-reader only */
+    /* SR-only */
     .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
     /* ------------------ NAV ------------------ */
@@ -85,9 +81,11 @@
     .nav .inner{display:flex; align-items:center; justify-content:space-between; padding:.5rem 0; min-height:var(--nav-h)}
     .brand{font-family:Outfit, Inter, system-ui; font-weight:700; letter-spacing:.4px; font-size:1.2rem}
     .brand span{color:var(--accent)}
+
     .navlinks{display:flex; gap:1.2rem; align-items:center}
     .navlinks a{color:var(--muted); transition:color .2s ease, transform .2s ease}
     .navlinks a:hover{color:var(--text); transform:translateY(-1px)}
+
     .mobile-toggle{display:none; position:relative; width:42px; height:42px; place-items:center; border-radius:12px; border:1px solid var(--border); background:transparent; color:var(--text)}
     .mobile-toggle .bars{display:block; width:20px; height:2px; background:currentColor; position:relative}
     .mobile-toggle .bars:before, .mobile-toggle .bars:after{content:""; position:absolute; left:0; width:20px; height:2px; background:currentColor; transition:transform .2s ease, top .2s ease, opacity .2s ease}
@@ -104,40 +102,19 @@
     .mobile-panel a{padding:.9rem 1rem; border-radius:12px; color:var(--text); border:1px solid transparent; opacity:0; transform:translateX(8px)}
     .mobile-panel a:hover{background:var(--surface); border-color:var(--border)}
     .mobile-panel .quick{margin-top:auto; padding:1rem 1.25rem; border-top:1px solid var(--border); display:grid; gap:.6rem}
+
     body.menu-open{overflow:hidden}
     body.menu-open .backdrop{opacity:1; pointer-events:auto}
     body.menu-open .mobile-panel{transform:translateX(0)}
 
-    /* ------------------ PAGE HEADER (DESKTOP) ------------------ */
+    /* ------------------ PAGE HEADER (Desktop) ------------------ */
     header.hero{position:relative; overflow:hidden}
-    .hero-wrap{display:grid; grid-template-columns:1fr; gap:.8rem; align-items:center; padding:clamp(3.4rem, 4.8vw + 1rem, 6rem) 0}
+    .hero-wrap{display:grid; grid-template-columns:1fr; gap:1rem; align-items:center; padding:clamp(3.4rem, 4.8vw + 1rem, 6rem) 0}
     .headline{font-family:Outfit, Inter; font-size:clamp(2rem, 2.8vw + 1rem, 3.2rem); line-height:1.05; margin:.2rem 0 .4rem}
     .sub{color:var(--muted); max-width:70ch}
     .mesh{position:absolute; inset:auto -40% -30% -40%; height:46vh; z-index:-1; filter:blur(70px) saturate(130%); opacity:.55; background: conic-gradient(from 180deg at 50% 50%, rgba(201,162,39,.5), rgba(249,115,22,.35), rgba(201,162,39,.5)); mask-image: radial-gradient(60% 60% at 50% 50%, #000 30%, transparent 100%); animation: meshFloat 14s ease-in-out infinite alternate}
 
-    .chips{display:flex; flex-wrap:wrap; gap:.6rem; margin-top:1rem}
-    .chip{display:inline-flex; padding:.35rem .75rem; border:1px solid var(--border); border-radius:999px; color:var(--muted); font-size:.9rem; transition:transform .2s ease, border-color .2s ease}
-    .chip:hover{border-color:rgba(255,255,255,.22); color:var(--text); transform:translateY(-1px)}
-
-    /* ------------------ PAGE HEADER (MOBILE VARIANT) ------------------ */
-    .hero-mobile{
-      min-height:calc(48vh - var(--nav-h));
-      display:grid; align-content:end; position:relative; padding:0 0 1.6rem; isolation:isolate;
-    }
-    .hero-mobile-media{position:absolute; inset:0; z-index:-1; overflow:hidden}
-    .hero-mobile-media picture, .hero-mobile-media img{width:100%; height:100%; object-fit:cover}
-    .hero-mobile-media::after{
-      content:""; position:absolute; inset:0;
-      background:
-        linear-gradient(180deg, rgba(11,15,20,0) 0%, rgba(11,15,20,.6) 40%, rgba(11,15,20,.96) 85%),
-        radial-gradient(80% 60% at 50% 20%, rgba(0,0,0,.28) 0%, rgba(0,0,0,0) 70%);
-      pointer-events:none;
-    }
-    .hero-mobile .headline{font-size:clamp(1.9rem, 6.8vw, 2.4rem); line-height:1.1; margin:.2rem 0 .5rem}
-    .hero-mobile .sub{max-width:44ch}
-    .hero-mobile .cta-stack{display:grid; gap:.6rem; margin-top:1rem}
-
-    /* ------------------ SERVICES (DESKTOP) ------------------ */
+    /* ------------------ DESKTOP SERVICES ------------------ */
     section{padding:clamp(2.4rem, 5vw, 4rem) 0; position:relative; content-visibility:auto; contain-intrinsic-size:1px 1000px}
     .section-title{font-family:Outfit; font-size:clamp(1.4rem, 1.4vw + 1rem, 2rem); margin:0 0 .6rem}
     .section-sub{color:var(--muted); margin:0 0 1.2rem}
@@ -146,37 +123,13 @@
     .service.alt{grid-template-columns:.95fr 1.05fr}
 
     .media{border:1px solid var(--border); background:var(--surface); border-radius:var(--radius); padding:1rem; box-shadow:var(--shadow); transform:perspective(1000px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)); transition:transform .08s ease-out}
-    .media img{border-radius:var(--radius-sm); width:100%; height:auto}
+    .media img{border-radius:var(--radius-sm)}
 
     .specs{display:grid; grid-template-columns:repeat(12,1fr); gap:1rem}
     .spec{grid-column:span 4; border:1px solid var(--border); background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03)); border-radius:var(--radius); padding:1rem; transition:transform .18s ease, border-color .18s ease, box-shadow .18s ease}
     .spec:hover{transform:translateY(-3px); border-color:rgba(255,255,255,.22); box-shadow:0 18px 40px rgba(0,0,0,.28)}
     .spec h4{font-family:Outfit; margin:.2rem 0 .4rem}
     .small{color:var(--muted); font-size:.95rem}
-
-    /* ------------------ SERVICES (MOBILE ACCORDION) ------------------ */
-    .m-accordion{display:grid; gap:.8rem}
-    .m-accordion details{
-      border:1px solid var(--border); border-radius:16px; overflow:hidden; background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
-    }
-    .m-accordion summary{
-      list-style:none; cursor:pointer; padding:1rem 1rem 1rem 1.1rem; display:flex; align-items:center; justify-content:space-between; gap:.8rem;
-      font-family:Outfit; font-weight:600;
-    }
-    .m-accordion summary::-webkit-details-marker{display:none}
-    .m-accordion .caret{
-      width:20px; height:20px; border:1px solid var(--border); border-radius:8px; display:grid; place-items:center; font-size:.9rem; color:var(--muted);
-      transition:transform .2s ease, background .2s ease;
-    }
-    details[open] .caret{transform:rotate(180deg); background:var(--surface)}
-    .m-accordion .panel{padding:0 1rem 1rem}
-    .m-accordion .panel .img{
-      border-top:1px solid var(--border); margin:0 -1rem 1rem; background:var(--surface); padding:1rem 1rem 0;
-    }
-    .m-accordion .bullets{margin:.4rem 0 .6rem; padding-left:1rem}
-    .m-accordion .bullets li{margin:.2rem 0}
-    .m-accordion .specchips{display:flex; flex-wrap:wrap; gap:.4rem; margin:.6rem 0}
-    .m-accordion .specchips .chip{font-size:.82rem; padding:.28rem .6rem}
 
     /* Quote strip */
     .strip{border:1px solid var(--border); background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03)); border-radius:var(--radius); padding:1rem; display:flex; align-items:center; justify-content:space-between; gap:1rem}
@@ -189,7 +142,7 @@
     .foot a{color:var(--text)}
     .foot-bottom{display:flex; justify-content:space-between; align-items:center; gap:1rem; border-top:1px solid var(--border); padding-top:1rem; margin-top:1rem}
 
-    /* Reveal on scroll */
+    /* Reveal */
     .reveal{opacity:0; transform:translateY(14px); will-change:opacity, transform; transition:opacity .6s cubic-bezier(.22,.61,.36,1), transform .6s cubic-bezier(.22,.61,.36,1); transition-delay:var(--d,0s)}
     .reveal.show{opacity:1; transform:none}
 
@@ -201,43 +154,91 @@
     @keyframes meshFloat{0%{transform:translateY(0) scale(1)}100%{transform:translateY(-18px) scale(1.02)}}
     @keyframes slideIn{from{opacity:0; transform:translateX(8px)} to{opacity:1; transform:translateX(0)}}
 
+    /* ------------------ MOBILE VARIANT ------------------ */
+    /* Mobile hero */
+    .m-hero{min-height:calc(74vh - var(--nav-h)); position:relative; display:grid; align-content:end; padding:0 0 2rem; isolation:isolate}
+    .m-hero-media{position:absolute; inset:0; z-index:-1; overflow:hidden}
+    .m-hero-media picture, .m-hero-media img{width:100%; height:100%; object-fit:cover}
+    .m-hero-media::after{
+      content:""; position:absolute; inset:0;
+      background:
+        linear-gradient(180deg, rgba(11,15,20,0) 0%, rgba(11,15,20,.55) 40%, rgba(11,15,20,.94) 85%),
+        radial-gradient(80% 60% at 50% 20%, rgba(0,0,0,.28) 0%, rgba(0,0,0,0) 70%);
+      pointer-events:none;
+    }
+    .m-hero .headline{font-size:clamp(1.85rem, 6.6vw, 2.3rem); line-height:1.1; margin:.3rem 0 .6rem}
+    .m-hero .sub{max-width:38ch}
+    .m-cta{display:grid; gap:.6rem; margin-top:1rem}
+
+    /* Sticky chipbar */
+    .m-chipbar{
+      position:sticky; top:var(--nav-h); z-index:60;
+      background:linear-gradient(180deg, rgba(11,15,20,.96), rgba(11,15,20,.92));
+      border-bottom:1px solid var(--border);
+      overflow-x:auto; -webkit-overflow-scrolling:touch;
+    }
+    .m-chipbar .inner{display:flex; gap:.6rem; padding:.6rem 20px}
+    .m-chipbar .chip{white-space:nowrap; scroll-snap-align:center}
+
+    /* Mobile accordion cards */
+    .m-list{display:grid; gap:1rem; padding:1.2rem 0}
+    .m-acc{
+      border:1px solid var(--border); border-radius:var(--radius); background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+      overflow:hidden;
+    }
+    .m-acc summary{
+      list-style:none; cursor:pointer; display:grid; grid-template-columns:64px 1fr auto; align-items:center; gap:.8rem;
+      padding:.9rem 1rem;
+    }
+    .m-acc summary::-webkit-details-marker{display:none}
+    .m-thumb{width:64px; aspect-ratio:1/1; border-radius:12px; overflow:hidden; border:1px solid var(--border)}
+    .m-title{font-family:Outfit; font-weight:600}
+    .m-kicker{color:var(--muted); font-size:.9rem}
+    .m-chevron{font-size:1.2rem; opacity:.7}
+    .m-acc[open] summary{background:rgba(255,255,255,.04)}
+    .m-acc .m-body{padding:0 1rem 1rem}
+    .m-body .m-img{margin:.8rem 0; border-radius:var(--radius-sm); overflow:hidden; border:1px solid var(--border)}
+    .m-tags{display:flex; flex-wrap:wrap; gap:.4rem; margin:.4rem 0 .2rem}
+    .m-tag{border:1px solid var(--border); border-radius:999px; padding:.25rem .6rem; font-size:.85rem; color:var(--muted)}
+
     /* ------------------ RESPONSIVE ------------------ */
     @media (max-width: 1024px){
       .service, .service.alt{grid-template-columns:1fr}
       .spec{grid-column:span 6}
     }
     @media (max-width: 680px){
-      /* swap blocks */
+      /* Swap */
       .only-mobile{display:block}
       .only-desktop{display:none}
 
-      /* edges & type */
+      /* Comfort edges & type */
       .container{padding-inline:24px}
-      .headline{font-size:clamp(1.9rem, 6.8vw, 2.4rem)}
+      .headline{font-size:clamp(1.9rem, 6.4vw, 2.4rem)}
       .sub{font-size:1rem}
 
-      /* nav */
+      /* Full-screen mobile menu */
       .navlinks{display:none}
       .mobile-toggle{display:grid}
       .mobile-panel{inset:0; max-width:none; border-left:none; border-top:1px solid var(--border)}
 
-      .strip{flex-direction:column; align-items:stretch}
+      /* Footer layout */
       .foot{grid-template-columns:1fr}
       .foot .group{border-top:1px dashed var(--border); padding-top:.8rem}
       .foot .group:first-child{border-top:none; padding-top:0}
       .foot-bottom{flex-direction:column; align-items:flex-start}
 
+      /* Sticky CTA visible on phones */
       .cta-bar{display:flex; gap:.6rem}
       body{ padding-bottom:calc(84px + env(safe-area-inset-bottom)); }
 
-      /* disable reveal to prevent jumps */
+      /* Kill reveal animations to prevent jumping */
       .reveal{opacity:1 !important; transform:none !important; transition:none !important}
     }
 
     /* Motion safety */
     @media (prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important} }
 
-    /* Lock scroll when menu is open & anchor offset for sticky nav */
+    /* Lock scroll when menu open & anchor offset for sticky nav */
     html.menu-open, body.menu-open { overflow:hidden; }
     html{ scroll-padding-top: var(--nav-h); }
   </style>
@@ -250,15 +251,13 @@
     <div class="container inner">
       <a class="brand" href="index.html" aria-label="Gabakssteel logo">GABAKS<span>STEEL</span></a>
 
-      <!-- Desktop links -->
       <div class="navlinks">
-        <a href="services.html">Services</a>
+        <a href="services.html" aria-current="page">Services</a>
         <a href="projects.html">Projects</a>
         <a href="about.html">About</a>
         <a href="contact.html" class="btn" style="padding:.6rem 1rem;">Request a Quote</a>
       </div>
 
-      <!-- Mobile trigger -->
       <button class="mobile-toggle" aria-controls="mobilePanel" aria-expanded="false" id="mobileToggle">
         <span class="sr-only">Toggle menu</span>
         <span class="bars" aria-hidden="true"></span>
@@ -276,7 +275,7 @@
       </button>
     </header>
     <nav>
-      <a href="services.html">Services</a>
+      <a href="services.html" aria-current="page">Services</a>
       <a href="projects.html">Projects</a>
       <a href="about.html">About</a>
       <a href="contact.html" class="btn btn-block">Request a Quote</a>
@@ -287,8 +286,8 @@
     </div>
   </aside>
 
-  <!-- PAGE HEADER (DESKTOP) -->
-  <header class="hero only-desktop" aria-label="Services intro (desktop)">
+  <!-- =================== DESKTOP CONTENT =================== -->
+  <header class="hero only-desktop" id="content" aria-label="Services header (desktop)">
     <div class="mesh" aria-hidden="true"></div>
     <div class="container hero-wrap">
       <h1 class="headline">Our Services</h1>
@@ -305,423 +304,402 @@
     </div>
   </header>
 
-  <!-- PAGE HEADER (MOBILE) -->
-  <header class="hero hero-mobile only-mobile" aria-label="Services intro (mobile)">
-    <div class="hero-mobile-media" aria-hidden="true">
-      <picture>
-        <source srcset="images/services/og-hero.webp" type="image/webp">
-        <img src="images/services/og-hero.jpg" alt="" loading="eager" fetchpriority="high">
-      </picture>
-    </div>
-    <div class="container">
-      <h1 class="headline">What we build</h1>
-      <p class="sub">Gates, windows & burglary proofs, rails & staircases, light poles, overhead tanks, warehouses & roofing.</p>
-      <div class="cta-stack">
-        <a class="btn btn-block" href="tel:+2347010104012">Call Now</a>
-        <a class="btn btn-outline btn-block" href="https://wa.me/2348025532696?text=Hi%20Gabakssteel%2C%20I%20need%20a%20quote." target="_blank" rel="noopener">WhatsApp</a>
-        <a class="btn btn-block" href="contact.html">Request a Quote</a>
+  <main>
+    <!-- DESKTOP: GATES & DOORS -->
+    <section id="gates" class="only-desktop">
+      <div class="container service">
+        <div class="media reveal">
+          <picture>
+            <source srcset="images/services/gates.webp" type="image/webp">
+            <img src="images/services/gates.jpg" alt="Custom steel gates & doors" width="1080" height="720" loading="lazy" />
+          </picture>
+        </div>
+        <div class="reveal">
+          <h2 class="section-title">Custom Gates & Doors</h2>
+          <p class="section-sub">Security-grade frames, decorative laser-cut panels, swing/slide mechanisms, smart lock prep, smooth alignment.</p>
+          <div class="specs">
+            <div class="spec"><h4>Options</h4><p class="small">Single/Double swing • Sliding • Pedestrian doors • Laser-cut inserts • Louvers</p></div>
+            <div class="spec"><h4>Finishes</h4><p class="small">Primer + paint • Powder-coat • Galvanized hardware • Wood/metal hybrid</p></div>
+            <div class="spec"><h4>Use cases</h4><p class="small">Residential estates • Schools • Churches • Industrial sites</p></div>
+          </div>
+          <div style="display:flex; gap:.6rem; margin-top:1rem; flex-wrap:wrap">
+            <a class="btn" href="projects.html">See projects</a>
+            <a class="btn btn-outline" href="contact.html">Get a quote</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DESKTOP: WINDOWS -->
+    <section id="windows" class="only-desktop">
+      <div class="container service alt">
+        <div class="reveal">
+          <h2 class="section-title">Windows & Burglary Proofs</h2>
+          <p class="section-sub">Neat welds, accurate spacing, anti-corrosion protection and optional powder-coat for a durable, clean look.</p>
+          <div class="specs">
+            <div class="spec"><h4>Profiles</h4><p class="small">Square bar • Pipe • Angle • Decorative motifs</p></div>
+            <div class="spec"><h4>Finishes</h4><p class="small">Polyurethane paint • Powder-coat • Zinc-rich primer</p></div>
+            <div class="spec"><h4>Extras</h4><p class="small">Mosquito mesh frames • Quick-release options • Child-safe spacing</p></div>
+          </div>
+          <div style="display:flex; gap:.6rem; margin-top:1rem; flex-wrap:wrap">
+            <a class="btn" href="projects.html">See projects</a>
+            <a class="btn btn-outline" href="contact.html">Get a quote</a>
+          </div>
+        </div>
+        <div class="media reveal">
+          <picture>
+            <source srcset="images/services/windows.webp" type="image/webp">
+            <img src="images/services/windows.jpg" alt="Steel windows and burglary proofs" width="1080" height="720" loading="lazy" />
+          </picture>
+        </div>
+      </div>
+    </section>
+
+    <!-- DESKTOP: RAILS -->
+    <section id="rails" class="only-desktop">
+      <div class="container service">
+        <div class="media reveal">
+          <picture>
+            <source srcset="images/services/rails.webp" type="image/webp">
+            <img src="images/services/rails.jpg" alt="Rails and staircases" width="1080" height="720" loading="lazy" />
+          </picture>
+        </div>
+        <div class="reveal">
+          <h2 class="section-title">Rails & Staircases</h2>
+          <p class="section-sub">Precision balustrades, stainless/painted handrails and laser-cut patterns for interior and exterior installations.</p>
+          <div class="specs">
+            <div class="spec"><h4>Materials</h4><p class="small">Mild steel • Stainless steel • Glass infill options</p></div>
+            <div class="spec"><h4>Compliance</h4><p class="small">Consistent riser/tread • Handrail height • Sturdy anchors</p></div>
+            <div class="spec"><h4>Finishes</h4><p class="small">Powder-coat • Brushed stainless • Clear-coat</p></div>
+          </div>
+          <div style="display:flex; gap:.6rem; margin-top:1rem; flex-wrap:wrap">
+            <a class="btn" href="projects.html">See projects</a>
+            <a class="btn btn-outline" href="contact.html">Get a quote</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DESKTOP: POLES -->
+    <section id="poles" class="only-desktop">
+      <div class="container service alt">
+        <div class="reveal">
+          <h2 class="section-title">Street-light Poles</h2>
+          <p class="section-sub">Engineered for wind-load with quality welds and corrosion-resistant finishes; installation hardware supplied.</p>
+          <div class="specs">
+            <div class="spec"><h4>Types</h4><p class="small">Single/Double arm • Octagonal • Conical • Decorative</p></div>
+            <div class="spec"><h4>Heights</h4><p class="small">4–12 m (custom on request) • Base-plate or planted</p></div>
+            <div class="spec"><h4>Finishes</h4><p class="small">Hot-dip galvanizing • Powder-coat • Epoxy paint system</p></div>
+          </div>
+          <div style="display:flex; gap:.6rem; margin-top:1rem; flex-wrap:wrap">
+            <a class="btn" href="projects.html">See projects</a>
+            <a class="btn btn-outline" href="contact.html">Get a quote</a>
+          </div>
+        </div>
+        <div class="media reveal">
+          <picture>
+            <source srcset="images/services/poles.webp" type="image/webp">
+            <img src="images/services/poles.jpg" alt="Street-light poles" width="1080" height="720" loading="lazy" />
+          </picture>
+        </div>
+      </div>
+    </section>
+
+    <!-- DESKTOP: TANKS -->
+    <section id="tanks" class="only-desktop">
+      <div class="container service">
+        <div class="media reveal">
+          <picture>
+            <source srcset="images/services/tanks.webp" type="image/webp">
+            <img src="images/services/tanks.jpg" alt="Overhead water tanks" width="1080" height="720" loading="lazy" />
+          </picture>
+        </div>
+        <div class="reveal">
+          <h2 class="section-title">Overhead Water Tanks</h2>
+          <p class="section-sub">Towers, platforms, ladders and safety rails built to spec; strong bracing and anti-corrosion protection.</p>
+          <div class="specs">
+            <div class="spec"><h4>Capacity</h4><p class="small">500 L – 50,000 L (single/multiple tanks)</p></div>
+            <div class="spec"><h4>Structure</h4><p class="small">Square/rectangular towers • Cross-bracing • Access ladder</p></div>
+            <div class="spec"><h4>Finish</h4><p class="small">Primer + industrial paint • Galvanized options</p></div>
+          </div>
+          <div style="display:flex; gap:.6rem; margin-top:1rem; flex-wrap:wrap">
+            <a class="btn" href="projects.html">See projects</a>
+            <a class="btn btn-outline" href="contact.html">Get a quote</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DESKTOP: WAREHOUSES -->
+    <section id="warehouses" class="only-desktop">
+      <div class="container service alt">
+        <div class="reveal">
+          <h2 class="section-title">Warehouses & Roofing</h2>
+          <p class="section-sub">Industrial trusses, purlins and complete roofing with precise alignment and secure anchoring.</p>
+          <div class="specs">
+            <div class="spec"><h4>Scope</h4><p class="small">Design & fabrication • Erection • Roof sheeting • Flashings</p></div>
+            <div class="spec"><h4>Profiles</h4><p class="small">Open web • Portal frames • Tubular trusses</p></div>
+            <div class="spec"><h4>Finish</h4><p class="small">Primer + topcoat • Galvanized members • Anti-rust systems</p></div>
+          </div>
+          <div style="display:flex; gap:.6rem; margin-top:1rem; flex-wrap:wrap">
+            <a class="btn" href="projects.html">See projects</a>
+            <a class="btn btn-outline" href="contact.html">Get a quote</a>
+          </div>
+        </div>
+        <div class="media reveal">
+          <picture>
+            <source srcset="images/services/warehouses.webp" type="image/webp">
+            <img src="images/services/warehouses.jpg" alt="Warehouse roofing and trusses" width="1080" height="720" loading="lazy" />
+          </picture>
+        </div>
+      </div>
+    </section>
+
+    <!-- DESKTOP: GENERAL -->
+    <section id="general" class="only-desktop">
+      <div class="container service">
+        <div class="media reveal">
+          <picture>
+            <source srcset="images/services/general.webp" type="image/webp">
+            <img src="images/services/general.jpg" alt="General steel works" width="1080" height="720" loading="lazy" />
+          </picture>
+        </div>
+        <div class="reveal">
+          <h2 class="section-title">General Steel Works</h2>
+          <p class="section-sub">If it’s steel, we build it — grills, canopies, frames, platforms, security doors, custom fixtures and site solutions.</p>
+          <div class="specs">
+            <div class="spec"><h4>Fabrication</h4><p class="small">Cutting • Folding • Welding • Grinding • Fit-up</p></div>
+            <div class="spec"><h4>Materials</h4><p class="small">Mild steel • Stainless steel • Aluminium (select tasks)</p></div>
+            <div class="spec"><h4>Delivery</h4><p class="small">Shop build + on-site installation • Warranty • After-sales</p></div>
+          </div>
+          <div style="display:flex; gap:.6rem; margin-top:1rem; flex-wrap:wrap">
+            <a class="btn" href="projects.html">See projects</a>
+            <a class="btn btn-outline" href="contact.html">Get a quote</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================== MOBILE CONTENT =================== -->
+    <!-- Mobile hero -->
+    <header class="m-hero only-mobile" aria-label="Services header (mobile)">
+      <div class="m-hero-media" aria-hidden="true">
+        <picture>
+          <source srcset="images/services/hero.webp" type="image/webp">
+          <img src="images/services/hero.jpg" alt="">
+        </picture>
+      </div>
+      <div class="container">
+        <h1 class="headline">Our Services</h1>
+        <p class="sub">From gates to roofing — clean welds, solid installs, fast delivery.</p>
+        <div class="m-cta">
+          <a class="btn btn-block" href="tel:+2347010104012">Call Now</a>
+          <a class="btn btn-outline btn-block" href="https://wa.me/2348025532696?text=Hi%20Gabakssteel%2C%20I%20need%20a%20quote." target="_blank" rel="noopener">Chat on WhatsApp</a>
+          <a class="btn btn-block" href="contact.html">Get a Quote</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Sticky chipbar -->
+    <div class="m-chipbar only-mobile" role="navigation" aria-label="Quick service shortcuts">
+      <div class="inner">
+        <a class="chip" href="#m-gates">Gates</a>
+        <a class="chip" href="#m-windows">Windows</a>
+        <a class="chip" href="#m-rails">Rails</a>
+        <a class="chip" href="#m-poles">Poles</a>
+        <a class="chip" href="#m-tanks">Tanks</a>
+        <a class="chip" href="#m-warehouses">Roofing</a>
+        <a class="chip" href="#m-general">General</a>
       </div>
     </div>
-  </header>
 
-  <main id="content">
-    <!-- DESKTOP SERVICES STACK -->
-    <div class="only-desktop" aria-label="Services (desktop)">
-      <!-- GATES & DOORS -->
-      <section id="gates">
-        <div class="container service">
-          <div class="media reveal">
-            <picture>
-              <source srcset="images/services/gates.webp" type="image/webp">
-              <img src="images/services/gates.jpg" alt="Custom steel gates & doors" width="1080" height="720" loading="lazy" />
-            </picture>
-          </div>
-          <div class="reveal">
-            <h2 class="section-title">Custom Gates & Doors</h2>
-            <p class="section-sub">Security-grade frames, decorative laser-cut panels, swing/slide mechanisms, smart lock prep, smooth alignment.</p>
-            <div class="specs">
-              <div class="spec"><h4>Options</h4><p class="small">Single/Double swing • Sliding • Pedestrian doors • Laser-cut inserts • Louvers</p></div>
-              <div class="spec"><h4>Finishes</h4><p class="small">Primer + paint • Powder-coat • Galvanized hardware • Wood/metal hybrid</p></div>
-              <div class="spec"><h4>Use cases</h4><p class="small">Residential estates • Schools • Churches • Industrial sites</p></div>
-            </div>
-            <div style="display:flex; gap:.6rem; margin-top:1rem; flex-wrap:wrap">
-              <a class="btn" href="projects.html">See projects</a>
-              <a class="btn btn-outline" href="contact.html">Get a quote</a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- WINDOWS & BURGLARY -->
-      <section id="windows">
-        <div class="container service alt">
-          <div class="reveal">
-            <h2 class="section-title">Windows & Burglary Proofs</h2>
-            <p class="section-sub">Neat welds, accurate spacing, anti-corrosion protection and optional powder-coat for a durable, clean look.</p>
-            <div class="specs">
-              <div class="spec"><h4>Profiles</h4><p class="small">Square bar • Pipe • Angle • Decorative motifs</p></div>
-              <div class="spec"><h4>Finishes</h4><p class="small">Polyurethane paint • Powder-coat • Zinc-rich primer</p></div>
-              <div class="spec"><h4>Extras</h4><p class="small">Mosquito mesh frames • Quick-release options • Child-safe spacing</p></div>
-            </div>
-            <div style="display:flex; gap:.6rem; margin-top:1rem; flex-wrap:wrap">
-              <a class="btn" href="projects.html">See projects</a>
-              <a class="btn btn-outline" href="contact.html">Get a quote</a>
-            </div>
-          </div>
-          <div class="media reveal">
-            <picture>
-              <source srcset="images/services/windows.webp" type="image/webp">
-              <img src="images/services/windows.jpg" alt="Steel windows and burglary proofs" width="1080" height="720" loading="lazy" />
-            </picture>
-          </div>
-        </div>
-      </section>
-
-      <!-- RAILS & STAIRCASES -->
-      <section id="rails">
-        <div class="container service">
-          <div class="media reveal">
-            <picture>
-              <source srcset="images/services/rails.webp" type="image/webp">
-              <img src="images/services/rails.jpg" alt="Rails and staircases" width="1080" height="720" loading="lazy" />
-            </picture>
-          </div>
-          <div class="reveal">
-            <h2 class="section-title">Rails & Staircases</h2>
-            <p class="section-sub">Precision balustrades, stainless/painted handrails and laser-cut patterns for interior and exterior installations.</p>
-            <div class="specs">
-              <div class="spec"><h4>Materials</h4><p class="small">Mild steel • Stainless steel • Glass infill options</p></div>
-              <div class="spec"><h4>Compliance</h4><p class="small">Consistent riser/tread • Handrail height • Sturdy anchors</p></div>
-              <div class="spec"><h4>Finishes</h4><p class="small">Powder-coat • Brushed stainless • Clear-coat</p></div>
-            </div>
-            <div style="display:flex; gap:.6rem; margin-top:1rem; flex-wrap:wrap">
-              <a class="btn" href="projects.html">See projects</a>
-              <a class="btn btn-outline" href="contact.html">Get a quote</a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- STREET-LIGHT POLES -->
-      <section id="poles">
-        <div class="container service alt">
-          <div class="reveal">
-            <h2 class="section-title">Street-light Poles</h2>
-            <p class="section-sub">Engineered for wind-load with quality welds and corrosion-resistant finishes; installation hardware supplied.</p>
-            <div class="specs">
-              <div class="spec"><h4>Types</h4><p class="small">Single/Double arm • Octagonal • Conical • Decorative</p></div>
-              <div class="spec"><h4>Heights</h4><p class="small">4–12 m (custom on request) • Base-plate or planted</p></div>
-              <div class="spec"><h4>Finishes</h4><p class="small">Hot-dip galvanizing • Powder-coat • Epoxy paint system</p></div>
-            </div>
-            <div style="display:flex; gap:.6rem; margin-top:1rem; flex-wrap:wrap">
-              <a class="btn" href="projects.html">See projects</a>
-              <a class="btn btn-outline" href="contact.html">Get a quote</a>
-            </div>
-          </div>
-          <div class="media reveal">
-            <picture>
-              <source srcset="images/services/poles.webp" type="image/webp">
-              <img src="images/services/poles.jpg" alt="Street-light poles" width="1080" height="720" loading="lazy" />
-            </picture>
-          </div>
-        </div>
-      </section>
-
-      <!-- OVERHEAD TANKS -->
-      <section id="tanks">
-        <div class="container service">
-          <div class="media reveal">
-            <picture>
-              <source srcset="images/services/tanks.webp" type="image/webp">
-              <img src="images/services/tanks.jpg" alt="Overhead water tanks" width="1080" height="720" loading="lazy" />
-            </picture>
-          </div>
-          <div class="reveal">
-            <h2 class="section-title">Overhead Water Tanks</h2>
-            <p class="section-sub">Towers, platforms, ladders and safety rails built to spec; strong bracing and anti-corrosion protection.</p>
-            <div class="specs">
-              <div class="spec"><h4>Capacity</h4><p class="small">500 L – 50,000 L (single/multiple tanks)</p></div>
-              <div class="spec"><h4>Structure</h4><p class="small">Square/rectangular towers • Cross-bracing • Access ladder</p></div>
-              <div class="spec"><h4>Finish</h4><p class="small">Primer + industrial paint • Galvanized options</p></div>
-            </div>
-            <div style="display:flex; gap:.6rem; margin-top:1rem; flex-wrap:wrap">
-              <a class="btn" href="projects.html">See projects</a>
-              <a class="btn btn-outline" href="contact.html">Get a quote</a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- WAREHOUSES & ROOFING -->
-      <section id="warehouses">
-        <div class="container service alt">
-          <div class="reveal">
-            <h2 class="section-title">Warehouses & Roofing</h2>
-            <p class="section-sub">Industrial trusses, purlins and complete roofing with precise alignment and secure anchoring.</p>
-            <div class="specs">
-              <div class="spec"><h4>Scope</h4><p class="small">Design & fabrication • Erection • Roof sheeting • Flashings</p></div>
-              <div class="spec"><h4>Profiles</h4><p class="small">Open web • Portal frames • Tubular trusses</p></div>
-              <div class="spec"><h4>Finish</h4><p class="small">Primer + topcoat • Galvanized members • Anti-rust systems</p></div>
-            </div>
-            <div style="display:flex; gap:.6rem; margin-top:1rem; flex-wrap:wrap">
-              <a class="btn" href="projects.html">See projects</a>
-              <a class="btn btn-outline" href="contact.html">Get a quote</a>
-            </div>
-          </div>
-          <div class="media reveal">
-            <picture>
-              <source srcset="images/services/warehouses.webp" type="image/webp">
-              <img src="images/services/warehouses.jpg" alt="Warehouse roofing and trusses" width="1080" height="720" loading="lazy" />
-            </picture>
-          </div>
-        </div>
-      </section>
-
-      <!-- GENERAL STEEL WORKS -->
-      <section id="general">
-        <div class="container service">
-          <div class="media reveal">
-            <picture>
-              <source srcset="images/services/general.webp" type="image/webp">
-              <img src="images/services/general.jpg" alt="General steel works" width="1080" height="720" loading="lazy" />
-            </picture>
-          </div>
-          <div class="reveal">
-            <h2 class="section-title">General Steel Works</h2>
-            <p class="section-sub">If it’s steel, we build it — grills, canopies, frames, platforms, security doors, custom fixtures and site solutions.</p>
-            <div class="specs">
-              <div class="spec"><h4>Fabrication</h4><p class="small">Cutting • Folding • Welding • Grinding • Fit-up</p></div>
-              <div class="spec"><h4>Materials</h4><p class="small">Mild steel • Stainless steel • Aluminium (select tasks)</p></div>
-              <div class="spec"><h4>Delivery</h4><p class="small">Shop build + on-site installation • Warranty • After-sales</p></div>
-            </div>
-            <div style="display:flex; gap:.6rem; margin-top:1rem; flex-wrap:wrap">
-              <a class="btn" href="projects.html">See projects</a>
-              <a class="btn btn-outline" href="contact.html">Get a quote</a>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <!-- MOBILE ACCORDION LIST -->
-    <div class="only-mobile" aria-label="Services (mobile)">
-      <section>
-        <div class="container">
-          <div class="m-accordion" id="svc-accordion">
-            <!-- Gates -->
-            <details>
-              <summary>
-                <span>Custom Gates & Doors</span>
-                <span class="caret">⌄</span>
-              </summary>
-              <div class="panel">
-                <div class="img">
-                  <picture>
-                    <source srcset="images/services/gates.webp" type="image/webp">
-                    <img src="images/services/gates.jpg" alt="Custom steel gates & doors" loading="lazy" width="1080" height="720">
-                  </picture>
-                </div>
-                <ul class="bullets">
-                  <li>Single/Double swing, sliding & pedestrian options</li>
-                  <li>Laser-cut panels, louvers, smart lock prep</li>
-                  <li>Powder-coat or paint; galvanized hardware</li>
-                </ul>
-                <div class="specchips">
-                  <span class="chip">Estate gates</span><span class="chip">Security frames</span><span class="chip">Smooth alignment</span>
-                </div>
-                <div style="display:grid; gap:.6rem">
-                  <a class="btn btn-block" href="projects.html">See projects</a>
-                  <a class="btn btn-outline btn-block" href="contact.html">Get a quote</a>
-                </div>
+    <!-- Mobile accordion list -->
+    <section class="only-mobile">
+      <div class="container">
+        <div class="m-list">
+          <!-- Gates -->
+          <details class="m-acc" id="m-gates">
+            <summary>
+              <span class="m-thumb"><img src="images/services/gates.jpg" alt=""></span>
+              <div>
+                <div class="m-title">Custom Gates & Doors</div>
+                <div class="m-kicker">Swing / Sliding • Laser-cut</div>
               </div>
-            </details>
-
-            <!-- Windows -->
-            <details>
-              <summary>
-                <span>Windows & Burglary Proofs</span>
-                <span class="caret">⌄</span>
-              </summary>
-              <div class="panel">
-                <div class="img">
-                  <picture>
-                    <source srcset="images/services/windows.webp" type="image/webp">
-                    <img src="images/services/windows.jpg" alt="Steel windows and burglary proofs" loading="lazy" width="1080" height="720">
-                  </picture>
-                </div>
-                <ul class="bullets">
-                  <li>Square bar, pipe, angle & decorative motifs</li>
-                  <li>Anti-corrosion prep; powder-coat available</li>
-                  <li>Mosquito mesh frames & safety spacing</li>
-                </ul>
-                <div class="specchips">
-                  <span class="chip">Neat welds</span><span class="chip">Strong anchors</span><span class="chip">Clean lines</span>
-                </div>
-                <div style="display:grid; gap:.6rem">
-                  <a class="btn btn-block" href="projects.html">See projects</a>
-                  <a class="btn btn-outline btn-block" href="contact.html">Get a quote</a>
-                </div>
+              <span class="m-chevron">▾</span>
+            </summary>
+            <div class="m-body">
+              <div class="m-tags">
+                <span class="m-tag">Smart lock prep</span>
+                <span class="m-tag">Powder-coat</span>
+                <span class="m-tag">Estate-grade</span>
               </div>
-            </details>
-
-            <!-- Rails -->
-            <details>
-              <summary>
-                <span>Rails & Staircases</span>
-                <span class="caret">⌄</span>
-              </summary>
-              <div class="panel">
-                <div class="img">
-                  <picture>
-                    <source srcset="images/services/rails.webp" type="image/webp">
-                    <img src="images/services/rails.jpg" alt="Rails and staircases" loading="lazy" width="1080" height="720">
-                  </picture>
-                </div>
-                <ul class="bullets">
-                  <li>Stainless or painted handrails, laser-cut balustrades</li>
-                  <li>Glass infill options, sturdy anchors</li>
-                  <li>Compliant riser/tread & handrail heights</li>
-                </ul>
-                <div class="specchips">
-                  <span class="chip">Interior</span><span class="chip">Exterior</span><span class="chip">Premium finish</span>
-                </div>
-                <div style="display:grid; gap:.6rem">
-                  <a class="btn btn-block" href="projects.html">See projects</a>
-                  <a class="btn btn-outline btn-block" href="contact.html">Get a quote</a>
-                </div>
+              <div class="m-img"><img src="images/services/gates.jpg" alt="Custom steel gates & doors"></div>
+              <p class="small">Security-grade frames, smooth alignment, decorative panels and clean finishes for homes & estates.</p>
+              <div class="m-tags">
+                <span class="m-tag">Swing</span><span class="m-tag">Sliding</span><span class="m-tag">Pedestrian</span>
               </div>
-            </details>
-
-            <!-- Poles -->
-            <details>
-              <summary>
-                <span>Street-light Poles</span>
-                <span class="caret">⌄</span>
-              </summary>
-              <div class="panel">
-                <div class="img">
-                  <picture>
-                    <source srcset="images/services/poles.webp" type="image/webp">
-                    <img src="images/services/poles.jpg" alt="Street-light poles" loading="lazy" width="1080" height="720">
-                  </picture>
-                </div>
-                <ul class="bullets">
-                  <li>Single/Double arm, octagonal/conical & decorative</li>
-                  <li>4–12 m heights; base-plate or planted</li>
-                  <li>Hot-dip galvanizing, powder-coat or epoxy</li>
-                </ul>
-                <div class="specchips">
-                  <span class="chip">Wind-load engineered</span><span class="chip">Hardware supplied</span>
-                </div>
-                <div style="display:grid; gap:.6rem">
-                  <a class="btn btn-block" href="projects.html">See projects</a>
-                  <a class="btn btn-outline btn-block" href="contact.html">Get a quote</a>
-                </div>
+              <div style="display:grid; gap:.6rem; margin-top:.6rem">
+                <a class="btn btn-block" href="projects.html">See projects</a>
+                <a class="btn btn-outline btn-block" href="contact.html">Get a quote</a>
               </div>
-            </details>
+            </div>
+          </details>
 
-            <!-- Tanks -->
-            <details>
-              <summary>
-                <span>Overhead Water Tanks</span>
-                <span class="caret">⌄</span>
-              </summary>
-              <div class="panel">
-                <div class="img">
-                  <picture>
-                    <source srcset="images/services/tanks.webp" type="image/webp">
-                    <img src="images/services/tanks.jpg" alt="Overhead water tanks" loading="lazy" width="1080" height="720">
-                  </picture>
-                </div>
-                <ul class="bullets">
-                  <li>500 L – 50,000 L; single or multiple tanks</li>
-                  <li>Towers, platforms, ladders & safety rails</li>
-                  <li>Industrial paint or galvanized options</li>
-                </ul>
-                <div class="specchips">
-                  <span class="chip">Strong bracing</span><span class="chip">Safe access</span>
-                </div>
-                <div style="display:grid; gap:.6rem">
-                  <a class="btn btn-block" href="projects.html">See projects</a>
-                  <a class="btn btn-outline btn-block" href="contact.html">Get a quote</a>
-                </div>
+          <!-- Windows -->
+          <details class="m-acc" id="m-windows">
+            <summary>
+              <span class="m-thumb"><img src="images/services/windows.jpg" alt=""></span>
+              <div>
+                <div class="m-title">Windows & Burglary Proofs</div>
+                <div class="m-kicker">Neat welds • Anti-rust</div>
               </div>
-            </details>
-
-            <!-- Warehouses -->
-            <details>
-              <summary>
-                <span>Warehouses & Roofing</span>
-                <span class="caret">⌄</span>
-              </summary>
-              <div class="panel">
-                <div class="img">
-                  <picture>
-                    <source srcset="images/services/warehouses.webp" type="image/webp">
-                    <img src="images/services/warehouses.jpg" alt="Warehouse roofing and trusses" loading="lazy" width="1080" height="720">
-                  </picture>
-                </div>
-                <ul class="bullets">
-                  <li>Design & fabrication, erection, roof sheeting</li>
-                  <li>Open web, portal frames or tubular trusses</li>
-                  <li>Anti-rust systems & galvanized members</li>
-                </ul>
-                <div class="specchips">
-                  <span class="chip">Industrial</span><span class="chip">Precision install</span>
-                </div>
-                <div style="display:grid; gap:.6rem">
-                  <a class="btn btn-block" href="projects.html">See projects</a>
-                  <a class="btn btn-outline btn-block" href="contact.html">Get a quote</a>
-                </div>
+              <span class="m-chevron">▾</span>
+            </summary>
+            <div class="m-body">
+              <div class="m-tags">
+                <span class="m-tag">Square bar</span><span class="m-tag">Decor motifs</span><span class="m-tag">Powder-coat</span>
               </div>
-            </details>
-
-            <!-- General -->
-            <details>
-              <summary>
-                <span>General Steel Works</span>
-                <span class="caret">⌄</span>
-              </summary>
-              <div class="panel">
-                <div class="img">
-                  <picture>
-                    <source srcset="images/services/general.webp" type="image/webp">
-                    <img src="images/services/general.jpg" alt="General steel works" loading="lazy" width="1080" height="720">
-                  </picture>
-                </div>
-                <ul class="bullets">
-                  <li>Grills, canopies, frames, platforms & fixtures</li>
-                  <li>Mild/stainless steel; aluminium for select tasks</li>
-                  <li>Shop build + on-site installation, warranty</li>
-                </ul>
-                <div class="specchips">
-                  <span class="chip">Custom builds</span><span class="chip">After-sales</span>
-                </div>
-                <div style="display:grid; gap:.6rem">
-                  <a class="btn btn-block" href="projects.html">See projects</a>
-                  <a class="btn btn-outline btn-block" href="contact.html">Get a quote</a>
-                </div>
+              <div class="m-img"><img src="images/services/windows.jpg" alt="Steel windows and burglary proofs"></div>
+              <p class="small">Accurate spacing and corrosion protection for long-lasting security and a clean look.</p>
+              <div style="display:grid; gap:.6rem; margin-top:.6rem">
+                <a class="btn btn-block" href="projects.html">See projects</a>
+                <a class="btn btn-outline btn-block" href="contact.html">Get a quote</a>
               </div>
-            </details>
-          </div>
-        </div>
-      </section>
-    </div>
+            </div>
+          </details>
 
-    <!-- CTA STRIP -->
-    <section>
-      <div class="container strip reveal">
-        <div>
-          <strong>Ready to start?</strong>
-          <p class="small" style="margin:.2rem 0 0">Send your measurements and a photo reference — we’ll reply quickly by phone or WhatsApp.</p>
-        </div>
-        <div style="display:flex; gap:.6rem; flex-wrap:wrap">
-          <a class="btn" href="contact.html">Request a Quote</a>
-          <a class="btn btn-outline" href="https://wa.me/2348025532696?text=Hi%20Gabakssteel%2C%20I%20need%20a%20quote." target="_blank" rel="noopener">Chat on WhatsApp</a>
+          <!-- Rails -->
+          <details class="m-acc" id="m-rails">
+            <summary>
+              <span class="m-thumb"><img src="images/services/rails.jpg" alt=""></span>
+              <div>
+                <div class="m-title">Rails & Staircases</div>
+                <div class="m-kicker">Balustrades • Stainless</div>
+              </div>
+              <span class="m-chevron">▾</span>
+            </summary>
+            <div class="m-body">
+              <div class="m-tags">
+                <span class="m-tag">Glass infill</span><span class="m-tag">Powder-coat</span><span class="m-tag">Compliance</span>
+              </div>
+              <div class="m-img"><img src="images/services/rails.jpg" alt="Rails and staircases"></div>
+              <p class="small">Premium handrails and patterns for interiors and exteriors, built to spec and safety standards.</p>
+              <div style="display:grid; gap:.6rem; margin-top:.6rem">
+                <a class="btn btn-block" href="projects.html">See projects</a>
+                <a class="btn btn-outline btn-block" href="contact.html">Get a quote</a>
+              </div>
+            </div>
+          </details>
+
+          <!-- Poles -->
+          <details class="m-acc" id="m-poles">
+            <summary>
+              <span class="m-thumb"><img src="images/services/poles.jpg" alt=""></span>
+              <div>
+                <div class="m-title">Street-light Poles</div>
+                <div class="m-kicker">Octagonal • Conical</div>
+              </div>
+              <span class="m-chevron">▾</span>
+            </summary>
+            <div class="m-body">
+              <div class="m-tags">
+                <span class="m-tag">Galvanized</span><span class="m-tag">Epoxy paint</span><span class="m-tag">4–12 m</span>
+              </div>
+              <div class="m-img"><img src="images/services/poles.jpg" alt="Street-light poles"></div>
+              <p class="small">Wind-load engineered poles with supplied installation hardware and durable finishes.</p>
+              <div style="display:grid; gap:.6rem; margin-top:.6rem">
+                <a class="btn btn-block" href="projects.html">See projects</a>
+                <a class="btn btn-outline btn-block" href="contact.html">Get a quote</a>
+              </div>
+            </div>
+          </details>
+
+          <!-- Tanks -->
+          <details class="m-acc" id="m-tanks">
+            <summary>
+              <span class="m-thumb"><img src="images/services/tanks.jpg" alt=""></span>
+              <div>
+                <div class="m-title">Overhead Water Tanks</div>
+                <div class="m-kicker">500 L – 50,000 L</div>
+              </div>
+              <span class="m-chevron">▾</span>
+            </summary>
+            <div class="m-body">
+              <div class="m-tags">
+                <span class="m-tag">Cross-bracing</span><span class="m-tag">Access ladders</span><span class="m-tag">Galvanized</span>
+              </div>
+              <div class="m-img"><img src="images/services/tanks.jpg" alt="Overhead water tanks"></div>
+              <p class="small">Strong towers with platforms, ladders and safety rails; anti-corrosion finishing available.</p>
+              <div style="display:grid; gap:.6rem; margin-top:.6rem">
+                <a class="btn btn-block" href="projects.html">See projects</a>
+                <a class="btn btn-outline btn-block" href="contact.html">Get a quote</a>
+              </div>
+            </div>
+          </details>
+
+          <!-- Warehouses -->
+          <details class="m-acc" id="m-warehouses">
+            <summary>
+              <span class="m-thumb"><img src="images/services/warehouses.jpg" alt=""></span>
+              <div>
+                <div class="m-title">Warehouses & Roofing</div>
+                <div class="m-kicker">Trusses • Purlins</div>
+              </div>
+              <span class="m-chevron">▾</span>
+            </summary>
+            <div class="m-body">
+              <div class="m-tags">
+                <span class="m-tag">Portal frames</span><span class="m-tag">Open web</span><span class="m-tag">Anti-rust</span>
+              </div>
+              <div class="m-img"><img src="images/services/warehouses.jpg" alt="Warehouse roofing and trusses"></div>
+              <p class="small">Design, fabrication, erection and roof sheeting with precise alignment and secure anchoring.</p>
+              <div style="display:grid; gap:.6rem; margin-top:.6rem">
+                <a class="btn btn-block" href="projects.html">See projects</a>
+                <a class="btn btn-outline btn-block" href="contact.html">Get a quote</a>
+              </div>
+            </div>
+          </details>
+
+          <!-- General -->
+          <details class="m-acc" id="m-general">
+            <summary>
+              <span class="m-thumb"><img src="images/services/general.jpg" alt=""></span>
+              <div>
+                <div class="m-title">General Steel Works</div>
+                <div class="m-kicker">If it’s steel, we build it</div>
+              </div>
+              <span class="m-chevron">▾</span>
+            </summary>
+            <div class="m-body">
+              <div class="m-tags">
+                <span class="m-tag">Canopies</span><span class="m-tag">Grills</span><span class="m-tag">Frames</span>
+              </div>
+              <div class="m-img"><img src="images/services/general.jpg" alt="General steel works"></div>
+              <p class="small">Custom fixtures and site solutions with shop build + on-site installation, warranty and after-sales.</p>
+              <div style="display:grid; gap:.6rem; margin-top:.6rem">
+                <a class="btn btn-block" href="projects.html">See projects</a>
+                <a class="btn btn-outline btn-block" href="contact.html">Get a quote</a>
+              </div>
+            </div>
+          </details>
         </div>
       </div>
     </section>
   </main>
+
+  <!-- CTA STRIP (desktop) -->
+  <section class="only-desktop">
+    <div class="container strip reveal">
+      <div>
+        <strong>Ready to start?</strong>
+        <p class="small" style="margin:.2rem 0 0">Send your measurements and a photo reference — we’ll reply quickly by phone or WhatsApp.</p>
+      </div>
+      <div style="display:flex; gap:.6rem; flex-wrap:wrap">
+        <a class="btn" href="contact.html">Request a Quote</a>
+        <a class="btn btn-outline" href="https://wa.me/2348025532696?text=Hi%20Gabakssteel%2C%20I%20need%20a%20quote." target="_blank" rel="noopener">Chat on WhatsApp</a>
+      </div>
+    </div>
+  </section>
 
   <!-- FOOTER -->
   <footer>
@@ -737,7 +715,7 @@
           </p>
         </div>
         <div class="group">
-          <p class="small"><strong>Company</strong><br><a href="about.html">About</a><br><a href="projects.html">Projects</a><br><a href="services.html">Services</a></p>
+          <p class="small"><strong>Company</strong><br><a href="about.html">About</a><br><a href="projects.html">Projects</a><br><a href="services.html" aria-current="page">Services</a></p>
         </div>
         <div class="group">
           <p class="small"><strong>Legal</strong><br><a href="privacy.html">Privacy</a><br><a href="terms.html">Terms</a></p>
@@ -764,7 +742,7 @@
     // Helpers
     const $ = (s, r=document) => r.querySelector(s);
 
-    // Mobile menu
+    // Mobile menu (overlay)
     const toggle = $('#mobileToggle');
     const closeBtn = $('#closePanel');
     const panel = $('#mobilePanel');
@@ -772,14 +750,13 @@
 
     function openMenu(open){
       document.body.classList.toggle('menu-open', open);
-      document.documentElement.classList.toggle('menu-open', open);
+      document.documentElement.classList.toggle('menu-open', open); // lock <html> too
       toggle?.setAttribute('aria-expanded', String(open));
       panel.hidden = !open;
       backdrop.hidden = !open;
-      // Stagger links
       const links = panel?.querySelectorAll('nav a') || [];
       links.forEach((a, i)=>{
-        a.style.animation = 'none'; a.offsetHeight;
+        a.style.animation = 'none'; a.offsetHeight; // reflow
         a.style.animation = `slideIn .28s both`;
         a.style.animationDelay = `${i * 0.05}s`;
       });
@@ -789,13 +766,22 @@
     backdrop?.addEventListener('click', ()=> openMenu(false));
     window.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') openMenu(false) });
 
-    // Reveal on scroll
+    // Reveal on scroll (desktop only; disabled by CSS on phones)
     const io = new IntersectionObserver(entries=>{
       entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target) }});
     }, {threshold:.15});
+
     document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-    // Parallax tilt on media (desktop only)
+    // Stagger per service block (desktop)
+    window.addEventListener('DOMContentLoaded', ()=>{
+      document.querySelectorAll('.service').forEach(section=>{
+        const items = section.querySelectorAll('.reveal');
+        items.forEach((el, i)=>{ el.style.setProperty('--d', `${i * 0.06}s`); io.observe(el); });
+      });
+    });
+
+    // Parallax tilt on media (desktop, no reduced motion)
     (function(){
       const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const pointerFine = window.matchMedia('(pointer: fine)').matches;
@@ -816,33 +802,22 @@
       });
     })();
 
-    // Accessibility: ensure only visible variants are read
+    // Accessibility: ensure only the visible variant is read
     (function(){
       const mq = window.matchMedia('(max-width: 680px)');
-      function setSwapAria(e){
-        document.querySelectorAll('.only-desktop').forEach(el=>{
-          if(e.matches){ el.setAttribute('aria-hidden','true'); } else { el.removeAttribute('aria-hidden'); }
-        });
-        document.querySelectorAll('.only-mobile').forEach(el=>{
-          if(e.matches){ el.removeAttribute('aria-hidden'); } else { el.setAttribute('aria-hidden','true'); }
-        });
-      }
-      setSwapAria(mq);
-      mq.addEventListener?.('change', setSwapAria);
-    })();
-
-    // Accordion UX: close others on open (mobile)
-    (function(){
-      const acc = document.getElementById('svc-accordion');
-      if(!acc) return;
-      acc.addEventListener('toggle', (e)=>{
-        if(e.target.tagName?.toLowerCase() !== 'details' || !e.target.open) return;
-        acc.querySelectorAll('details[open]').forEach(d=>{ if(d!==e.target) d.removeAttribute('open'); });
-      }, true);
+      const mobileEls = document.querySelectorAll('.only-mobile');
+      const desktopEls = document.querySelectorAll('.only-desktop');
+      const setAria = e=>{
+        const mobile = e.matches;
+        mobileEls.forEach(el=> mobile ? el.removeAttribute('aria-hidden') : el.setAttribute('aria-hidden','true'));
+        desktopEls.forEach(el=> mobile ? el.setAttribute('aria-hidden','true') : el.removeAttribute('aria-hidden'));
+      };
+      setAria(mq);
+      mq.addEventListener?.('change', setAria);
     })();
 
     // Year
-    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('year')?.appendChild(document.createTextNode(new Date().getFullYear()));
   </script>
 </body>
 </html>
