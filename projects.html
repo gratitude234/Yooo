@@ -22,18 +22,18 @@
   <style>
     /* ------------------ THEME TOKENS ------------------ */
     :root{
-      --bg:#0B0F14;          /* page background */
-      --bg-2:#0e1319;        /* section background */
+      --bg:#0B0F14;
+      --bg-2:#0e1319;
       --surface:rgba(255,255,255,.06);
       --border:rgba(255,255,255,.12);
-      --text:#e7eaf0;        /* base text */
-      --muted:#a6afba;       /* secondary text */
-      --accent:#F97316;      /* safety orange */
-      --radius:18px;         /* card radius */
+      --text:#e7eaf0;
+      --muted:#a6afba;
+      --accent:#F97316;
+      --radius:18px;
       --radius-sm:12px;
       --shadow:0 16px 50px rgba(0,0,0,.35);
-      --container:1200px;    /* max layout width */
-      --nav-h:64px;          /* sticky nav height */
+      --container:1200px;
+      --nav-h:64px;
     }
     *{box-sizing:border-box}
     html,body{height:100%}
@@ -161,13 +161,24 @@
     .reveal{opacity:0; transform:translateY(14px); will-change:opacity, transform; transition:opacity .6s cubic-bezier(.22,.61,.36,1), transform .6s cubic-bezier(.22,.61,.36,1); transition-delay:var(--d,0s)}
     .reveal.show{opacity:1; transform:none}
 
+    /* Animations (used by mobile menu) */
+    @keyframes slideIn{from{opacity:0; transform:translateX(8px)} to{opacity:1; transform:translateX(0)}}
+
     /* Responsive */
     @media (max-width: 680px){
       .navlinks{display:none}
       .mobile-toggle{display:grid}
+
       .masonry{columns:2}
       .lb-prev{left:6px}
       .lb-next{right:6px}
+
+      /* Match index.html mobile footer layout */
+      .foot{grid-template-columns:1fr}
+      .foot .group{border-top:1px dashed var(--border); padding-top:.8rem}
+      .foot .group:first-child{border-top:none; padding-top:0}
+      .foot-bottom{flex-direction:column; align-items:flex-start}
+
       .cta-bar{display:flex; gap:.6rem}
       /* keep content clear of sticky CTA */
       body{ padding-bottom:84px; }
@@ -413,7 +424,7 @@
 
     function openMenu(open){
       document.body.classList.toggle('menu-open', open);
-      document.documentElement.classList.toggle('menu-open', open); // lock <html> too
+      document.documentElement.classList.toggle('menu-open', open);
       toggle?.setAttribute('aria-expanded', String(open));
       panel.hidden = !open;
       backdrop.hidden = !open;
@@ -509,7 +520,7 @@
       const el = sequence[index]; if(!el) return;
       const img = el.querySelector('img');
       lbImg.src = img.currentSrc || img.src; lbImg.alt = img.alt || '';
-      const cap = el.querySelector('.caption')?.textContent || '';
+      const cap = el.querySelector('figcaption.caption')?.textContent || el.querySelector('.caption')?.textContent || '';
       lbCap.textContent = cap + `  •  ${index+1}/${sequence.length}`;
       // pre-load neighbors
       const n1 = sequence[index+1]?.querySelector('img'); if(n1){ const p=new Image(); p.src = n1.currentSrc || n1.src; }
@@ -522,8 +533,11 @@
     });
     lbClose.addEventListener('click', close);
     lb.addEventListener('click', e=>{ if(e.target === lb) close(); });
+
+    // ✅ Fixed listeners (typo here previously broke ALL JS)
     lbNext.addEventListener('click', ()=>{ index = (index+1) % sequence.length; show(); });
     lbPrev.addEventListener('click', ()=>{ index = (index-1 + sequence.length) % sequence.length; show(); });
+
     document.addEventListener('keydown', e=>{
       if(!lb.classList.contains('open')) return;
       if(e.key==='Escape') close();
