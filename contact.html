@@ -3,7 +3,6 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="format-detection" content="telephone=no" />
   <title>Contact — Gabakssteel Construction Co. Ltd</title>
   <meta name="description" content="Contact Gabakssteel: request a quote for gates, windows & burglary proofs, rails & staircases, street-light poles, overhead tanks, warehouses. Fast responses via phone, WhatsApp or email." />
   <link rel="canonical" href="https://gabakssteel.example/contact.html" />
@@ -38,11 +37,11 @@
     img{max-width:100%; display:block}
     .container{max-width:var(--container); margin-inline:auto; padding:0 20px}
     .btn{
-      position:relative; display:inline-flex; align-items:center; gap:.55rem; justify-content:center;
-      padding:.95rem 1.2rem; border-radius:999px; font-weight:600; cursor:pointer;
+      position:relative; display:inline-flex; align-items:center; gap:.6rem; justify-content:center;
+      padding:.9rem 1.2rem; border-radius:999px; font-weight:600; cursor:pointer;
       background:linear-gradient(135deg, var(--accent), #ffb673);
       color:#1b1205; box-shadow:0 10px 30px rgba(249,115,22,.35);
-      transition:transform .18s ease, box-shadow .18s ease; overflow:hidden; white-space:nowrap;
+      transition:transform .18s ease, box-shadow .18s ease; overflow:hidden;
     }
     .btn:is(:hover,:focus-visible){transform:translateY(-1px); box-shadow:0 16px 36px rgba(249,115,22,.38)}
     .btn::before{
@@ -52,20 +51,21 @@
     }
     .btn:hover::before{transform:translateX(120%)}
     .btn-outline{background:transparent; color:var(--text); border:1px solid var(--border); box-shadow:none}
-    .btn-icon{display:inline-flex; align-items:center; gap:.5rem}
-    .btn small{opacity:.9}
+    .btn-block{width:100%}
 
-    /* Show/Hide helpers for separate designs */
-    .only-mobile{display:none}
+    /* Utils for split designs */
     .only-desktop{display:block}
+    .only-mobile{display:none}
+    .hidden-mobile{}
+    .hidden-desktop{display:none}
 
-    /* Screen-reader + anchor offset */
+    /* Screen-reader only + anchor offset */
     .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
     html{ scroll-padding-top: var(--nav-h); }
     [id]{ scroll-margin-top: calc(var(--nav-h) + 8px); }
 
-    /* NAV */
-    .nav{position:sticky; top:0; z-index:100; backdrop-filter:saturate(140%) blur(10px); background:linear-gradient(to bottom, rgba(15,19,26,.78), rgba(15,19,26,.4)); border-bottom:1px solid var(--border)}
+    /* NAV (matches site) */
+    .nav{position:sticky; top:0; z-index:80; backdrop-filter:saturate(140%) blur(10px); background:linear-gradient(to bottom, rgba(15,19,26,.78), rgba(15,19,26,.4)); border-bottom:1px solid var(--border)}
     .nav .inner{display:flex; align-items:center; justify-content:space-between; padding:.5rem 0; min-height:var(--nav-h)}
     .brand{font-family:Outfit, Inter, system-ui; font-weight:700; letter-spacing:.4px; font-size:1.2rem}
     .brand span{color:var(--accent)}
@@ -85,8 +85,8 @@
     body.menu-open .mobile-toggle .bars:after{top:0; transform:rotate(-45deg)}
 
     /* Mobile overlay menu */
-    .backdrop{position:fixed; inset:0; background:rgba(2,6,12,.5); backdrop-filter:blur(4px); z-index:90; opacity:0; pointer-events:none; transition:opacity .2s ease}
-    .mobile-panel{position:fixed; inset:0 0 0 30%; max-width:480px; margin-left:auto; background:linear-gradient(180deg, rgba(18,24,31,.98), rgba(18,24,31,.96)); border-left:1px solid var(--border); z-index:99; transform:translateX(105%); transition:transform .25s ease; display:flex; flex-direction:column}
+    .backdrop{position:fixed; inset:0; background:rgba(2,6,12,.5); backdrop-filter:blur(4px); z-index:79; opacity:0; pointer-events:none; transition:opacity .2s ease}
+    .mobile-panel{position:fixed; inset:0 0 0 30%; max-width:480px; margin-left:auto; background:linear-gradient(180deg, rgba(18,24,31,.98), rgba(18,24,31,.96)); border-left:1px solid var(--border); z-index:90; transform:translateX(105%); transition:transform .25s ease; display:flex; flex-direction:column}
     .mobile-panel header{display:flex; align-items:center; justify-content:space-between; padding:1rem 1.25rem; border-bottom:1px solid var(--border)}
     .mobile-panel nav{display:flex; flex-direction:column; padding:1rem 1.25rem; gap:.2rem}
     .mobile-panel a{padding:.9rem 1rem; border-radius:12px; color:var(--text); border:1px solid transparent; opacity:0; transform:translateX(8px)}
@@ -98,40 +98,37 @@
     body.menu-open .backdrop{opacity:1; pointer-events:auto}
     body.menu-open .mobile-panel{transform:translateX(0)}
 
-    /* DESKTOP HERO */
+    /* ===== DESKTOP HERO ===== */
     header.hero{position:relative; overflow:hidden}
-    .hero-wrap{display:grid; grid-template-columns:1.12fr .88fr; gap:2.2rem; align-items:center; padding:clamp(3.6rem, 5vw + 1rem, 6.2rem) 0}
+    .hero-wrap{display:grid; grid-template-columns:1.12fr .88fr; gap:2.2rem; align-items:center; padding:clamp(3.4rem, 4.8vw + 1rem, 6rem) 0}
     .headline{font-family:Outfit, Inter; font-size:clamp(2rem, 2.8vw + 1rem, 3.2rem); line-height:1.05; margin:.2rem 0 .6rem}
     .sub{color:var(--muted); max-width:70ch}
     .mesh{position:absolute; inset:auto -40% -30% -40%; height:46vh; z-index:-1; filter:blur(70px) saturate(130%); opacity:.55; background: conic-gradient(from 180deg at 50% 50%, rgba(201,162,39,.5), rgba(249,115,22,.35), rgba(201,162,39,.5)); mask-image: radial-gradient(60% 60% at 50% 50%, #000 30%, transparent 100%)}
     .hero-media{border:1px solid var(--border); background:var(--surface); border-radius:var(--radius); padding:1rem; box-shadow:var(--shadow)}
     .hero-media img{border-radius:var(--radius-sm)}
 
-    /* MOBILE HERO (separate design) */
-    .m-hero{position:relative; overflow:hidden; min-height:56vh; display:none}
+    /* ===== MOBILE HERO (separate design) ===== */
+    .m-hero{position:relative; min-height:56vh; display:flex; align-items:flex-end; padding:1.2rem 0 1.6rem; overflow:hidden}
     .m-hero .bg{
-      position:absolute; inset:0; z-index:-1; overflow:hidden;
-      background:#0b0f14;
+      position:absolute; inset:0; z-index:-2;
+      background:url('images/contact/hero.jpg') center/cover no-repeat;
+      filter:contrast(1.05) saturate(1.05) brightness(.85);
     }
-    .m-hero .bg picture, .m-hero .bg img{width:100%; height:100%; object-fit:cover}
-    .m-hero .bg::after{
-      content:""; position:absolute; inset:0; 
-      background:linear-gradient(180deg, rgba(11,15,20,.2), rgba(11,15,20,.8) 65%, rgba(11,15,20,1));
-    }
-    .m-hero .inner{padding:1rem 20px 1.4rem; display:grid; gap:.7rem}
-    .m-kicker{color:var(--accent); font-weight:600; letter-spacing:.08em; text-transform:uppercase; font-size:.82rem; opacity:.95}
-    .m-headline{font-family:Outfit, Inter; font-size:2rem; line-height:1.1; margin:0}
-    .m-sub{color:var(--muted); max-width:60ch}
-    .m-dock{
-      position:sticky; top:calc(var(--nav-h) + 8px); z-index:98; 
-      display:grid; grid-template-columns:1fr 1fr 1fr; gap:.5rem; 
-      margin: .6rem 0 0;
-    }
-    .m-dock .btn{padding:.85rem .9rem}
-    .m-dock .btn-outline{backdrop-filter:saturate(120%) blur(4px); background:rgba(255,255,255,.06)}
-    .m-dock svg{width:18px; height:18px}
+    .m-hero::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(11,15,20,.1) 20%, rgba(11,15,20,.85) 85%); z-index:-1}
+    .m-hero .wrap{padding:0 20px}
+    .m-hero .headline{font-size:2rem; margin:0 0 .4rem}
+    .m-hero .sub{color:#d7dbe3}
 
-    /* CONTACT CARDS */
+    /* QUICK ACTION GRID (mobile) */
+    .quickgrid{display:grid; grid-template-columns:repeat(3,1fr); gap:.8rem; margin-top:1rem}
+    .qcard{
+      display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.4rem;
+      padding:.9rem .6rem; background:rgba(255,255,255,.06); border:1px solid var(--border); border-radius:14px;
+      text-align:center; font-weight:600;
+    }
+    .qcard svg{width:22px; height:22px}
+
+    /* CONTACT CARDS (desktop/large) */
     .cards{display:grid; grid-template-columns:repeat(12,1fr); gap:1rem}
     .card{grid-column:span 4; border:1px solid var(--border); background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03)); border-radius:var(--radius); padding:1rem}
     .card h3{font-family:Outfit; margin:.2rem 0 .4rem}
@@ -144,10 +141,12 @@
 
     form{display:grid; gap:1rem; grid-template-columns:repeat(12,1fr)}
     label{display:block; font-weight:600; margin-bottom:.25rem}
-    input, select, textarea{width:100%; background:rgba(255,255,255,.04); color:var(--text); border:1px solid var(--border); border-radius:12px; padding:1rem .95rem; outline:none; transition:border-color .15s ease, box-shadow .15s ease}
+    input, select, textarea{
+      width:100%; background:rgba(255,255,255,.04); color:var(--text); border:1px solid var(--border);
+      border-radius:12px; padding:1rem .95rem; outline:none; transition:border-color .15s ease, box-shadow .15s ease
+    }
     textarea{min-height:150px; resize:vertical}
     input:focus, select:focus, textarea:focus{border-color:rgba(255,255,255,.25); box-shadow:0 0 0 3px rgba(249,115,22,.2)}
-    input:required:invalid, select:required:invalid{border-color:rgba(249,115,22,.45)}
     .col-6{grid-column:span 6}
     .col-4{grid-column:span 4}
     .col-8{grid-column:span 8}
@@ -155,12 +154,16 @@
     .help{color:var(--muted); font-size:.9rem; margin-top:.2rem}
     .actions{display:flex; gap:.6rem; align-items:center; margin-top:.4rem; flex-wrap:wrap}
     .success{display:none; border:1px solid rgba(16,185,129,.35); background:rgba(16,185,129,.08); color:#86efac; padding:.8rem 1rem; border-radius:12px}
-    .success[aria-live]{display:inline-block}
 
-    /* Mobile service chips (mirror the select) */
-    .chipset{display:none; gap:.5rem; flex-wrap:wrap; margin:.3rem 0 0}
-    .chip{display:inline-flex; padding:.5rem .85rem; border:1px solid var(--border); border-radius:999px; color:var(--muted); font-size:.95rem; background:rgba(255,255,255,.03); user-select:none}
-    .chip[aria-pressed="true"]{background:rgba(255,255,255,.08); color:var(--text); border-color:rgba(255,255,255,.24)}
+    /* Mobile chip-sets for selects */
+    .chipset{display:flex; flex-wrap:wrap; gap:.5rem}
+    .chip{
+      display:inline-flex; align-items:center; gap:.4rem; padding:.5rem .8rem; border-radius:999px;
+      border:1px solid var(--border); color:var(--muted); background:rgba(255,255,255,.03); font-weight:600;
+      cursor:pointer; user-select:none; transition:transform .15s ease, border-color .15s ease, color .15s ease, background .15s ease;
+    }
+    .chip.active{color:#1b1205; background:linear-gradient(135deg, var(--accent), #ffb673); border-color:transparent}
+    .chip svg{width:18px; height:18px}
 
     /* MAP */
     .mapwrap{border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; background:var(--surface)}
@@ -181,7 +184,7 @@
     .reveal.show{opacity:1; transform:none}
 
     /* Sticky mobile CTA bar */
-    .cta-bar{position:fixed; bottom:calc(12px + env(safe-area-inset-bottom)); left:50%; transform:translateX(-50%); z-index:80; display:none}
+    .cta-bar{position:fixed; bottom:calc(12px + env(safe-area-inset-bottom)); left:50%; transform:translateX(-50%); z-index:70; display:none}
     .cta-bar .btn{padding:.75rem 1rem}
 
     /* Animations */
@@ -196,26 +199,22 @@
       .col-8{grid-column:span 12}
     }
     @media (max-width: 680px){
-      /* Switch to mobile design */
-      .only-mobile{display:block}
-      .only-desktop{display:none}
-
       .navlinks{display:none}
       .mobile-toggle{display:grid}
-
-      .m-hero{display:block}
       .card{grid-column:span 12}
       .mapwrap iframe{height:300px}
       .actions{flex-direction:column; align-items:stretch}
       .foot{grid-template-columns:1fr}
-
-      /* Use chips for Service; hide the select (still accessible for screen readers) */
-      .chipset{display:flex}
-      #service{position:absolute !important; left:-9999px; width:1px; height:1px; overflow:hidden}
-
-      /* Reserve space so bottom CTA doesn't cover content */
-      body{ padding-bottom:84px; }
       .cta-bar{display:flex; gap:.6rem}
+      body{ padding-bottom:88px; }
+
+      /* switch to mobile-first design */
+      .only-desktop{display:none}
+      .only-mobile{display:block}
+      .hidden-mobile{display:none}
+      .hidden-desktop{display:block}
+      /* hide desktop selects if we show chip-sets */
+      select.hidden-mobile{display:none}
     }
 
     @media (prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important} }
@@ -269,8 +268,8 @@
     </div>
   </aside>
 
-  <!-- DESKTOP HERO -->
-  <header class="hero only-desktop" id="content">
+  <!-- ===== DESKTOP HERO ===== -->
+  <header class="hero only-desktop" id="content" aria-label="Contact hero">
     <div class="mesh" aria-hidden="true"></div>
     <div class="container hero-wrap">
       <div>
@@ -283,54 +282,49 @@
       </div>
       <aside class="hero-media reveal">
         <picture>
-          <source srcset="images/contact/hero.webp" type="image/webp" sizes="560px">
-          <img src="images/contact/hero.jpg" alt="Workshop office and contact desk" width="1080" height="720" loading="lazy" sizes="560px"/>
+          <source srcset="images/contact/hero.webp" type="image/webp" sizes="(max-width:680px) 100vw, 560px">
+          <img src="images/contact/hero.jpg" alt="Workshop office and contact desk" width="1080" height="720" loading="lazy" sizes="(max-width:680px) 100vw, 560px"/>
         </picture>
       </aside>
     </div>
   </header>
 
-  <!-- MOBILE HERO (separate layout + quick dock) -->
-  <section class="m-hero only-mobile">
-    <div class="bg" aria-hidden="true">
-      <picture>
-        <source srcset="images/og-contact.webp" type="image/webp">
-        <img src="images/og-contact.jpg" alt="">
-      </picture>
-    </div>
-    <div class="container inner">
-      <div class="m-kicker">Fast responses</div>
-      <h1 class="m-headline">Contact & Quote</h1>
-      <p class="m-sub">Send your measurements and a photo reference — we’ll reply quickly by phone or WhatsApp.</p>
-
-      <!-- Sticky quick actions dock -->
-      <div class="m-dock" role="toolbar" aria-label="Quick actions">
-        <a class="btn btn-icon" href="tel:+2347010104012">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.2a15.1 15.1 0 007.2 7.2l2.4-2.4a1 1 0 011-.25 11.5 11.5 0 003.6.57 1 1 0 011 1v3.7a1 1 0 01-1 1A17.8 17.8 0 012 6a1 1 0 011-1h3.7a1 1 0 011 1 11.5 11.5 0 00.57 3.6 1 1 0 01-.25 1z"/></svg>
+  <!-- ===== MOBILE HERO (separate design) ===== -->
+  <header class="m-hero only-mobile" aria-label="Contact hero mobile">
+    <div class="bg" aria-hidden="true"></div>
+    <div class="wrap">
+      <h1 class="headline">Let's talk steel</h1>
+      <p class="sub">Fast quotes via call or WhatsApp. Tap a shortcut below.</p>
+      <div class="quickgrid" role="navigation" aria-label="Quick contact">
+        <a class="qcard" href="tel:+2347010104012" title="Call now">
+          <!-- phone icon -->
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.86 19.86 0 0 1 3.09 5.18 2 2 0 0 1 5.11 3h3a2 2 0 0 1 2 1.72c.12.86.3 1.7.55 2.5a2 2 0 0 1-.45 2.11L9.09 10.9a16 16 0 0 0 4 4l1.57-1.12a2 2 0 0 1 2.11-.45c.8.25 1.64.43 2.5.55A2 2 0 0 1 22 16.92Z" stroke="currentColor" stroke-width="1.6"/></svg>
           Call
         </a>
-        <a class="btn btn-outline btn-icon" href="https://wa.me/2348025532696?text=Hi%20Gabakssteel%2C%20I%20need%20a%20quote." target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20 3.9A10 10 0 004 19.6L3 22l2.5-.66A10 10 0 1020 3.9zm-7.9 3c-.3 0-.7 0-1 .1-1.1.3-1.9 1.2-2 2.3-.1 1 .2 2 1.2 3.1 1.4 1.7 3.2 2.7 3.7 3 .5.3 1.7.8 2.8.5 1.1-.2 1.8-1.4 1.9-1.6.2-.2.2-.4.2-.5s0-.3-.1-.4l-1-1c-.1-.1-.2-.2-.4-.2h-.3l-.2.1-.6.2c-.2.1-.4.1-.6 0l-.2-.2c-.1-.1-.5-.5-.7-.8-.3-.3-.5-.7-.6-.8-.1-.2-.1-.4 0-.6l.1-.2c.1-.1.2-.3.2-.5s0-.3-.1-.5l-.7-1c-.1-.1-.2-.2-.3-.2h-.4z"/></svg>
+        <a class="qcard" href="https://wa.me/2348025532696?text=Hi%20Gabakssteel%2C%20I%20need%20a%20quote." target="_blank" rel="noopener" title="WhatsApp">
+          <!-- whatsapp icon -->
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 3.9A10 10 0 0 0 4 18l-1 3 3-1A10 10 0 1 0 20 3.9Z" stroke="currentColor" stroke-width="1.6"/><path d="M8.5 9.5c0 4 4 6 4.5 6.5s2.5-1 3-1-.5-1.5-.5-2-.5-.5-1-.5-1 1-1 1-1.5-.5-2.5-1.5-1.5-2.5-1.5-2.5 1-1 1-1-.5-1-1-1-1.5.5-1.5 1.5Z" stroke="currentColor" stroke-width="1.6"/></svg>
           WhatsApp
         </a>
-        <a class="btn btn-outline btn-icon" href="https://maps.google.com/?q=No.+10+Shamura+Street,+Mafoluku,+Oshodi,+Lagos" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 00-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 00-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z"/></svg>
+        <a class="qcard" href="https://maps.google.com/?q=No.+10+Shamura+Street,+Mafoluku,+Oshodi,+Lagos" target="_blank" rel="noopener" title="Directions">
+          <!-- map pin -->
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 22s7-5.25 7-11a7 7 0 1 0-14 0c0 5.75 7 11 7 11Z" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="11" r="3" stroke="currentColor" stroke-width="1.6"/></svg>
           Directions
         </a>
       </div>
     </div>
-  </section>
+  </header>
 
-  <!-- CONTACT CHANNELS -->
-  <section>
+  <!-- CONTACT CHANNELS (desktop emphasis) -->
+  <section class="only-desktop">
     <div class="container">
       <div class="cards">
         <div class="card reveal">
           <h3>Call / WhatsApp</h3>
           <p class="small">Mon–Sat • 8:00am – 6:00pm</p>
-          <p style="display:flex; gap:.5rem; flex-wrap:wrap">
-            <a class="btn btn-icon" href="tel:+2347010104012">📞 <small>07010104012</small></a>
-            <a class="btn btn-outline btn-icon" href="https://wa.me/2348025532696?text=Hi%20Gabakssteel%2C%20I%20need%20a%20quote." target="_blank" rel="noopener">💬 WhatsApp</a>
+          <p>
+            <a class="btn" href="tel:+2347010104012">Call now</a>
+            <a class="btn btn-outline" style="margin-left:.4rem" href="https://wa.me/2348025532696?text=Hi%20Gabakssteel%2C%20I%20need%20a%20quote." target="_blank" rel="noopener">WhatsApp</a>
           </p>
         </div>
         <div class="card reveal">
@@ -351,31 +345,73 @@
   <section id="quote">
     <div class="container">
       <h2 class="section-title">Request a quote</h2>
-      <p class="section-sub">Share as much detail as you can — we’ll confirm measurements and give you options.</p>
+      <p class="section-sub hidden-desktop">Share details — we’ll confirm and reply on WhatsApp fast.</p>
+      <p class="section-sub hidden-mobile">Share as much detail as you can — we’ll confirm measurements and give you options.</p>
+
+      <!-- Mobile-first quick pick chips -->
+      <div class="only-mobile" style="display:grid; gap:1rem; margin-bottom:.6rem">
+        <div>
+          <strong style="display:block; margin-bottom:.4rem">Service</strong>
+          <div class="chipset" data-target="#service">
+            <button class="chip" data-value="Custom Gates & Doors">Gates</button>
+            <button class="chip" data-value="Windows & Burglary Proofs">Windows</button>
+            <button class="chip" data-value="Rails & Staircases">Rails</button>
+            <button class="chip" data-value="Street-light Poles">Poles</button>
+            <button class="chip" data-value="Overhead Water Tanks">Tanks</button>
+            <button class="chip" data-value="Warehouses & Roofing">Roofing</button>
+            <button class="chip" data-value="Other / General Steel Work">General</button>
+          </div>
+        </div>
+        <div>
+          <strong style="display:block; margin-bottom:.4rem">Finish</strong>
+          <div class="chipset" data-target="#finish">
+            <button class="chip" data-value="Primer + paint">Paint</button>
+            <button class="chip" data-value="Powder-coat">Powder-coat</button>
+            <button class="chip" data-value="Hot-dip galvanizing">Galvanized</button>
+            <button class="chip" data-value="Not sure yet">Not sure</button>
+          </div>
+        </div>
+        <div>
+          <strong style="display:block; margin-bottom:.4rem">Budget</strong>
+          <div class="chipset" data-target="#budget">
+            <button class="chip" data-value="Under ₦300k">Under ₦300k</button>
+            <button class="chip" data-value="₦300k – ₦700k">₦300k–₦700k</button>
+            <button class="chip" data-value="₦700k – ₦1.5m">₦700k–₦1.5m</button>
+            <button class="chip" data-value="₦1.5m+">₦1.5m+</button>
+          </div>
+        </div>
+      </div>
 
       <form id="quoteForm" novalidate>
+        <!-- Honeypot for spam -->
+        <input type="text" name="website" id="website" autocomplete="off" style="position:absolute; left:-9999px; opacity:0; height:0; width:0" tabindex="-1" aria-hidden="true">
+
         <div class="col-6">
           <label for="name">Your name</label>
-          <input id="name" name="name" type="text" autocomplete="name" required placeholder="John Doe" />
+          <input id="name" name="name" type="text" autocomplete="name" required placeholder="John Doe" enterkeyhint="next" />
         </div>
         <div class="col-6">
           <label for="phone">Phone or WhatsApp</label>
-          <input id="phone" name="phone" type="tel" autocomplete="tel" required inputmode="tel" placeholder="+234 ..." />
+          <input id="phone" name="phone" type="tel" required inputmode="tel" autocomplete="tel" placeholder="+234 ..." enterkeyhint="next" />
         </div>
 
         <div class="col-6">
           <label for="email">Email (optional)</label>
-          <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" />
+          <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" enterkeyhint="next" />
         </div>
         <div class="col-6">
           <label for="location">Site location</label>
-          <input id="location" name="location" type="text" required placeholder="e.g., Oshodi, Ikeja" />
+          <div style="display:flex; gap:.6rem; align-items:center">
+            <input id="location" name="location" type="text" required placeholder="e.g., Oshodi, Ikeja" enterkeyhint="next" />
+            <button class="btn btn-outline hidden-mobile" type="button" id="useLoc" title="Use my location">Use location</button>
+          </div>
+          <button class="btn btn-outline only-mobile" type="button" id="useLocMobile" style="margin-top:.5rem">Use my location</button>
+          <div class="help" id="locHelp" aria-live="polite"></div>
         </div>
 
-        <!-- Service select (kept for accessibility) -->
         <div class="col-6">
           <label for="service">Service</label>
-          <select id="service" name="service" required>
+          <select id="service" name="service" required class="hidden-mobile">
             <option value="">Select service</option>
             <option>Custom Gates & Doors</option>
             <option>Windows & Burglary Proofs</option>
@@ -385,21 +421,10 @@
             <option>Warehouses & Roofing</option>
             <option>Other / General Steel Work</option>
           </select>
-
-          <!-- Mobile chips mirror -->
-          <div class="chipset only-mobile" role="group" aria-label="Choose a service" id="serviceChips">
-            <button type="button" class="chip" data-val="Custom Gates & Doors" aria-pressed="false">Gates</button>
-            <button type="button" class="chip" data-val="Windows & Burglary Proofs" aria-pressed="false">Windows</button>
-            <button type="button" class="chip" data-val="Rails & Staircases" aria-pressed="false">Rails</button>
-            <button type="button" class="chip" data-val="Street-light Poles" aria-pressed="false">Poles</button>
-            <button type="button" class="chip" data-val="Overhead Water Tanks" aria-pressed="false">Tanks</button>
-            <button type="button" class="chip" data-val="Warehouses & Roofing" aria-pressed="false">Warehouses</button>
-            <button type="button" class="chip" data-val="Other / General Steel Work" aria-pressed="false">Other</button>
-          </div>
         </div>
         <div class="col-6">
           <label for="finish">Preferred finish</label>
-          <select id="finish" name="finish">
+          <select id="finish" name="finish" class="hidden-mobile">
             <option value="">Select finish</option>
             <option>Primer + paint</option>
             <option>Powder-coat</option>
@@ -410,15 +435,15 @@
 
         <div class="col-4">
           <label for="width">Width (cm)</label>
-          <input id="width" name="width" type="number" inputmode="decimal" step="0.1" min="0" placeholder="e.g., 350" />
+          <input id="width" name="width" type="number" inputmode="decimal" step="0.1" min="0" placeholder="e.g., 350" enterkeyhint="next" />
         </div>
         <div class="col-4">
           <label for="height">Height (cm)</label>
-          <input id="height" name="height" type="number" inputmode="decimal" step="0.1" min="0" placeholder="e.g., 220" />
+          <input id="height" name="height" type="number" inputmode="decimal" step="0.1" min="0" placeholder="e.g., 220" enterkeyhint="next" />
         </div>
         <div class="col-4">
           <label for="budget">Budget range</label>
-          <select id="budget" name="budget">
+          <select id="budget" name="budget" class="hidden-mobile">
             <option value="">Select</option>
             <option>Under ₦300k</option>
             <option>₦300k – ₦700k</option>
@@ -427,23 +452,17 @@
           </select>
         </div>
 
-        <div class="col-12 only-mobile">
-          <label for="photo">Add photo (optional)</label>
-          <input id="photo" name="photo" type="file" accept="image/*" capture="environment" />
-          <div class="help">For now, send photos via WhatsApp or email after generating the summary.</div>
-        </div>
-
         <div class="col-12">
           <label for="details">Project details</label>
-          <textarea id="details" name="details" placeholder="Brief description, measurements, reference style (send photos via WhatsApp or attach in email)." maxlength="1500"></textarea>
+          <textarea id="details" name="details" placeholder="Brief description, measurements, reference style (attach photos in WhatsApp or email)." maxlength="1500" enterkeyhint="done"></textarea>
           <div class="help"><span id="count">0</span>/1500 characters</div>
         </div>
 
-        <div class="col-12 actions">
+        <div class="col-12 actions hidden-mobile">
           <button class="btn" type="button" id="sendEmail">Send via Email</button>
           <button class="btn btn-outline" type="button" id="sendWhatsApp">Send via WhatsApp</button>
           <button class="btn btn-outline" type="button" id="copyText">Copy summary</button>
-          <span class="success" id="success" aria-live="polite"></span>
+          <span class="success" id="success">Summary copied. You can paste into WhatsApp.</span>
         </div>
       </form>
     </div>
@@ -509,11 +528,11 @@
     </div>
   </footer>
 
-  <!-- Sticky CTA for mobile -->
-  <div class="cta-bar only-mobile" aria-hidden="true">
+  <!-- Sticky CTA for mobile (context-aware) -->
+  <div class="cta-bar only-mobile" aria-hidden="false" aria-label="Quick actions">
     <a class="btn" href="tel:+2347010104012" title="Call">Call</a>
-    <a class="btn btn-outline" href="https://wa.me/2348025532696?text=Hi%20Gabakssteel%2C%20I%20need%20a%20quote." target="_blank" rel="noopener" title="WhatsApp">WhatsApp</a>
-    <a class="btn" href="#quote" title="Request a Quote">Quote</a>
+    <button class="btn btn-outline" type="button" id="ctaWA" title="Send via WhatsApp">Send on WhatsApp</button>
+    <button class="btn btn-outline" type="button" id="ctaEmail" title="Send via Email">Email</button>
   </div>
 
   <script>
@@ -565,25 +584,43 @@
     const count = document.getElementById('count');
     details.addEventListener('input', ()=>{ count.textContent = details.value.length; });
 
-    // Mobile service chips sync -> hidden select
-    const serviceSel = document.getElementById('service');
-    const chipsWrap = document.getElementById('serviceChips');
-    chipsWrap?.addEventListener('click', (e)=>{
-      const chip = e.target.closest('.chip'); if(!chip) return;
-      chipsWrap.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed','false'));
-      chip.setAttribute('aria-pressed','true');
-      serviceSel.value = chip.dataset.val;
-      serviceSel.dispatchEvent(new Event('change', {bubbles:true}));
-    });
+    // Chipsets -> sync to selects
+    function bindChipset(cs){
+      const targetSel = cs.getAttribute('data-target');
+      const select = document.querySelector(targetSel);
+      cs.addEventListener('click', e=>{
+        const chip = e.target.closest('.chip'); if(!chip) return;
+        cs.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+        chip.classList.add('active');
+        if(select){
+          const v = chip.getAttribute('data-value');
+          // Try to match option by text
+          let matched = false;
+          [...select.options].forEach(o=>{
+            if(o.text === v){ select.value = o.text; matched = true; }
+          });
+          if(!matched){
+            // For budget select different typography
+            [...select.options].forEach(o=>{
+              if(o.text.replace(/\s/g,'') === v.replace(/\s/g,'')){ select.value = o.text; matched = true; }
+            });
+            if(!matched){ select.value = v; }
+          }
+        }
+      });
+    }
+    document.querySelectorAll('.chipset').forEach(bindChipset);
 
     // Build summary text
     function buildSummary(){
       const fd = new FormData(document.getElementById('quoteForm'));
       const get = k => (fd.get(k) || '').toString().trim();
       const dims = [get('width'), get('height')].filter(Boolean).join(' x ');
+      const phone = get('phone').replace(/[^\d+]/g,'');
+      const spamTrap = get('website'); if (spamTrap) return null; // bot
       return (
         `Name: ${get('name')}\n`
-        + `Phone: ${get('phone')}\n`
+        + `Phone: ${phone}\n`
         + (get('email')?`Email: ${get('email')}\n`:``)
         + `Location: ${get('location')}\n`
         + `Service: ${get('service')}\n`
@@ -599,37 +636,72 @@
       const req = ['name','phone','location','service'];
       for(const id of req){
         const el = document.getElementById(id);
-        if(!el.value.trim()) { el.focus(); el.scrollIntoView({behavior:'smooth', block:'center'}); return false; }
+        if(!el.value.trim()) {
+          el.scrollIntoView({behavior:'smooth', block:'center'});
+          el.focus(); return false;
+        }
       }
       return true;
     }
 
-    // Send via Email
-    document.getElementById('sendEmail').addEventListener('click', ()=>{
+    // Actions (desktop buttons)
+    const emailBtn = document.getElementById('sendEmail');
+    const waBtn = document.getElementById('sendWhatsApp');
+    const copyBtn = document.getElementById('copyText');
+
+    emailBtn?.addEventListener('click', ()=>{
       if(!validate()) return;
       const body = encodeURIComponent(buildSummary());
       window.location.href = `mailto:Gabakssteel@yahoo.com?subject=Quote%20Request&body=${body}`;
     });
 
-    // Send via WhatsApp
-    document.getElementById('sendWhatsApp').addEventListener('click', ()=>{
+    waBtn?.addEventListener('click', ()=>{
       if(!validate()) return;
       const text = encodeURIComponent(buildSummary());
-      window.open(`https://wa.me/2348025532696?text=${text}`, '_blank', 'noopener');
+      window.open(`https://wa.me/2348025532696?text=${text}`, '_blank');
     });
 
-    // Copy summary
-    document.getElementById('copyText').addEventListener('click', async ()=>{
-      const success = document.getElementById('success');
+    copyBtn?.addEventListener('click', async ()=>{
       try{
         await navigator.clipboard.writeText(buildSummary());
-        success.textContent = 'Summary copied. You can paste into WhatsApp.';
-        success.setAttribute('aria-live','polite');
-        setTimeout(()=>{ success.textContent=''; success.removeAttribute('aria-live'); }, 2500);
-      }catch(e){
-        alert('Copy failed. Please select and copy manually.');
-      }
+        const s = document.getElementById('success'); s.style.display='inline-block';
+        setTimeout(()=>{ s.style.display='none'; }, 2500);
+      }catch(e){ alert('Copy failed. Please select and copy manually.'); }
     });
+
+    // Sticky CTA (mobile) wiring
+    $('#ctaWA')?.addEventListener('click', ()=>{
+      if(!validate()) return;
+      const text = encodeURIComponent(buildSummary());
+      window.open(`https://wa.me/2348025532696?text=${text}`, '_blank');
+    });
+    $('#ctaEmail')?.addEventListener('click', ()=>{
+      if(!validate()) return;
+      const body = encodeURIComponent(buildSummary());
+      window.location.href = `mailto:Gabakssteel@yahoo.com?subject=Quote%20Request&body=${body}`;
+    });
+
+    // Geolocation (optional)
+    function useLocation(outputId){
+      const help = document.getElementById('locHelp');
+      if(!navigator.geolocation){ help.textContent = 'Location not supported on this device.'; return; }
+      help.textContent = 'Fetching your location…';
+      navigator.geolocation.getCurrentPosition(
+        (pos)=>{
+          const {latitude, longitude} = pos.coords;
+          const locField = document.getElementById('location');
+          const link = `https://maps.google.com/?q=${latitude},${longitude}`;
+          if(!locField.value.trim()){
+            locField.value = `Pin: ${latitude.toFixed(5)}, ${longitude.toFixed(5)}`;
+          }
+          help.innerHTML = `Location captured. <a href="${link}" target="_blank" rel="noopener">View map</a>`;
+        },
+        (err)=>{ help.textContent = 'Could not get location (permission denied or error).'; },
+        {enableHighAccuracy:true, timeout:10000, maximumAge:60000}
+      );
+    }
+    $('#useLoc')?.addEventListener('click', ()=> useLocation('locHelp'));
+    $('#useLocMobile')?.addEventListener('click', ()=> useLocation('locHelp'));
 
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();
