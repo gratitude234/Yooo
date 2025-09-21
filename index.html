@@ -225,8 +225,13 @@
       .only-desktop{display:block}
 
       /* Desktop nav shows, mobile trigger hides */
-      .navlinks{display:flex}
-      .mobile-toggle{display:none}
+      .navlinks{
+        display:flex;
+        gap: 1.25rem;         /* ⟵ FIX: add spacing between links */
+        align-items:center;   /* ⟵ vertical alignment */
+        white-space:nowrap;   /* ⟵ keep labels tidy on one line */
+      }
+      .navlinks > a{ padding: .25rem .25rem; }
 
       /* Make the panel a side-drawer on wider screens */
       .mobile-panel{inset:0 0 0 30%; max-width:480px; margin-left:auto; border-left:1px solid var(--border); border-top:none}
