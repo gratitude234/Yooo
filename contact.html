@@ -72,14 +72,14 @@
     .navlinks a{color:var(--muted); transition:color .2s ease}
     .navlinks a:hover{color:var(--text)}
     .navlinks a[aria-current="page"]{ color:var(--text); font-weight:600 }
-    /* gradient underline polish */
+    /* gradient underline hover */
     .navlinks a{position:relative}
     .navlinks a::after{
       content:""; position:absolute; left:0; right:0; bottom:-6px; height:2px;
       background:linear-gradient(90deg,var(--accent),#ffb673);
       transform:scaleX(0); transform-origin:left; transition:transform .25s ease;
     }
-    .navlinks a:hover::after, .navlinks a[aria-current="page"]::after{transform:scaleX(1)}
+    .navlinks a:hover::after{transform:scaleX(1)}
 
     /* Mobile trigger */
     .mobile-toggle{display:none; position:relative; width:42px; height:42px; place-items:center; border-radius:12px; border:1px solid var(--border); background:transparent; color:var(--text)}
@@ -110,22 +110,22 @@
     .hero-wrap{display:grid; grid-template-columns:1.12fr .88fr; gap:2.2rem; align-items:center; padding:clamp(3.4rem, 4.8vw + 1rem, 6rem) 0}
     .headline{font-family:Outfit, Inter; font-size:clamp(2rem, 2.8vw + 1rem, 3.2rem); line-height:1.05; margin:.2rem 0 .6rem}
     .sub{color:var(--muted); max-width:70ch}
-    .mesh{position:absolute; inset:auto -40% -30% -40%; height:46vh; z-index:-1; filter:blur(70px) saturate(130%); opacity:.55; background: conic-gradient(from 180deg at 50% 50%, rgba(201,162,39,.5), rgba(249,115,22,.35), rgba(201,162,39,.5)); mask-image: radial-gradient(60% 60% at 50% 50%, #000 30%, transparent 100%); animation: meshFloat 14s ease-in-out infinite alternate}
+    .mesh{position:absolute; inset:auto -40% -30% -40%; height:46vh; z-index:-1; filter:blur(70px) saturate(130%); opacity:.55; background: conic-gradient(from 180deg at 50% 50%, rgba(201,162,39,.5), rgba(249,115,22,.35), rgba(201,162,39,.5)); mask-image: radial-gradient(60% 60% at 50% 50%, #000 30%, transparent 100%)}
     .hero-media{border:1px solid var(--border); background:var(--surface); border-radius:var(--radius); padding:1rem; box-shadow:var(--shadow)}
     .hero-media img{border-radius:var(--radius-sm)}
 
-    /* HERO (MOBILE — separate design, left untouched) */
+    /* HERO (MOBILE — separate design) */
     header.hero-phone{
       position:relative; min-height:54vh; display:flex; align-items:flex-end; padding:0; overflow:hidden; border-bottom:1px solid var(--border);
       background:#111;
     }
-    .hero-phone .bg{position:absolute; inset:0; z-index:-2; overflow:hidden;}
+    .hero-phone .bg{ position:absolute; inset:0; z-index:-2; overflow:hidden; }
     .hero-phone .bg picture, .hero-phone .bg img{width:100%; height:100%; object-fit:cover}
     .hero-phone .bg::after{
       content:""; position:absolute; inset:0;
       background:linear-gradient(180deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,.65) 55%, rgba(11,15,20,.92) 100%);
     }
-    .hero-phone .content{width:100%; padding:2rem 20px 1.2rem; position:relative;}
+    .hero-phone .content{ width:100%; padding:2rem 20px 1.2rem; position:relative; }
     .hero-phone .kicker{
       display:inline-flex; gap:.5rem; align-items:center; font-weight:600; letter-spacing:.04em; text-transform:uppercase;
       font-size:.8rem; color:#ffe5d3; background:rgba(0,0,0,.35); border:1px solid rgba(255,255,255,.18);
@@ -136,18 +136,23 @@
     .hero-phone .cta-row{display:grid; grid-template-columns:1fr 1fr 1fr; gap:.5rem; margin-top:1rem}
     .hero-phone .cta-row .btn{padding:.8rem .6rem}
 
-    /* QUICK TRUST on mobile (unchanged) */
-    .trust-strip{display:flex; gap:.5rem; margin-top:.7rem; color:#d6dee8; font-size:.9rem; opacity:.95; flex-wrap:wrap}
-    .trust-strip .pill{border:1px solid rgba(255,255,255,.16); border-radius:999px; padding:.35rem .6rem; background:rgba(255,255,255,.06)}
+    /* QUICK TRUST on mobile */
+    .trust-strip{ display:flex; gap:.5rem; margin-top:.7rem; color:#d6dee8; font-size:.9rem; opacity:.95; flex-wrap:wrap }
+    .trust-strip .pill{ border:1px solid rgba(255,255,255,.16); border-radius:999px; padding:.35rem .6rem; background:rgba(255,255,255,.06) }
 
     /* CONTACT CARDS */
     .cards{display:grid; grid-template-columns:repeat(12,1fr); gap:1rem}
-    .card{grid-column:span 4; border:1px solid var(--border); background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03)); border-radius:var(--radius); padding:1rem}
+    .card{
+      grid-column:span 4; border:1px solid var(--border);
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+      border-radius:var(--radius); padding:1rem; transition:transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+    }
+    .card:hover{ transform:translateY(-3px); border-color:rgba(255,255,255,.22); box-shadow:0 18px 40px rgba(0,0,0,.28) }
     .card h3{font-family:Outfit; margin:.2rem 0 .4rem}
     .small{color:var(--muted); font-size:.95rem}
 
     /* FORM */
-    section{padding:clamp(2.4rem, 5vw, 4rem) 0; position:relative}
+    section{padding:clamp(2.4rem, 5vw, 4rem) 0; position:relative; content-visibility:auto; contain-intrinsic-size:1px 1000px}
     .section-title{font-family:Outfit; font-size:clamp(1.4rem, 1.4vw + 1rem, 2rem); margin:0 0 .6rem}
     .section-sub{color:var(--muted); margin:0 0 1.2rem}
 
@@ -157,6 +162,7 @@
       width:100%; background:rgba(255,255,255,.04); color:var(--text); border:1px solid var(--border);
       border-radius:12px; padding:.9rem .9rem; outline:none; transition:border-color .15s ease, box-shadow .15s ease
     }
+    input:hover, select:hover, textarea:hover{ border-color:rgba(255,255,255,.2) }
     textarea{min-height:150px; resize:vertical}
     input:focus, select:focus, textarea:focus{border-color:rgba(255,255,255,.25); box-shadow:0 0 0 3px rgba(249,115,22,.2)}
     .col-6{grid-column:span 6}
@@ -166,16 +172,12 @@
     .help{color:var(--muted); font-size:.9rem; margin-top:.2rem}
     .actions{display:flex; gap:.6rem; align-items:center; margin-top:.4rem; flex-wrap:wrap}
     .success{display:none; border:1px solid rgba(16,185,129,.35); background:rgba(16,185,129,.08); color:#86efac; padding:.8rem 1rem; border-radius:12px}
-    .success[aria-live]{display:inline-block} /* when toggled for SR */
-
-    /* error state */
-    .invalid{border-color:#ef4444 !important; box-shadow:0 0 0 3px rgba(239,68,68,.15) !important}
-    .err{display:none; color:#fca5a5; font-size:.85rem; margin-top:.3rem}
-    .show-err .err{display:block}
+    .invalid{ border-color:#fda4a4 !important; box-shadow:0 0 0 3px rgba(239,68,68,.25) !important }
 
     /* CHIP SELECTS (Mobile-first enhancement) */
     .chip-group{display:none; gap:.5rem; flex-wrap:wrap; margin:.4rem 0 0}
-    .chip{display:inline-flex; padding:.45rem .8rem; border:1px solid var(--border); border-radius:999px; color:var(--muted); font-size:.92rem; user-select:none; cursor:pointer}
+    .chip{display:inline-flex; padding:.45rem .8rem; border:1px solid var(--border); border-radius:999px; color:var(--muted); font-size:.92rem; user-select:none; cursor:pointer; transition:transform .18s ease, border-color .18s ease, background .18s ease}
+    .chip:hover{ transform:translateY(-1px); border-color:rgba(255,255,255,.2) }
     .chip.active{border-color:rgba(255,255,255,.32); color:var(--text); background:rgba(255,255,255,.06)}
 
     /* MAP */
@@ -193,7 +195,7 @@
     .foot{display:grid; gap:1rem; grid-template-columns:2fr 1fr 1fr}
 
     /* Reveal */
-    .reveal{opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease}
+    .reveal{opacity:0; transform:translateY(16px); transition:opacity .6s cubic-bezier(.22,.61,.36,1), transform .6s cubic-bezier(.22,.61,.36,1)}
     .reveal.show{opacity:1; transform:none}
 
     /* Sticky mobile CTA bar */
@@ -206,7 +208,6 @@
 
     /* Animations */
     @keyframes slideIn{from{opacity:0; transform:translateX(8px)} to{opacity:1; transform:translateX(0)}}
-    @keyframes meshFloat{0%{transform:translateY(0) scale(1)}100%{transform:translateY(-18px) scale(1.02)}}
 
     /* Responsive */
     @media (max-width: 1024px){
@@ -217,7 +218,7 @@
       .col-8{grid-column:span 12}
     }
     @media (max-width: 680px){
-      /* Hard split: mobile-specific UI (unchanged) */
+      /* Hard split: mobile-specific UI */
       .d-only{display:none}
       .m-only{display:block}
 
@@ -235,6 +236,8 @@
 
       .cta-bar{display:flex; gap:.6rem}
       body{ padding-bottom:84px; }
+      /* disable reveal to prevent jumps */
+      .reveal{opacity:1 !important; transform:none !important; transition:none !important}
     }
 
     @media (prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important} }
@@ -288,7 +291,7 @@
     </div>
   </aside>
 
-  <!-- HERO (MOBILE — untouched) -->
+  <!-- HERO (MOBILE — unchanged) -->
   <header class="hero-phone m-only" id="content">
     <div class="bg" aria-hidden="true">
       <picture>
@@ -370,12 +373,10 @@
         <div class="col-6">
           <label for="name">Your name</label>
           <input id="name" name="name" type="text" autocomplete="name" required placeholder="John Doe" />
-          <div class="err">Please enter your name.</div>
         </div>
         <div class="col-6">
           <label for="phone">Phone or WhatsApp</label>
           <input id="phone" name="phone" type="tel" required inputmode="tel" placeholder="+234 ..." />
-          <div class="err">Phone or WhatsApp is required.</div>
         </div>
 
         <div class="col-6">
@@ -385,7 +386,6 @@
         <div class="col-6">
           <label for="location">Site location</label>
           <input id="location" name="location" type="text" required placeholder="e.g., Oshodi, Ikeja" />
-          <div class="err">Please provide a location.</div>
         </div>
 
         <!-- SERVICE (chips on mobile, select on desktop) -->
@@ -410,7 +410,6 @@
             <option>Warehouses & Roofing</option>
             <option>Other / General Steel Work</option>
           </select>
-          <div class="err">Please choose a service.</div>
         </div>
 
         <!-- FINISH (chips on mobile, select on desktop) -->
@@ -460,7 +459,7 @@
           <button class="btn" type="button" id="sendEmail">Send via Email</button>
           <button class="btn btn-outline" type="button" id="sendWhatsApp">Send via WhatsApp</button>
           <button class="btn btn-outline" type="button" id="copyText">Copy summary</button>
-          <span class="success" id="success" aria-live="polite" aria-atomic="true" role="status">Summary copied. You can paste into WhatsApp.</span>
+          <span class="success" id="success" role="status" aria-live="polite">Summary copied. You can paste into WhatsApp.</span>
         </div>
       </form>
     </div>
@@ -547,8 +546,8 @@
       document.body.classList.toggle('menu-open', open);
       document.documentElement.classList.toggle('menu-open', open); // lock <html> too
       toggle?.setAttribute('aria-expanded', String(open));
-      if(panel) panel.hidden = !open;
-      if(backdrop) backdrop.hidden = !open;
+      panel.hidden = !open;
+      backdrop.hidden = !open;
 
       // Animate links with stagger
       const links = panel?.querySelectorAll('nav a') || [];
@@ -563,13 +562,6 @@
     backdrop?.addEventListener('click', ()=> openMenu(false));
     window.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') openMenu(false) });
 
-    // Close mobile menu when resizing up
-    (function(){
-      const mq = window.matchMedia('(min-width: 681px)');
-      const handler = (e)=>{ if(e.matches) openMenu(false); };
-      mq.addEventListener?.('change', handler); mq.addListener?.(handler);
-    })();
-
     // Reveal on scroll
     const io = new IntersectionObserver(entries=>{
       entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target) }});
@@ -577,28 +569,25 @@
     document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
     // FAQ accordion
-    document.getElementById('faq')?.addEventListener('click', e=>{
+    document.getElementById('faq').addEventListener('click', e=>{
       const btn = e.target.closest('.acc-btn'); if(!btn) return;
       const panel = btn.nextElementSibling; const open = panel.style.display === 'block';
       document.querySelectorAll('.acc-panel').forEach(p=>p.style.display='none');
       panel.style.display = open ? 'none' : 'block';
     });
 
-    // Character count + auto-resize
+    // Character count + autogrow
     const details = document.getElementById('details');
     const count = document.getElementById('count');
-    function resizeTA(){
-      details.style.height = 'auto';
-      details.style.height = (details.scrollHeight) + 'px';
-    }
-    details.addEventListener('input', ()=>{ count.textContent = details.value.length; resizeTA(); });
-    window.addEventListener('load', resizeTA);
+    function updateCount(){ count.textContent = details.value.length; }
+    function autogrow(t){ t.style.height = 'auto'; t.style.height = (t.scrollHeight+2) + 'px'; }
+    details.addEventListener('input', ()=>{ updateCount(); autogrow(details); });
 
     // Phone auto-clean (+digits only)
     const phone = document.getElementById('phone');
     phone.addEventListener('input', ()=>{
       const start = phone.selectionStart;
-      phone.value = phone.value.replace(/(?!^\+)[^\d]/g, '');
+      phone.value = phone.value.replace(/(?!^\\+)[^\\d]/g, '');
       phone.setSelectionRange(start, start);
     });
 
@@ -614,37 +603,6 @@
         Array.from(select.options).forEach(o=>{ if(o.text === val){ select.value = val; }});
       });
     });
-
-    // Persist form (localStorage)
-    const form = document.getElementById('quoteForm');
-    const LSKEY = 'gab_quote_form';
-    const persistFields = ['name','phone','email','location','service','finish','width','height','budget','details'];
-    function saveForm(){
-      const data = {};
-      persistFields.forEach(id=>{ const el = document.getElementById(id); if(el) data[id] = el.value; });
-      localStorage.setItem(LSKEY, JSON.stringify(data));
-    }
-    function loadForm(){
-      try{
-        const data = JSON.parse(localStorage.getItem(LSKEY) || '{}');
-        persistFields.forEach(id=>{ if(data[id] && document.getElementById(id)) document.getElementById(id).value = data[id]; });
-        if(details) { count.textContent = details.value.length; resizeTA(); }
-      }catch(e){}
-    }
-    form.addEventListener('input', saveForm);
-    window.addEventListener('load', loadForm);
-
-    // Prefill from query string (?service=...&finish=...)
-    (function(){
-      const params = new URLSearchParams(location.search);
-      const svc = params.get('service'); const fin = params.get('finish');
-      if(svc && document.getElementById('service')){
-        const s = document.getElementById('service'); Array.from(s.options).forEach(o=>{ if(o.text.toLowerCase()===svc.toLowerCase()) s.value=o.text; });
-      }
-      if(fin && document.getElementById('finish')){
-        const f = document.getElementById('finish'); Array.from(f.options).forEach(o=>{ if(o.text.toLowerCase()===fin.toLowerCase()) f.value=o.text; });
-      }
-    })();
 
     // Build summary text
     function buildSummary(){
@@ -664,67 +622,75 @@
       );
     }
 
-    // Minimal validation + inline hints
+    // Inline validation styles + aria-invalid
+    function markInvalid(el, bad){ el.classList.toggle('invalid', bad); el.setAttribute('aria-invalid', bad ? 'true' : 'false'); }
     function validate(){
+      const req = ['name','phone','location','service'];
       let ok = true;
-      ['name','phone','location','service'].forEach(id=>{
+      for(const id of req){
         const el = document.getElementById(id);
-        const wrap = el.closest('div');
-        if(!el.value.trim()){
-          ok = false;
-          el.classList.add('invalid');
-          wrap?.classList.add('show-err');
-        }else{
-          el.classList.remove('invalid');
-          wrap?.classList.remove('show-err');
-        }
-      });
+        const bad = !el.value.trim();
+        markInvalid(el, bad);
+        if(ok && bad){ el.focus(); el.scrollIntoView({behavior:'smooth', block:'center'}); ok = false; }
+      }
       return ok;
     }
-    form.addEventListener('blur', (e)=>{
-      if(!(e.target instanceof HTMLElement)) return;
-      const el = e.target.closest('input,select,textarea');
-      if(!el) return;
-      if(el.hasAttribute('required') && !el.value.trim()){
-        el.classList.add('invalid'); el.closest('div')?.classList.add('show-err');
-      }else{
-        el.classList.remove('invalid'); el.closest('div')?.classList.remove('show-err');
-      }
-    }, true);
+    ['name','phone','location','service','email','finish','width','height','budget','details']
+      .forEach(id => { const el = document.getElementById(id); el?.addEventListener('input', ()=> markInvalid(el,false)); });
 
-    // Email subject from service
-    function subjectFromService(){
-      const svc = (document.getElementById('service')?.value || 'Quote Request').replace(/&/g,'and');
-      return encodeURIComponent(svc + ' — Quote Request');
+    // Autosave form to localStorage
+    const FORM_KEY = 'gabaks-contact';
+    function saveForm(){
+      const fd = new FormData(document.getElementById('quoteForm'));
+      const obj = {};
+      fd.forEach((v,k)=>{ obj[k]=v; });
+      localStorage.setItem(FORM_KEY, JSON.stringify(obj));
     }
+    function loadForm(){
+      try{
+        const raw = localStorage.getItem(FORM_KEY); if(!raw) return;
+        const obj = JSON.parse(raw);
+        Object.entries(obj).forEach(([k,v])=>{
+          const el = document.getElementById(k);
+          if(el) el.value = v;
+        });
+        updateCount(); autogrow(details);
+      }catch{}
+    }
+    document.getElementById('quoteForm').addEventListener('input', saveForm);
+    loadForm();
 
     // Send via Email
     document.getElementById('sendEmail').addEventListener('click', ()=>{
-      if(!validate()) { document.getElementById('quote').scrollIntoView({behavior:'smooth'}); return; }
+      if(!validate()) return;
+      const fd = new FormData(document.getElementById('quoteForm'));
+      const service = (fd.get('service')||'').toString().trim();
+      const subj = encodeURIComponent('Quote Request' + (service?` — ${service}`:''));
       const body = encodeURIComponent(buildSummary());
-      window.location.href = `mailto:Gabakssteel@yahoo.com?subject=${subjectFromService()}&body=${body}`;
+      window.location.href = `mailto:Gabakssteel@yahoo.com?subject=${subj}&body=${body}`;
     });
 
     // Send via WhatsApp
     document.getElementById('sendWhatsApp').addEventListener('click', ()=>{
-      if(!validate()) { document.getElementById('quote').scrollIntoView({behavior:'smooth'}); return; }
+      if(!validate()) return;
       const text = encodeURIComponent(buildSummary());
       window.open(`https://wa.me/2348025532696?text=${text}`, '_blank');
     });
 
-    // Copy summary + toast for SR
+    // Copy summary
     document.getElementById('copyText').addEventListener('click', async ()=>{
       try{
         await navigator.clipboard.writeText(buildSummary());
-        const s = document.getElementById('success');
-        s.style.display='inline-block';
-        s.setAttribute('aria-live','polite');
-        setTimeout(()=>{ s.style.display='none'; s.removeAttribute('aria-live'); }, 2500);
+        const s = document.getElementById('success'); s.style.display='inline-block';
+        setTimeout(()=>{ s.style.display='none'; }, 2500);
       }catch(e){ alert('Copy failed. Please select and copy manually.'); }
     });
 
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Initialize counters once content is present
+    updateCount(); autogrow(details);
   </script>
 
   <!-- Structured data: ContactPage -->
