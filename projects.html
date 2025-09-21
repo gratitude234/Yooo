@@ -44,10 +44,12 @@
         radial-gradient(1000px 500px at 10% -10%, #16202b 0%, transparent 60%),
         radial-gradient(900px 500px at 100% 0%, #121a23 0%, transparent 60%),
         var(--bg);
+      /* Mobile-first: reserve space for sticky CTA on phones */
+      padding-bottom:calc(84px + env(safe-area-inset-bottom));
     }
     a{color:inherit; text-decoration:none}
     img{max-width:100%; display:block}
-    .container{max-width:var(--container); margin-inline:auto; padding:0 20px}
+    .container{max-width:var(--container); margin-inline:auto; padding:0 24px}
 
     .btn{
       position:relative; display:inline-flex; align-items:center; gap:.6rem; justify-content:center;
@@ -62,9 +64,9 @@
     .btn-outline{background:transparent; color:var(--text); border:1px solid var(--border); box-shadow:none}
     .btn-block{width:100%}
 
-    /* Swap helpers */
-    .only-mobile{display:none}
-    .only-desktop{display:block}
+    /* Swap helpers (MOBILE-FIRST) */
+    .only-mobile{display:block}
+    .only-desktop{display:none}
 
     /* Screen-reader only */
     .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
@@ -77,57 +79,83 @@
     .nav .inner{display:flex; align-items:center; justify-content:space-between; padding:.5rem 0; min-height:var(--nav-h)}
     .brand{font-family:Outfit, Inter, system-ui; font-weight:700; letter-spacing:.4px; font-size:1.2rem}
     .brand span{color:var(--accent)}
-    .navlinks{display:flex; gap:1.2rem; align-items:center}
-    .navlinks a{color:var(--muted); transition:color .2s ease}
-    .navlinks a:hover{color:var(--text)}
-    /* gradient underline hover */
-    .navlinks a{position:relative}
-    .navlinks a::after{
-      content:""; position:absolute; left:0; right:0; bottom:-6px; height:2px;
-      background:linear-gradient(90deg,var(--accent),#ffb673);
-      transform:scaleX(0); transform-origin:left; transition:transform .25s ease;
-    }
-    .navlinks a:hover::after{transform:scaleX(1)}
 
-    .mobile-toggle{display:none}
-    .backdrop, .mobile-panel{display:none}
+    /* Nav defaults = mobile */
+    .navlinks{display:none}
+    .mobile-toggle{display:grid; position:relative; width:42px; height:42px; place-items:center; border-radius:12px; border:1px solid var(--border); background:transparent; color:var(--text)}
+    .mobile-toggle .bars{display:block; width:20px; height:2px; background:currentColor; position:relative}
+    .mobile-toggle .bars:before, .mobile-toggle .bars:after{content:""; position:absolute; left:0; width:20px; height:2px; background:currentColor; transition:transform .2s ease, top .2s ease, opacity .2s ease}
+    .mobile-toggle .bars:before{top:-6px}
+    .mobile-toggle .bars:after{top:6px}
+    body.menu-open .mobile-toggle .bars{background:transparent}
+    body.menu-open .mobile-toggle .bars:before{top:0; transform:rotate(45deg)}
+    body.menu-open .mobile-toggle .bars:after{top:0; transform:rotate(-45deg)}
 
-    /* ------------------ PAGE HEADER (DESKTOP) ------------------ */
+    .backdrop{position:fixed; inset:0; background:rgba(2,6,12,.5); backdrop-filter:blur(4px); z-index:79; opacity:0; pointer-events:none; transition:opacity .2s ease}
+    .mobile-panel{position:fixed; inset:0; max-width:none; background:linear-gradient(180deg, rgba(18,24,31,.98), rgba(18,24,31,.96)); border-top:1px solid var(--border); z-index:90; transform:translateX(105%); transition:transform .25s ease; display:flex; flex-direction:column}
+    .mobile-panel header{display:flex; align-items:center; justify-content:space-between; padding:1rem 1.25rem; border-bottom:1px solid var(--border)}
+    .mobile-panel nav{display:flex; flex-direction:column; padding:1rem 1.25rem; gap:.2rem}
+    .mobile-panel a{padding:.9rem 1rem; border-radius:12px; color:var(--text); border:1px solid transparent; opacity:0; transform:translateX(8px)}
+    .mobile-panel a:hover{background:var(--surface); border-color:var(--border)}
+    .mobile-panel .quick{margin-top:auto; padding:1rem 1.25rem; border-top:1px solid var(--border); display:grid; gap:.6rem}
+
+    body.menu-open{overflow:hidden}
+    body.menu-open .backdrop{opacity:1; pointer-events:auto}
+    body.menu-open .mobile-panel{transform:translateX(0)}
+
+    /* ------------------ PAGE HEADER ------------------ */
     header.hero{position:relative; overflow:hidden}
     .hero-wrap{display:grid; grid-template-columns:1fr; gap:1rem; align-items:center; padding:clamp(3.4rem, 4.8vw + 1rem, 6rem) 0}
     .headline{font-family:Outfit, Inter; font-size:clamp(2rem, 2.8vw + 1rem, 3.2rem); line-height:1.05; margin:.2rem 0 .4rem}
     .sub{color:var(--muted); max-width:70ch}
-    .mesh{
-      position:absolute; inset:auto -40% -30% -40%; height:46vh; z-index:-1;
-      filter:blur(70px) saturate(130%); opacity:.55;
-      background: conic-gradient(from 180deg at 50% 50%, rgba(201,162,39,.5), rgba(249,115,22,.35), rgba(201,162,39,.5));
-      mask-image: radial-gradient(60% 60% at 50% 50%, #000 30%, transparent 100%);
-      animation: meshFloat 14s ease-in-out infinite alternate;
-    }
+    .mesh{position:absolute; inset:auto -40% -30% -40%; height:46vh; z-index:-1; filter:blur(70px) saturate(130%); opacity:.55; background: conic-gradient(from 180deg at 50% 50%, rgba(201,162,39,.5), rgba(249,115,22,.35), rgba(201,162,39,.5)); mask-image: radial-gradient(60% 60% at 50% 50%, #000 30%, transparent 100%)}
 
-    /* ------------------ FILTERS (DESKTOP) ------------------ */
+    /* ------------------ PAGE HEADER (MOBILE VARIANT) ------------------ */
+    .hero-mobile{
+      min-height:calc(48vh - var(--nav-h));
+      display:grid; align-content:end; position:relative; padding:0 0 1.6rem; isolation:isolate;
+    }
+    .hero-mobile-media{position:absolute; inset:0; z-index:-1; overflow:hidden}
+    .hero-mobile-media picture, .hero-mobile-media img{width:100%; height:100%; object-fit:cover}
+    .hero-mobile-media::after{
+      content:""; position:absolute; inset:0;
+      background:
+        linear-gradient(180deg, rgba(11,15,20,0) 0%, rgba(11,15,20,.6) 40%, rgba(11,15,20,.96) 85%),
+        radial-gradient(80% 60% at 50% 20%, rgba(0,0,0,.28) 0%, rgba(0,0,0,0) 70%);
+      pointer-events:none;
+    }
+    .hero-mobile .headline{font-size:clamp(1.9rem, 6.8vw, 2.4rem); line-height:1.1; margin:.2rem 0 .5rem}
+    .hero-mobile .sub{max-width:46ch}
+    .hero-mobile .cta-stack{display:grid; gap:.6rem; margin-top:1rem}
+
+    /* ------------------ FILTERS ------------------ */
     .toolbar{display:flex; gap:.8rem; align-items:center; justify-content:space-between; flex-wrap:wrap; margin-top:.6rem}
     .chips{display:flex; flex-wrap:wrap; gap:.6rem}
-    .chip{
-      display:inline-flex; padding:.45rem .9rem; border:1px solid var(--border); border-radius:999px;
-      color:var(--muted); font-size:.92rem; cursor:pointer; user-select:none; background:transparent;
-      transition:border-color .18s ease, color .18s ease, transform .18s ease, background .18s ease;
-    }
-    .chip:hover{border-color:rgba(255,255,255,.2); color:var(--text); transform:translateY(-1px)}
+    .chip{display:inline-flex; padding:.45rem .9rem; border:1px solid var(--border); border-radius:999px; color:var(--muted); font-size:.92rem; cursor:pointer; user-select:none; background:transparent}
     .chip.active{border-color:rgba(255,255,255,.28); color:var(--text); background:rgba(255,255,255,.06)}
-    .chip:focus-visible{outline:2px solid #ffffff55; outline-offset:2px}
-
     .search{display:flex; gap:.5rem; align-items:center}
     .search input{width:240px; max-width:60vw; background:rgba(255,255,255,.04); color:var(--text); border:1px solid var(--border); border-radius:12px; padding:.6rem .8rem; outline:none}
-    .search input::-webkit-search-cancel-button{display:none}
-    .search .clear{border:1px solid var(--border); background:rgba(255,255,255,.04); border-radius:10px; padding:.45rem .7rem}
     .sort{background:rgba(255,255,255,.04); color:var(--text); border:1px solid var(--border); border-radius:12px; padding:.6rem .8rem}
 
-    .result-note{color:var(--muted); font-size:.95rem; margin-top:.4rem}
+    /* Mobile sticky filter bar */
+    .toolbar-mobile{position:sticky; top:var(--nav-h); z-index:75; padding:.6rem 0 .4rem; border-bottom:1px solid var(--border);
+      background:linear-gradient(180deg, rgba(15,19,26,.95), rgba(15,19,26,.85)); backdrop-filter:saturate(140%) blur(8px)}
+    .toolbar-mobile .scroll-chips{display:flex; gap:.5rem; overflow:auto; padding:0 24px; scroll-snap-type:x mandatory}
+    .toolbar-mobile .scroll-chips::-webkit-scrollbar{display:none}
+    .toolbar-mobile .chip{scroll-snap-align:start; white-space:nowrap; font-size:.95rem; padding:.55rem .95rem}
+    .m-search-wrap{display:grid; grid-template-columns:1fr auto; align-items:center; gap:.5rem; padding:.5rem 24px 0}
+    .m-search{
+      display:grid; grid-template-rows:0fr; transition:grid-template-rows .25s ease;
+    }
+    .m-search-inner{overflow:hidden}
+    .m-search input{width:100%; background:rgba(255,255,255,.05); color:var(--text); border:1px solid var(--border); border-radius:12px; padding:.65rem .85rem}
+    .m-search select{margin-top:.5rem; width:100%; background:rgba(255,255,255,.05); color:var(--text); border:1px solid var(--border); border-radius:12px; padding:.6rem .8rem}
+    .m-search.open{grid-template-rows:1fr}
+    .m-search-toggle{justify-self:end}
 
     /* ------------------ GALLERY (Masonry) ------------------ */
     .gallery{margin-top:1rem}
-    .masonry{columns:1; column-gap:1rem}
+    .masonry{columns:2; column-gap:1rem} /* mobile-first: 2 columns */
     .masonry .item{break-inside:avoid; margin:0 0 1rem; position:relative; cursor:pointer; border-radius:16px; overflow:hidden; border:1px solid var(--border); background:var(--surface); box-shadow:0 12px 28px rgba(0,0,0,.18)}
     .masonry .item picture{display:block}
     .masonry .item img{width:100%; height:auto; transition:transform .28s ease}
@@ -145,57 +173,69 @@
     .lb-cap{position:absolute; left:0; right:0; bottom:-38px; color:#e6e6e6; text-align:center; font-size:.95rem}
     .lb-close, .lb-prev, .lb-next{position:absolute; top:50%; transform:translateY(-50%); background:rgba(17,17,17,.6); border:1px solid var(--border); color:#fff; width:44px; height:44px; border-radius:999px; display:grid; place-items:center; cursor:pointer}
     .lb-close{top:-14px; right:-14px; transform:none}
-    .lb-prev{left:-14px}
-    .lb-next{right:-14px}
+    .lb-prev{left:6px}
+    .lb-next{right:6px}
 
-    /* ------------------ FOOTER ------------------ */
+    /* ------------------ FOOTER (mobile-first) ------------------ */
     footer{border-top:1px solid var(--border); background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02))}
-    .foot{display:grid; gap:1.2rem; grid-template-columns:2fr 1fr 1fr}
-    .foot .group{padding:4px 0}
+    .foot{display:grid; gap:1.2rem; grid-template-columns:1fr}
+    .foot .group{padding:4px 0; border-top:1px dashed var(--border)}
+    .foot .group:first-child{border-top:none}
     .foot .group strong{display:block; margin-bottom:.4rem}
     .foot a{color:var(--text)}
-    .foot-bottom{display:flex; justify-content:space-between; align-items:center; gap:1rem; border-top:1px solid var(--border); padding-top:1rem; margin-top:1rem}
+    .foot-bottom{display:flex; flex-direction:column; align-items:flex-start; gap:1rem; border-top:1px solid var(--border); padding-top:1rem; margin-top:1rem}
     .small{color:var(--muted); font-size:.95rem}
 
     /* Sticky mobile CTA bar */
-    .cta-bar{position:fixed; bottom:calc(12px + env(safe-area-inset-bottom)); left:50%; transform:translateX(-50%); z-index:70; display:none}
-    .cta-bar .btn{padding:.75rem 1rem}
+    .cta-bar{position:fixed; bottom:calc(12px + env(safe-area-inset-bottom)); left:50%; transform:translateX(-50%); z-index:70; display:flex}
+    .cta-bar .btn{padding:.75rem 1rem; margin-right:.6rem}
 
     /* Reveal on scroll */
     .reveal{opacity:0; transform:translateY(14px); will-change:opacity, transform; transition:opacity .6s cubic-bezier(.22,.61,.36,1), transform .6s cubic-bezier(.22,.61,.36,1); transition-delay:var(--d,0s)}
     .reveal.show{opacity:1; transform:none}
 
-    /* Animations */
-    @keyframes slideIn{from{opacity:0; transform:translateX(8px)} to{opacity:1; transform:translateX(0)}}
-    @keyframes meshFloat{0%{transform:translateY(0) scale(1)}100%{transform:translateY(-18px) scale(1.02)}}
-
-    /* ------------------ RESPONSIVE ------------------ */
+    /* Disable reveal on phones to prevent jumps */
     @media (max-width: 680px){
-      .only-mobile{display:block}
-      .only-desktop{display:none}
-
-      .container{padding-inline:24px}
-      .navlinks{display:none}
-      .mobile-toggle{display:grid}
-      .mobile-panel{inset:0; max-width:none; border-left:none; border-top:1px solid var(--border)}
-
-      .masonry{columns:2}
-      .lb-prev{left:6px}
-      .lb-next{right:6px}
-
-      .foot{grid-template-columns:1fr}
-      .foot .group{border-top:1px dashed var(--border); padding-top:.8rem}
-      .foot .group:first-child{border-top:none; padding-top:0}
-      .foot-bottom{flex-direction:column; align-items:flex-start}
-
-      .cta-bar{display:flex; gap:.6rem}
-      body{ padding-bottom:calc(84px + env(safe-area-inset-bottom)); }
-
-      /* disable reveal to prevent jumps */
       .reveal{opacity:1 !important; transform:none !important; transition:none !important}
     }
-    @media (min-width: 681px){ .masonry{columns:3} }
-    @media (min-width: 1100px){ .masonry{columns:4} }
+
+    /* ------------------ RESPONSIVE (min-width) ------------------ */
+    @media (min-width: 681px){
+      /* Swap variants */
+      .only-mobile{display:none}
+      .only-desktop{display:block}
+
+      /* Desktop nav shows; hamburger hides */
+      .navlinks{display:flex; gap:1.2rem; align-items:center}
+      .navlinks a{color:var(--muted); transition:color .2s ease, transform .2s ease}
+      .navlinks a:hover{color:var(--text); transform:translateY(-1px)}
+      .mobile-toggle{display:none}
+
+      /* Make overlay menu a side-drawer */
+      .mobile-panel{inset:0 0 0 30%; max-width:480px; margin-left:auto; border-left:1px solid var(--border); border-top:none}
+
+      /* Desktop gallery columns */
+      .masonry{columns:3}
+
+      /* Desktop lightbox controls offset */
+      .lb-prev{left:-14px}
+      .lb-next{right:-14px}
+
+      /* Footer layout */
+      .foot{grid-template-columns:2fr 1fr 1fr}
+      .foot .group{border-top:none; padding-top:4px}
+      .foot-bottom{flex-direction:row; align-items:center}
+
+      /* Container padding tightened */
+      .container{padding:0 20px}
+
+      /* Remove mobile CTA reserve */
+      .cta-bar{display:none}
+      body{padding-bottom:0}
+    }
+    @media (min-width: 1100px){
+      .masonry{columns:4}
+    }
 
     @media (prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important} }
 
@@ -237,7 +277,7 @@
     </header>
     <nav>
       <a href="services.html">Services</a>
-      <a href="projects.html">Projects</a>
+      <a href="projects.html" aria-current="page">Projects</a>
       <a href="about.html">About</a>
       <a href="contact.html" class="btn btn-block">Request a Quote</a>
     </nav>
@@ -264,20 +304,18 @@
           <button class="chip" data-filter="tanks" role="tab" aria-selected="false">Overhead Tanks</button>
           <button class="chip" data-filter="warehouses" role="tab" aria-selected="false">Warehouses & Roofing</button>
         </div>
-        <div class="search" role="search">
+        <div class="search">
           <input id="search" type="search" placeholder="Search location or notes…" aria-label="Search projects" />
-          <button class="clear" id="clearSearch" aria-label="Clear search">Clear</button>
           <select id="sort" class="sort" aria-label="Sort projects">
             <option value="new">Newest first</option>
             <option value="old">Oldest first</option>
           </select>
         </div>
       </div>
-      <div class="result-note" id="resultsNote" aria-live="polite"></div>
     </div>
   </header>
 
-  <!-- MOBILE HEADER (unchanged) -->
+  <!-- MOBILE HEADER -->
   <header class="hero hero-mobile only-mobile" aria-label="Projects intro (mobile)">
     <div class="hero-mobile-media" aria-hidden="true">
       <picture>
@@ -295,7 +333,7 @@
     </div>
   </header>
 
-  <!-- MOBILE STICKY FILTERS (unchanged) -->
+  <!-- MOBILE STICKY FILTERS -->
   <div class="toolbar-mobile only-mobile" aria-label="Filters">
     <div class="scroll-chips" role="tablist" aria-label="Project categories (mobile)">
       <button class="chip active" data-filter="all" role="tab" aria-selected="true">All</button>
@@ -327,7 +365,7 @@
       <figure class="item reveal" data-cat="gates" data-date="2025-09-01" data-tags="gate oshodi estate modern">
         <picture>
           <source srcset="images/projects/gate-01.webp" type="image/webp">
-          <img src="images/projects/gate-01.jpg" alt="Decorative steel gate — Oshodi estate" loading="lazy" width="800" height="600" sizes="(max-width:680px) 50vw, 33vw" decoding="async"/>
+          <img src="images/projects/gate-01.jpg" alt="Decorative steel gate — Oshodi estate" loading="lazy" width="800" height="600" sizes="(max-width:680px) 50vw, 33vw"/>
         </picture>
         <figcaption class="caption">Gate • Oshodi (2025)</figcaption>
       </figure>
@@ -335,7 +373,7 @@
       <figure class="item reveal" data-cat="rails" data-date="2025-08-21" data-tags="stair rail ikeja laser-cut">
         <picture>
           <source srcset="images/projects/rail-01.webp" type="image/webp">
-          <img src="images/projects/rail-01.jpg" alt="Laser-cut stair rail — Ikeja" loading="lazy" width="800" height="600" sizes="(max-width:680px) 50vw, 33vw" decoding="async"/>
+          <img src="images/projects/rail-01.jpg" alt="Laser-cut stair rail — Ikeja" loading="lazy" width="800" height="600" sizes="(max-width:680px) 50vw, 33vw"/>
         </picture>
         <figcaption class="caption">Rails • Ikeja (2025)</figcaption>
       </figure>
@@ -343,7 +381,7 @@
       <figure class="item reveal" data-cat="poles" data-date="2025-08-10" data-tags="street light pole isolo double arm">
         <picture>
           <source srcset="images/projects/pole-01.webp" type="image/webp">
-          <img src="images/projects/pole-01.jpg" alt="Street-light pole — Isolo" loading="lazy" width="800" height="600" sizes="(max-width:680px) 50vw, 33vw" decoding="async"/>
+          <img src="images/projects/pole-01.jpg" alt="Street-light pole — Isolo" loading="lazy" width="800" height="600" sizes="(max-width:680px) 50vw, 33vw"/>
         </picture>
         <figcaption class="caption">Light Pole • Isolo (2025)</figcaption>
       </figure>
@@ -351,7 +389,7 @@
       <figure class="item reveal" data-cat="tanks" data-date="2025-07-30" data-tags="overhead tank tower ladder">
         <picture>
           <source srcset="images/projects/tank-01.webp" type="image/webp">
-          <img src="images/projects/tank-01.jpg" alt="Overhead water tank tower" loading="lazy" width="800" height="600" sizes="(max-width:680px) 50vw, 33vw" decoding="async"/>
+          <img src="images/projects/tank-01.jpg" alt="Overhead water tank tower" loading="lazy" width="800" height="600" sizes="(max-width:680px) 50vw, 33vw"/>
         </picture>
         <figcaption class="caption">Overhead Tank (2025)</figcaption>
       </figure>
@@ -359,7 +397,7 @@
       <figure class="item reveal" data-cat="warehouses" data-date="2025-07-02" data-tags="warehouse roofing truss">
         <picture>
           <source srcset="images/projects/warehouse-01.webp" type="image/webp">
-          <img src="images/projects/warehouse-01.jpg" alt="Steel warehouse roofing" loading="lazy" width="800" height="600" sizes="(max-width:680px) 50vw, 33vw" decoding="async"/>
+          <img src="images/projects/warehouse-01.jpg" alt="Steel warehouse roofing" loading="lazy" width="800" height="600" sizes="(max-width:680px) 50vw, 33vw"/>
         </picture>
         <figcaption class="caption">Warehouse Roofing (2025)</figcaption>
       </figure>
@@ -367,34 +405,34 @@
       <figure class="item reveal" data-cat="windows" data-date="2025-06-19" data-tags="window burglary proof retrofitting surulere">
         <picture>
           <source srcset="images/projects/window-01.webp" type="image/webp">
-          <img src="images/projects/window-01.jpg" alt="Burglar-proof window — Surulere" loading="lazy" width="800" height="600" sizes="(max-width:680px) 50vw, 33vw" decoding="async"/>
+          <img src="images/projects/window-01.jpg" alt="Burglar-proof window — Surulere" loading="lazy" width="800" height="600" sizes="(max-width:680px) 50vw, 33vw"/>
         </picture>
         <figcaption class="caption">Windows • Surulere (2025)</figcaption>
       </figure>
 
       <!-- More -->
       <figure class="item reveal" data-cat="gates" data-date="2025-05-10" data-tags="gate lekki decorative">
-        <img src="images/projects/gate-02.jpg" alt="Modern estate gate — Lekki" loading="lazy" width="800" height="600" sizes="(max-width:680px) 50vw, 33vw" decoding="async"/>
+        <img src="images/projects/gate-02.jpg" alt="Modern estate gate — Lekki" loading="lazy" width="800" height="600" sizes="(max-width:680px) 50vw, 33vw"/>
         <figcaption class="caption">Gate • Lekki (2025)</figcaption>
       </figure>
       <figure class="item reveal" data-cat="rails" data-date="2025-05-02" data-tags="balustrade victoria island stair vi">
-        <img src="images/projects/rail-02.jpg" alt="Balustrade — Victoria Island" loading="lazy" width="800" height="600" sizes="(max-width:680px) 50vw, 33vw" decoding="async"/>
+        <img src="images/projects/rail-02.jpg" alt="Balustrade — Victoria Island" loading="lazy" width="800" height="600" sizes="(max-width:680px) 50vw, 33vw"/>
         <figcaption class="caption">Rails • VI (2025)</figcaption>
       </figure>
       <figure class="item reveal" data-cat="poles" data-date="2025-04-13" data-tags="street light ajah single arm">
-        <img src="images/projects/pole-02.jpg" alt="Street-light pole — Ajah" loading="lazy" width="800" height="600" sizes="(max-width:680px) 50vw, 33vw" decoding="async"/>
+        <img src="images/projects/pole-02.jpg" alt="Street-light pole — Ajah" loading="lazy" width="800" height="600" sizes="(max-width:680px) 50vw, 33vw"/>
         <figcaption class="caption">Light Pole • Ajah (2025)</figcaption>
       </figure>
       <figure class="item reveal" data-cat="tanks" data-date="2025-03-25" data-tags="tank ogba platform ladder">
-        <img src="images/projects/tank-02.jpg" alt="Overhead tank — Ogba" loading="lazy" width="800" height="600" sizes="(max-width:680px) 50vw, 33vw" decoding="async"/>
+        <img src="images/projects/tank-02.jpg" alt="Overhead tank — Ogba" loading="lazy" width="800" height="600" sizes="(max-width:680px) 50vw, 33vw"/>
         <figcaption class="caption">Overhead Tank • Ogba (2025)</figcaption>
       </figure>
       <figure class="item reveal" data-cat="warehouses" data-date="2025-03-11" data-tags="warehouse ikeja trusses">
-        <img src="images/projects/warehouse-02.jpg" alt="Warehouse trusses — Ikeja" loading="lazy" width="800" height="600" sizes="(max-width:680px) 50vw, 33vw" decoding="async"/>
+        <img src="images/projects/warehouse-02.jpg" alt="Warehouse trusses — Ikeja" loading="lazy" width="800" height="600" sizes="(max-width:680px) 50vw, 33vw"/>
         <figcaption class="caption">Warehouse • Ikeja (2025)</figcaption>
       </figure>
       <figure class="item reveal" data-cat="windows" data-date="2025-02-16" data-tags="window burglary abule-egba">
-        <img src="images/projects/window-02.jpg" alt="Burglar-proof window — Abule-Egba" loading="lazy" width="800" height="600" sizes="(max-width:680px) 50vw, 33vw" decoding="async"/>
+        <img src="images/projects/window-02.jpg" alt="Burglar-proof window — Abule-Egba" loading="lazy" width="800" height="600" sizes="(max-width:680px) 50vw, 33vw"/>
         <figcaption class="caption">Windows • Abule-Egba (2025)</figcaption>
       </figure>
     </div>
@@ -482,8 +520,8 @@
       document.body.classList.toggle('menu-open', open);
       document.documentElement.classList.toggle('menu-open', open);
       toggle?.setAttribute('aria-expanded', String(open));
-      if (panel) panel.hidden = !open;
-      if (backdrop) backdrop.hidden = !open;
+      panel.hidden = !open;
+      backdrop.hidden = !open;
 
       const links = panel?.querySelectorAll('nav a') || [];
       links.forEach((a, i)=>{
@@ -496,14 +534,6 @@
     closeBtn?.addEventListener('click', ()=> openMenu(false));
     backdrop?.addEventListener('click', ()=> openMenu(false));
     window.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') openMenu(false) });
-
-    // Close mobile menu when resizing up to desktop
-    (function(){
-      const mq = window.matchMedia('(min-width: 681px)');
-      const handler = (e)=>{ if(e.matches) openMenu(false); };
-      if (mq.addEventListener) mq.addEventListener('change', handler);
-      else if (mq.addListener) mq.addListener(handler);
-    })();
 
     // Reveal on scroll
     const io = new IntersectionObserver(entries=>{
@@ -518,15 +548,12 @@
 
     const search = document.getElementById('search');          // desktop
     const sortSel = document.getElementById('sort');           // desktop
-    const clearBtn = document.getElementById('clearSearch');
-
     const mSearch = document.getElementById('mSearch');        // mobile wrapper
     const mSearchInput = document.getElementById('mSearchInput');
     const mSort = document.getElementById('mSort');
     const mSearchToggle = document.getElementById('mSearchToggle');
 
     const loadBtn = document.getElementById('loadMore');
-    const resultsNote = document.getElementById('resultsNote');
 
     let currentFilter = 'all';
     let visibleCount = 9;
@@ -536,8 +563,8 @@
     // Keep mobile & desktop inputs in sync
     function syncInputs(from){
       if(from === 'desktop'){
-        if(mSearchInput) mSearchInput.value = search?.value || '';
-        if(mSort) mSort.value = sortSel?.value || 'new';
+        mSearchInput.value = search?.value || '';
+        mSort.value = sortSel?.value || 'new';
       }else{
         if(search) search.value = mSearchInput.value;
         if(sortSel) sortSel.value = mSort.value;
@@ -562,46 +589,29 @@
       return list;
     }
 
-    function updateResultNote(list, total){
-      const shown = Math.min(list.length, visibleCount);
-      resultsNote.textContent = `Showing ${shown} of ${list.length} project${list.length===1?'':'s'}`;
-    }
-
     function apply(){
       const list = filteredList();
       items.forEach(it=>it.style.display='none');
       list.forEach((it,i)=>{ it.style.display = i < visibleCount ? '' : 'none'; });
       loadBtn.style.display = list.length > visibleCount ? 'inline-flex' : 'none';
-      updateResultNote(list, items.length);
       // rebuild sequence for lightbox if open
       if(lb.classList.contains('open')) sequence = list;
     }
 
-    // Chip click
     chips.forEach(ch => ch.addEventListener('click', ()=>{
       chips.forEach(c=>{ c.classList.remove('active'); c.setAttribute('aria-selected','false'); });
       ch.classList.add('active'); ch.setAttribute('aria-selected','true');
       currentFilter = ch.dataset.filter; visibleCount = 9; apply();
     }));
 
-    // Chip keyboard navigation (Left/Right, Enter/Space)
-    document.querySelector('.chips')?.addEventListener('keydown', (e)=>{
-      const focusIdx = chips.indexOf(document.activeElement);
-      if(focusIdx < 0) return;
-      if(e.key === 'ArrowRight'){ e.preventDefault(); chips[(focusIdx+1)%chips.length].focus(); }
-      if(e.key === 'ArrowLeft'){ e.preventDefault(); chips[(focusIdx-1+chips.length)%chips.length].focus(); }
-      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); document.activeElement.click(); }
-    });
-
     // Desktop inputs
     search?.addEventListener('input', ()=>{ syncInputs('desktop'); visibleCount = 9; apply(); });
     sortSel?.addEventListener('change', ()=>{ syncInputs('desktop'); apply(); });
-    clearBtn?.addEventListener('click', ()=>{ if(search){ search.value=''; syncInputs('desktop'); visibleCount=9; apply(); search.focus(); }});
 
-    // Mobile inputs (unchanged behavior)
-    mSearchInput?.addEventListener('input', ()=>{ syncInputs('mobile'); visibleCount = 9; apply(); });
-    mSort?.addEventListener('change', ()=>{ syncInputs('mobile'); apply(); });
-    mSearchToggle?.addEventListener('click', ()=>{
+    // Mobile inputs
+    mSearchInput.addEventListener('input', ()=>{ syncInputs('mobile'); visibleCount = 9; apply(); });
+    mSort.addEventListener('change', ()=>{ syncInputs('mobile'); apply(); });
+    mSearchToggle.addEventListener('click', ()=>{
       const open = !mSearch.classList.contains('open');
       mSearch.classList.toggle('open', open);
       mSearchToggle.setAttribute('aria-expanded', String(open));
@@ -641,9 +651,6 @@
       index = Math.max(0, sequence.indexOf(el));
       show();
       lb.classList.add('open');
-      // lock scroll behind
-      document.documentElement.style.overflow = 'hidden';
-      document.body.style.overflow = 'hidden';
     }
     function show(){
       const el = sequence[index]; if(!el) return;
@@ -655,11 +662,7 @@
       const n1 = sequence[index+1]?.querySelector('img'); if(n1){ const p=new Image(); p.src = n1.currentSrc || n1.src; }
       const p1 = sequence[index-1]?.querySelector('img'); if(p1){ const p=new Image(); p.src = p1.currentSrc || p1.src; }
     }
-    function close(){
-      lb.classList.remove('open');
-      document.documentElement.style.overflow = '';
-      document.body.style.overflow = '';
-    }
+    function close(){ lb.classList.remove('open'); }
 
     grid.addEventListener('click', e=>{
       const fig = e.target.closest('.item'); if(!fig) return; openAt(fig);
@@ -687,6 +690,20 @@
         show();
       }
     }, {passive:true});
+
+    // Accessibility: ensure only the visible variant is read (mobile-first mirror)
+    (function(){
+      const mq = window.matchMedia('(min-width: 681px)');
+      const mobileEls = document.querySelectorAll('.only-mobile');
+      const desktopEls = document.querySelectorAll('.only-desktop');
+      const setAria = e=>{
+        const isDesktop = e.matches;
+        mobileEls.forEach(el=> isDesktop ? el.setAttribute('aria-hidden','true') : el.removeAttribute('aria-hidden'));
+        desktopEls.forEach(el=> isDesktop ? el.removeAttribute('aria-hidden') : el.setAttribute('aria-hidden','true'));
+      };
+      setAria(mq);
+      mq.addEventListener?.('change', setAria);
+    })();
 
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();
