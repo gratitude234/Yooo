@@ -206,6 +206,17 @@
     .foot a{color:var(--text)}
     .foot-bottom{display:flex; flex-direction:column; align-items:flex-start; gap:1rem; border-top:1px solid var(--border); padding-top:1rem; margin-top:1rem}
 
+    /* Nav link underline (desktop) */
+    .navlinks a{
+      position:relative;
+    }
+    .navlinks a::after{
+      content:""; position:absolute; left:0; right:0; bottom:-6px; height:2px;
+      background:linear-gradient(90deg,var(--accent),#ffb673);
+      transform:scaleX(0); transform-origin:left; transition:transform .25s ease;
+    }
+    .navlinks a:hover::after{ transform:scaleX(1); }
+
     /* Reveal on scroll */
     .reveal{opacity:0; transform:translateY(14px); will-change:opacity, transform; transition:opacity .6s cubic-bezier(.22,.61,.36,1), transform .6s cubic-bezier(.22,.61,.36,1); transition-delay:var(--d,0s)}
     .reveal.show{opacity:1; transform:none}
@@ -227,17 +238,18 @@
       /* Desktop nav shows, mobile trigger hides */
       .navlinks{
         display:flex;
-        gap: 1.25rem;         /* ⟵ FIX: add spacing between links */
-        align-items:center;   /* ⟵ vertical alignment */
-        white-space:nowrap;   /* ⟵ keep labels tidy on one line */
+        gap: 1.25rem;         /* spacing between links */
+        align-items:center;
+        white-space:nowrap;
       }
-      .navlinks > a{ padding: .25rem .25rem; }
+      .navlinks > a{ padding:.25rem .25rem; }
 
-      /* Make the panel a side-drawer on wider screens */
-      .mobile-panel{inset:0 0 0 30%; max-width:480px; margin-left:auto; border-left:1px solid var(--border); border-top:none}
+      /* ⟵ IMPORTANT: remove hamburger & mobile UI on desktop/laptop */
+      .mobile-toggle{ display:none !important; }
+      .backdrop, .mobile-panel{ display:none !important; }
 
       /* Two-column hero */
-      .hero-wrap{grid-template-columns:1.12fr .88fr}
+      .hero-wrap{grid-template-columns:1.12fr .88fr; min-height:calc(88vh - var(--nav-h));}
 
       /* Grids become 2-up (12 cols) */
       .cards{grid-template-columns:repeat(12, 1fr)}
@@ -285,14 +297,14 @@
       <a class="brand" href="index.html" aria-label="Gabakssteel logo">GABAKS<span>STEEL</span></a>
 
       <!-- Desktop links -->
-      <div class="navlinks">
+      <div class="navlinks" role="navigation" aria-label="Desktop">
         <a href="services.html">Services</a>
         <a href="projects.html">Projects</a>
         <a href="about.html">About</a>
         <a href="contact.html" class="btn" style="padding:.6rem 1rem;">Request a Quote</a>
       </div>
 
-      <!-- Mobile trigger -->
+      <!-- Mobile trigger (hidden on >=681px) -->
       <button class="mobile-toggle" aria-controls="mobilePanel" aria-expanded="false" id="mobileToggle">
         <span class="sr-only">Toggle menu</span>
         <span class="bars" aria-hidden="true"></span>
@@ -302,7 +314,7 @@
 
   <!-- Mobile overlay -->
   <div class="backdrop" id="backdrop" hidden></div>
-  <aside class="mobile-panel" id="mobilePanel" hidden>
+  <aside class="mobile-panel" id="mobilePanel" hidden role="dialog" aria-modal="true" aria-label="Mobile Menu">
     <header>
       <span class="brand">GABAKS<span>STEEL</span></span>
       <button class="mobile-toggle" id="closePanel" aria-label="Close menu">
@@ -330,8 +342,8 @@
         <h1 class="headline">Precision <span style="color:var(--accent)">Steel Fabrication</span> for Homes &amp; Industry</h1>
         <p class="sub">We design, fabricate and install custom <strong>gates</strong>, <strong>windows &amp; burglary proofs</strong>, <strong>rails &amp; staircases</strong>, <strong>street-light poles</strong>, <strong>overhead tanks</strong> and <strong>warehouse roofing</strong> across Lagos and beyond.</p>
         <div style="display:flex; gap:.8rem; margin-top:1rem; flex-wrap:wrap">
-          <a class="btn" href="contact.html">Request a Quote</a>
-          <a class="btn btn-outline" href="https://wa.me/2348025532696?text=Hi%20Gabakssteel%2C%20I%20need%20a%20quote." target="_blank" rel="noopener">WhatsApp</a>
+          <a class="btn reveal" href="contact.html">Request a Quote</a>
+          <a class="btn btn-outline reveal" href="https://wa.me/2348025532696?text=Hi%20Gabakssteel%2C%20I%20need%20a%20quote." target="_blank" rel="noopener">WhatsApp</a>
         </div>
         <div class="chips" style="margin-top:1rem">
           <span class="chip">Powder-coated finish</span>
@@ -542,8 +554,8 @@
       document.body.classList.toggle('menu-open', open);
       document.documentElement.classList.toggle('menu-open', open); // lock html too
       toggle?.setAttribute('aria-expanded', String(open));
-      panel.hidden = !open;
-      backdrop.hidden = !open;
+      if (panel) panel.hidden = !open;
+      if (backdrop) backdrop.hidden = !open;
 
       // Animate links with stagger
       const links = panel?.querySelectorAll('nav a') || [];
@@ -609,25 +621,30 @@
       media.addEventListener('mouseleave', reset);
     })();
 
-    // Accessibility: ensure only the visible hero is read by screen readers
+    // Accessibility + behavior: ensure only the visible hero is read; also close mobile menu when switching to desktop
     (function(){
-      const mq = window.matchMedia('(min-width: 681px)'); // switched to min-width
+      const mq = window.matchMedia('(min-width: 681px)'); // desktop/laptop threshold
       const mobileHero = document.querySelector('.hero-mobile');
       const desktopHero = document.querySelector('.hero-desktop');
-      function setHeroAria(e){
+      function setHeroAndMenu(e){
         if(!mobileHero || !desktopHero) return;
         if(e.matches){
           // desktop/tablet
           desktopHero.removeAttribute('aria-hidden');
           mobileHero.setAttribute('aria-hidden','true');
+          // force-close any mobile menu if resizing up
+          openMenu(false);
         } else {
           // phone
           mobileHero.removeAttribute('aria-hidden');
           desktopHero.setAttribute('aria-hidden','true');
         }
       }
-      setHeroAria(mq);
-      mq.addEventListener?.('change', setHeroAria);
+      setHeroAndMenu(mq);
+      // modern browsers
+      if (mq.addEventListener) mq.addEventListener('change', setHeroAndMenu);
+      // legacy fallback
+      else if (mq.addListener) mq.addListener(setHeroAndMenu);
     })();
 
     // Year
