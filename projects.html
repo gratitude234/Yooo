@@ -242,6 +242,25 @@
     /* Anchor offset for sticky nav + lock scroll when menu open */
     html{ scroll-padding-top: var(--nav-h); }
     html.menu-open, body.menu-open { overflow:hidden; }
+
+/* HIDE ONLY ON DESKTOP, NOT ON MOBILE */
+@media (min-width: 681px){
+  .backdrop, .mobile-panel { display: none; }
+}
+@media (max-width: 680px){
+  .backdrop { display: block; }       /* so it can fade in */
+  .mobile-panel { display: flex; }     /* so the drawer can slide in */
+}
+
+/* Ensure the drawer actually opens when body has menu-open */
+body.menu-open .backdrop{ opacity:1; pointer-events:auto; }
+body.menu-open .mobile-panel{ transform: translateX(0); }
+
+/* Reduced-motion fallback: make links visible even if animations are off */
+@media (prefers-reduced-motion: reduce){
+  .mobile-panel a{ opacity:1 !important; transform:none !important; }
+}
+
   </style>
 </head>
 <body>
