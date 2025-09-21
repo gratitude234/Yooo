@@ -33,6 +33,7 @@
       margin:0; color:var(--text); font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Noto Sans; line-height:1.6; background:
       radial-gradient(1000px 500px at 10% -10%, #16202b 0%, transparent 60%),
       radial-gradient(900px 500px at 100% 0%, #121a23 0%, transparent 60%), var(--bg);
+      -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
     }
     a{color:inherit; text-decoration:none}
     img{max-width:100%; display:block}
@@ -44,6 +45,7 @@
       background:linear-gradient(135deg, var(--accent), #ffb673);
       color:#1b1205; box-shadow:0 10px 30px rgba(249,115,22,.35);
       transition:transform .18s ease, box-shadow .18s ease; overflow:hidden;
+      min-height:44px; /* touch target */
     }
     .btn:is(:hover,:focus-visible){transform:translateY(-1px); box-shadow:0 16px 36px rgba(249,115,22,.38)}
     .btn-outline{background:transparent; color:var(--text); border:1px solid var(--border); box-shadow:none}
@@ -134,10 +136,13 @@
 
     /* TESTIMONIALS */
     .slider{position:relative; overflow:hidden; border:1px solid var(--border); background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03)); border-radius:var(--radius); padding:1rem}
-    .slides{display:flex; gap:1rem; transition:transform .5s ease}
+    .slides{display:flex; gap:1rem; transition:transform .5s ease; will-change:transform}
     .slide{min-width:100%}
     blockquote{margin:0; font-size:1.05rem}
     blockquote footer{margin-top:.6rem; color:var(--muted)}
+    .dots{display:flex; gap:.4rem; justify-content:center; margin-top:.6rem}
+    .dot{width:8px; height:8px; border-radius:999px; background:rgba(255,255,255,.25); border:1px solid var(--border)}
+    .dot.active{background:#fff}
 
     /* CTA STRIP */
     .strip{border:1px solid var(--border); background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03)); border-radius:var(--radius); padding:1rem; display:flex; align-items:center; justify-content:space-between; gap:1rem}
@@ -152,36 +157,43 @@
     .reveal.show{opacity:1; transform:none}
 
     /* Sticky mobile CTA bar */
-    .cta-bar{position:fixed; bottom:calc(12px + env(safe-area-inset-bottom)); left:50%; transform:translateX(-50%); z-index:70; display:none}
-    .cta-bar .btn{padding:.75rem 1rem}
+    .cta-bar{position:fixed; bottom:calc(12px + env(safe-area-inset-bottom)); left:50%; transform:translateX(-50%); z-index:70; display:none; gap:.6rem; padding:.4rem; border:1px solid var(--border); border-radius:999px; background:rgba(12,16,22,.72); backdrop-filter:blur(8px)}
+    .cta-bar .btn{padding:.75rem 1rem; box-shadow:none}
 
     /* Animations */
     @keyframes slideIn{from{opacity:0; transform:translateX(8px)} to{opacity:1; transform:translateX(0)}}
 
-    /* Responsive */
+    /* Responsive (TOP-NOTCH PHONE UX) */
     @media (max-width: 1024px){
       .hero-wrap{grid-template-columns:1fr}
-      .stat{grid-column:span 6}
       .story{grid-template-columns:1fr}
       .member{grid-column:span 6}
+      .stat{grid-column:span 6}
     }
     @media (max-width: 680px){
       .navlinks{display:none}
       .mobile-toggle{display:grid}
-      .stat{grid-column:span 6}
-      .member{grid-column:span 12}
+
+      /* Mobile hero uses dedicated mobile art and centers actions */
+      .hero-wrap{gap:1.2rem}
+      .hero-media{padding:.8rem}
+
+      /* Snap-scroll stats & team for thumb-friendly browsing */
+      .stats, .team{display:flex; overflow-x:auto; gap:.8rem; padding-bottom:.4rem; -webkit-overflow-scrolling:touch; scroll-snap-type:x mandatory}
+      .stats::-webkit-scrollbar, .team::-webkit-scrollbar{display:none}
+      .stat, .member{min-width:78%; flex:0 0 auto; scroll-snap-align:center}
+
       .strip{flex-direction:column; align-items:stretch}
       .foot{grid-template-columns:1fr}
-      .cta-bar{display:flex; gap:.6rem}
+
+      .cta-bar{display:flex}
       /* reserve space so CTA doesn't cover content */
-      body{ padding-bottom:84px; }
+      body{ padding-bottom:92px; }
     }
     @media (prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important} }
 
     /* Lock background scroll when menu is open */
     html.menu-open, body.menu-open { overflow:hidden; }
-
-
   </style>
 </head>
 <body>
@@ -249,29 +261,33 @@
       </div>
       <aside class="hero-media reveal">
         <picture>
+          <!-- Ultra-mobile art (tall crop for phones) -->
+          <source media="(max-width:480px)" srcset="images/about/hero-mobile.webp" type="image/webp">
+          <source media="(max-width:480px)" srcset="images/about/hero-mobile.jpg" type="image/jpeg">
+          <!-- Default/desktop -->
           <source srcset="images/about/hero.webp" type="image/webp" sizes="(max-width:680px) 100vw, 560px">
-          <img src="images/about/hero.jpg" alt="Workshop and fabrication team" width="1080" height="720" loading="lazy" sizes="(max-width:680px) 100vw, 560px"/>
+          <img src="images/about/hero.jpg" alt="Workshop and fabrication team" width="1080" height="720" loading="eager" fetchpriority="high" decoding="async" sizes="(max-width:680px) 100vw, 560px"/>
         </picture>
       </aside>
     </div>
   </header>
 
   <!-- STATS -->
-  <section>
+  <section aria-label="Company statistics">
     <div class="container stats">
-      <div class="stat reveal">
+      <div class="stat reveal" role="group" aria-label="Years in business">
         <div class="num" data-count="15">0</div>
         <div class="label">Years in business</div>
       </div>
-      <div class="stat reveal">
+      <div class="stat reveal" role="group" aria-label="Projects completed">
         <div class="num" data-count="1200">0</div>
         <div class="label">Projects completed</div>
       </div>
-      <div class="stat reveal">
+      <div class="stat reveal" role="group" aria-label="Municipal and estate clients">
         <div class="num" data-count="25">0</div>
         <div class="label">Municipal & estate clients</div>
       </div>
-      <div class="stat reveal">
+      <div class="stat reveal" role="group" aria-label="Local government areas served">
         <div class="num" data-count="48">0</div>
         <div class="label">Local government areas served</div>
       </div>
@@ -310,24 +326,24 @@
     <div class="container">
       <h2 class="section-title">Leadership & team</h2>
       <p class="section-sub">Skilled fabricators, installers and project managers who care about neat work and safety.</p>
-      <div class="team">
+      <div class="team" aria-label="Team profiles">
         <div class="member reveal">
-          <div class="avatar"><img src="images/team/lead-1.jpg" alt="Managing Director" loading="lazy"></div>
+          <div class="avatar"><img src="images/team/lead-1.jpg" alt="Managing Director" loading="lazy" width="600" height="600" decoding="async"></div>
           <h3 style="margin:.6rem 0 .2rem; font-family:Outfit">Managing Director</h3>
           <p class="role">Project oversight & client relations</p>
         </div>
         <div class="member reveal">
-          <div class="avatar"><img src="images/team/lead-2.jpg" alt="Head of Fabrication" loading="lazy"></div>
+          <div class="avatar"><img src="images/team/lead-2.jpg" alt="Head of Fabrication" loading="lazy" width="600" height="600" decoding="async"></div>
           <h3 style="margin:.6rem 0 .2rem; font-family:Outfit">Head of Fabrication</h3>
           <p class="role">Cutting • Welding • QC</p>
         </div>
         <div class="member reveal">
-          <div class="avatar"><img src="images/team/lead-3.jpg" alt="Installation Lead" loading="lazy"></div>
+          <div class="avatar"><img src="images/team/lead-3.jpg" alt="Installation Lead" loading="lazy" width="600" height="600" decoding="async"></div>
           <h3 style="margin:.6rem 0 .2rem; font-family:Outfit">Installation Lead</h3>
           <p class="role">On-site install • Safety</p>
         </div>
         <div class="member reveal">
-          <div class="avatar"><img src="images/team/lead-4.jpg" alt="Finishing & Coatings" loading="lazy"></div>
+          <div class="avatar"><img src="images/team/lead-4.jpg" alt="Finishing & Coatings" loading="lazy" width="600" height="600" decoding="async"></div>
           <h3 style="margin:.6rem 0 .2rem; font-family:Outfit">Finishing & Coatings</h3>
           <p class="role">Primer • Paint • Powder-coat</p>
         </div>
@@ -338,25 +354,28 @@
   <!-- TESTIMONIALS -->
   <section>
     <div class="container slider reveal" aria-label="Testimonials">
-      <div class="slides" id="slides">
-        <div class="slide">
+      <div class="slides" id="slides" role="region" aria-roledescription="carousel" aria-label="Client testimonials">
+        <div class="slide" aria-roledescription="slide" aria-label="1 of 3">
           <blockquote>
             “They delivered our estate gate on schedule with very clean welds. Installation was smooth and the finish has held up well.”
             <footer>— Estate Manager, Oshodi</footer>
           </blockquote>
         </div>
-        <div class="slide">
+        <div class="slide" aria-roledescription="slide" aria-label="2 of 3">
           <blockquote>
             “The overhead tank tower is sturdy and neatly braced. Team followed safety rules and left the site tidy.”
             <footer>— Facilities Lead, Ikeja</footer>
           </blockquote>
         </div>
-        <div class="slide">
+        <div class="slide" aria-roledescription="slide" aria-label="3 of 3">
           <blockquote>
             “Street-light poles were fabricated to spec and installed with proper anchoring. Good communication throughout.”
             <footer>— Project Supervisor, Isolo</footer>
           </blockquote>
         </div>
+      </div>
+      <div class="dots" id="dots" aria-hidden="true">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
       </div>
     </div>
   </section>
@@ -451,9 +470,29 @@
     }, {threshold:.6});
     counters.forEach(el=>cIO.observe(el));
 
-    // Testimonials slider (auto)
+    // Testimonials slider: auto + swipe on touch
     const track = document.getElementById('slides');
-    let idx = 0; setInterval(()=>{ idx = (idx+1)%3; track.style.transform = `translateX(-${idx*100}%)`; }, 4500);
+    const dotsWrap = document.getElementById('dots');
+    const dots = Array.from(dotsWrap.querySelectorAll('.dot'));
+    let idx = 0, N = track.children.length, timer;
+
+    function go(i){
+      idx = (i + N) % N;
+      track.style.transform = `translateX(-${idx*100}%)`;
+      dots.forEach((d,di)=>d.classList.toggle('active', di===idx));
+    }
+    function play(){ stop(); timer = setInterval(()=>go(idx+1), 4500); }
+    function stop(){ if(timer) clearInterval(timer); }
+
+    dots.forEach((d,i)=> d.addEventListener('click', ()=>{ go(i); play(); }));
+
+    // Touch swipe
+    let startX=0, dx=0, touching=false;
+    track.addEventListener('touchstart', (e)=>{ touching=true; startX=e.touches[0].clientX; dx=0; stop(); }, {passive:true});
+    track.addEventListener('touchmove', (e)=>{ if(!touching) return; dx = e.touches[0].clientX - startX; track.style.transform = `translateX(calc(-${idx*100}% + ${dx}px))`; }, {passive:true});
+    track.addEventListener('touchend', ()=>{ touching=false; if(Math.abs(dx)>50){ go(idx + (dx<0?1:-1)); } else { go(idx); } play(); });
+
+    go(0); play();
 
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();
