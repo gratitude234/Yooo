@@ -29,13 +29,18 @@
     }
     *{box-sizing:border-box}
     html,body{height:100%}
-    body{margin:0; color:var(--text); font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Noto Sans; line-height:1.6; background:
-      radial-gradient(1000px 500px at 10% -10%, #16202b 0%, transparent 60%),
-      radial-gradient(900px 500px at 100% 0%, #121a23 0%, transparent 60%), var(--bg);
+    body{
+      margin:0; color:var(--text);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Noto Sans;
+      line-height:1.6;
+      background:
+        radial-gradient(1000px 500px at 10% -10%, #16202b 0%, transparent 60%),
+        radial-gradient(900px 500px at 100% 0%, #121a23 0%, transparent 60%), var(--bg);
     }
     a{color:inherit; text-decoration:none}
     img{max-width:100%; display:block}
     .container{max-width:var(--container); margin-inline:auto; padding:0 20px}
+
     .btn{
       position:relative; display:inline-flex; align-items:center; gap:.6rem; justify-content:center;
       padding:.9rem 1.2rem; border-radius:999px; font-weight:600; cursor:pointer;
@@ -53,18 +58,12 @@
     .btn-outline{background:transparent; color:var(--text); border:1px solid var(--border); box-shadow:none}
     .btn-block{width:100%}
 
-    /* Utils for split designs */
-    .only-desktop{display:block}
-    .only-mobile{display:none}
-    .hidden-mobile{}
-    .hidden-desktop{display:none}
-
     /* Screen-reader only + anchor offset */
     .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
     html{ scroll-padding-top: var(--nav-h); }
     [id]{ scroll-margin-top: calc(var(--nav-h) + 8px); }
 
-    /* NAV (matches site) */
+    /* NAV */
     .nav{position:sticky; top:0; z-index:80; backdrop-filter:saturate(140%) blur(10px); background:linear-gradient(to bottom, rgba(15,19,26,.78), rgba(15,19,26,.4)); border-bottom:1px solid var(--border)}
     .nav .inner{display:flex; align-items:center; justify-content:space-between; padding:.5rem 0; min-height:var(--nav-h)}
     .brand{font-family:Outfit, Inter, system-ui; font-weight:700; letter-spacing:.4px; font-size:1.2rem}
@@ -98,8 +97,8 @@
     body.menu-open .backdrop{opacity:1; pointer-events:auto}
     body.menu-open .mobile-panel{transform:translateX(0)}
 
-    /* ===== DESKTOP HERO ===== */
-    header.hero{position:relative; overflow:hidden}
+    /* HERO (DESKTOP) */
+    header.hero-desktop{position:relative; overflow:hidden}
     .hero-wrap{display:grid; grid-template-columns:1.12fr .88fr; gap:2.2rem; align-items:center; padding:clamp(3.4rem, 4.8vw + 1rem, 6rem) 0}
     .headline{font-family:Outfit, Inter; font-size:clamp(2rem, 2.8vw + 1rem, 3.2rem); line-height:1.05; margin:.2rem 0 .6rem}
     .sub{color:var(--muted); max-width:70ch}
@@ -107,28 +106,41 @@
     .hero-media{border:1px solid var(--border); background:var(--surface); border-radius:var(--radius); padding:1rem; box-shadow:var(--shadow)}
     .hero-media img{border-radius:var(--radius-sm)}
 
-    /* ===== MOBILE HERO (separate design) ===== */
-    .m-hero{position:relative; min-height:56vh; display:flex; align-items:flex-end; padding:1.2rem 0 1.6rem; overflow:hidden}
-    .m-hero .bg{
-      position:absolute; inset:0; z-index:-2;
-      background:url('images/contact/hero.jpg') center/cover no-repeat;
-      filter:contrast(1.05) saturate(1.05) brightness(.85);
+    /* HERO (MOBILE — separate design) */
+    header.hero-phone{
+      position:relative; min-height:54vh; display:flex; align-items:flex-end; padding:0; overflow:hidden; border-bottom:1px solid var(--border);
+      background:#111;
     }
-    .m-hero::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(11,15,20,.1) 20%, rgba(11,15,20,.85) 85%); z-index:-1}
-    .m-hero .wrap{padding:0 20px}
-    .m-hero .headline{font-size:2rem; margin:0 0 .4rem}
-    .m-hero .sub{color:#d7dbe3}
-
-    /* QUICK ACTION GRID (mobile) */
-    .quickgrid{display:grid; grid-template-columns:repeat(3,1fr); gap:.8rem; margin-top:1rem}
-    .qcard{
-      display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.4rem;
-      padding:.9rem .6rem; background:rgba(255,255,255,.06); border:1px solid var(--border); border-radius:14px;
-      text-align:center; font-weight:600;
+    .hero-phone .bg{
+      position:absolute; inset:0; z-index:-2; overflow:hidden;
     }
-    .qcard svg{width:22px; height:22px}
+    .hero-phone .bg picture, .hero-phone .bg img{width:100%; height:100%; object-fit:cover}
+    .hero-phone .bg::after{
+      content:""; position:absolute; inset:0;
+      background:linear-gradient(180deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,.65) 55%, rgba(11,15,20,.92) 100%);
+    }
+    .hero-phone .content{
+      width:100%; padding:2rem 20px 1.2rem; position:relative;
+    }
+    .hero-phone .kicker{
+      display:inline-flex; gap:.5rem; align-items:center; font-weight:600; letter-spacing:.04em; text-transform:uppercase;
+      font-size:.8rem; color:#ffe5d3; background:rgba(0,0,0,.35); border:1px solid rgba(255,255,255,.18);
+      padding:.3rem .6rem; border-radius:999px; backdrop-filter:blur(4px)
+    }
+    .hero-phone h1{font-family:Outfit; font-size:1.9rem; line-height:1.1; margin:.6rem 0 .4rem}
+    .hero-phone p{color:#dbe1ea; margin:0}
+    .hero-phone .cta-row{display:grid; grid-template-columns:1fr 1fr 1fr; gap:.5rem; margin-top:1rem}
+    .hero-phone .cta-row .btn{padding:.8rem .6rem}
 
-    /* CONTACT CARDS (desktop/large) */
+    /* QUICK TRUST on mobile */
+    .trust-strip{
+      display:flex; gap:.5rem; margin-top:.7rem; color:#d6dee8; font-size:.9rem; opacity:.95; flex-wrap:wrap
+    }
+    .trust-strip .pill{
+      border:1px solid rgba(255,255,255,.16); border-radius:999px; padding:.35rem .6rem; background:rgba(255,255,255,.06)
+    }
+
+    /* CONTACT CARDS */
     .cards{display:grid; grid-template-columns:repeat(12,1fr); gap:1rem}
     .card{grid-column:span 4; border:1px solid var(--border); background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03)); border-radius:var(--radius); padding:1rem}
     .card h3{font-family:Outfit; margin:.2rem 0 .4rem}
@@ -143,7 +155,7 @@
     label{display:block; font-weight:600; margin-bottom:.25rem}
     input, select, textarea{
       width:100%; background:rgba(255,255,255,.04); color:var(--text); border:1px solid var(--border);
-      border-radius:12px; padding:1rem .95rem; outline:none; transition:border-color .15s ease, box-shadow .15s ease
+      border-radius:12px; padding:.9rem .9rem; outline:none; transition:border-color .15s ease, box-shadow .15s ease
     }
     textarea{min-height:150px; resize:vertical}
     input:focus, select:focus, textarea:focus{border-color:rgba(255,255,255,.25); box-shadow:0 0 0 3px rgba(249,115,22,.2)}
@@ -155,15 +167,10 @@
     .actions{display:flex; gap:.6rem; align-items:center; margin-top:.4rem; flex-wrap:wrap}
     .success{display:none; border:1px solid rgba(16,185,129,.35); background:rgba(16,185,129,.08); color:#86efac; padding:.8rem 1rem; border-radius:12px}
 
-    /* Mobile chip-sets for selects */
-    .chipset{display:flex; flex-wrap:wrap; gap:.5rem}
-    .chip{
-      display:inline-flex; align-items:center; gap:.4rem; padding:.5rem .8rem; border-radius:999px;
-      border:1px solid var(--border); color:var(--muted); background:rgba(255,255,255,.03); font-weight:600;
-      cursor:pointer; user-select:none; transition:transform .15s ease, border-color .15s ease, color .15s ease, background .15s ease;
-    }
-    .chip.active{color:#1b1205; background:linear-gradient(135deg, var(--accent), #ffb673); border-color:transparent}
-    .chip svg{width:18px; height:18px}
+    /* CHIP SELECTS (Mobile-first enhancement) */
+    .chip-group{display:none; gap:.5rem; flex-wrap:wrap; margin:.4rem 0 0}
+    .chip{display:inline-flex; padding:.45rem .8rem; border:1px solid var(--border); border-radius:999px; color:var(--muted); font-size:.92rem; user-select:none; cursor:pointer}
+    .chip.active{border-color:rgba(255,255,255,.32); color:var(--text); background:rgba(255,255,255,.06)}
 
     /* MAP */
     .mapwrap{border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; background:var(--surface)}
@@ -187,6 +194,10 @@
     .cta-bar{position:fixed; bottom:calc(12px + env(safe-area-inset-bottom)); left:50%; transform:translateX(-50%); z-index:70; display:none}
     .cta-bar .btn{padding:.75rem 1rem}
 
+    /* Separate designs switchers */
+    .d-only{display:block}
+    .m-only{display:none}
+
     /* Animations */
     @keyframes slideIn{from{opacity:0; transform:translateX(8px)} to{opacity:1; transform:translateX(0)}}
 
@@ -199,22 +210,25 @@
       .col-8{grid-column:span 12}
     }
     @media (max-width: 680px){
+      /* Hard split: mobile-specific UI */
+      .d-only{display:none}
+      .m-only{display:block}
+
       .navlinks{display:none}
       .mobile-toggle{display:grid}
+
       .card{grid-column:span 12}
       .mapwrap iframe{height:300px}
       .actions{flex-direction:column; align-items:stretch}
       .foot{grid-template-columns:1fr}
-      .cta-bar{display:flex; gap:.6rem}
-      body{ padding-bottom:88px; }
 
-      /* switch to mobile-first design */
-      .only-desktop{display:none}
-      .only-mobile{display:block}
-      .hidden-mobile{display:none}
-      .hidden-desktop{display:block}
-      /* hide desktop selects if we show chip-sets */
-      select.hidden-mobile{display:none}
+      /* Mobile chip selects */
+      .chip-group{display:flex}
+      .select-desktop{display:none}
+
+      .cta-bar{display:flex; gap:.6rem}
+      /* Reserve space so CTA doesn't cover content */
+      body{ padding-bottom:84px; }
     }
 
     @media (prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important} }
@@ -268,8 +282,33 @@
     </div>
   </aside>
 
-  <!-- ===== DESKTOP HERO ===== -->
-  <header class="hero only-desktop" id="content" aria-label="Contact hero">
+  <!-- HERO (MOBILE — separate design) -->
+  <header class="hero-phone m-only" id="content">
+    <div class="bg" aria-hidden="true">
+      <picture>
+        <source srcset="images/contact/hero-mobile.webp" type="image/webp">
+        <img src="images/contact/hero-mobile.jpg" alt="" loading="eager" fetchpriority="high">
+      </picture>
+    </div>
+    <div class="content container">
+      <span class="kicker">Talk to a Fabricator</span>
+      <h1>Contact & Quick Quote</h1>
+      <p>Send dimensions and a photo. We reply fast on phone or WhatsApp.</p>
+      <div class="cta-row">
+        <a class="btn" href="tel:+2347010104012">Call</a>
+        <a class="btn btn-outline" href="https://wa.me/2348025532696?text=Hi%20Gabakssteel%2C%20I%20need%20a%20quote." target="_blank" rel="noopener">WhatsApp</a>
+        <a class="btn" href="#quote">Quote</a>
+      </div>
+      <div class="trust-strip">
+        <span class="pill">15+ years</span>
+        <span class="pill">Powder-coat & Galvanizing</span>
+        <span class="pill">On-site install</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO (DESKTOP) -->
+  <header class="hero-desktop d-only">
     <div class="mesh" aria-hidden="true"></div>
     <div class="container hero-wrap">
       <div>
@@ -289,34 +328,8 @@
     </div>
   </header>
 
-  <!-- ===== MOBILE HERO (separate design) ===== -->
-  <header class="m-hero only-mobile" aria-label="Contact hero mobile">
-    <div class="bg" aria-hidden="true"></div>
-    <div class="wrap">
-      <h1 class="headline">Let's talk steel</h1>
-      <p class="sub">Fast quotes via call or WhatsApp. Tap a shortcut below.</p>
-      <div class="quickgrid" role="navigation" aria-label="Quick contact">
-        <a class="qcard" href="tel:+2347010104012" title="Call now">
-          <!-- phone icon -->
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.86 19.86 0 0 1 3.09 5.18 2 2 0 0 1 5.11 3h3a2 2 0 0 1 2 1.72c.12.86.3 1.7.55 2.5a2 2 0 0 1-.45 2.11L9.09 10.9a16 16 0 0 0 4 4l1.57-1.12a2 2 0 0 1 2.11-.45c.8.25 1.64.43 2.5.55A2 2 0 0 1 22 16.92Z" stroke="currentColor" stroke-width="1.6"/></svg>
-          Call
-        </a>
-        <a class="qcard" href="https://wa.me/2348025532696?text=Hi%20Gabakssteel%2C%20I%20need%20a%20quote." target="_blank" rel="noopener" title="WhatsApp">
-          <!-- whatsapp icon -->
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 3.9A10 10 0 0 0 4 18l-1 3 3-1A10 10 0 1 0 20 3.9Z" stroke="currentColor" stroke-width="1.6"/><path d="M8.5 9.5c0 4 4 6 4.5 6.5s2.5-1 3-1-.5-1.5-.5-2-.5-.5-1-.5-1 1-1 1-1.5-.5-2.5-1.5-1.5-2.5-1.5-2.5 1-1 1-1-.5-1-1-1-1.5.5-1.5 1.5Z" stroke="currentColor" stroke-width="1.6"/></svg>
-          WhatsApp
-        </a>
-        <a class="qcard" href="https://maps.google.com/?q=No.+10+Shamura+Street,+Mafoluku,+Oshodi,+Lagos" target="_blank" rel="noopener" title="Directions">
-          <!-- map pin -->
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 22s7-5.25 7-11a7 7 0 1 0-14 0c0 5.75 7 11 7 11Z" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="11" r="3" stroke="currentColor" stroke-width="1.6"/></svg>
-          Directions
-        </a>
-      </div>
-    </div>
-  </header>
-
-  <!-- CONTACT CHANNELS (desktop emphasis) -->
-  <section class="only-desktop">
+  <!-- CONTACT CHANNELS -->
+  <section>
     <div class="container">
       <div class="cards">
         <div class="card reveal">
@@ -345,73 +358,40 @@
   <section id="quote">
     <div class="container">
       <h2 class="section-title">Request a quote</h2>
-      <p class="section-sub hidden-desktop">Share details — we’ll confirm and reply on WhatsApp fast.</p>
-      <p class="section-sub hidden-mobile">Share as much detail as you can — we’ll confirm measurements and give you options.</p>
-
-      <!-- Mobile-first quick pick chips -->
-      <div class="only-mobile" style="display:grid; gap:1rem; margin-bottom:.6rem">
-        <div>
-          <strong style="display:block; margin-bottom:.4rem">Service</strong>
-          <div class="chipset" data-target="#service">
-            <button class="chip" data-value="Custom Gates & Doors">Gates</button>
-            <button class="chip" data-value="Windows & Burglary Proofs">Windows</button>
-            <button class="chip" data-value="Rails & Staircases">Rails</button>
-            <button class="chip" data-value="Street-light Poles">Poles</button>
-            <button class="chip" data-value="Overhead Water Tanks">Tanks</button>
-            <button class="chip" data-value="Warehouses & Roofing">Roofing</button>
-            <button class="chip" data-value="Other / General Steel Work">General</button>
-          </div>
-        </div>
-        <div>
-          <strong style="display:block; margin-bottom:.4rem">Finish</strong>
-          <div class="chipset" data-target="#finish">
-            <button class="chip" data-value="Primer + paint">Paint</button>
-            <button class="chip" data-value="Powder-coat">Powder-coat</button>
-            <button class="chip" data-value="Hot-dip galvanizing">Galvanized</button>
-            <button class="chip" data-value="Not sure yet">Not sure</button>
-          </div>
-        </div>
-        <div>
-          <strong style="display:block; margin-bottom:.4rem">Budget</strong>
-          <div class="chipset" data-target="#budget">
-            <button class="chip" data-value="Under ₦300k">Under ₦300k</button>
-            <button class="chip" data-value="₦300k – ₦700k">₦300k–₦700k</button>
-            <button class="chip" data-value="₦700k – ₦1.5m">₦700k–₦1.5m</button>
-            <button class="chip" data-value="₦1.5m+">₦1.5m+</button>
-          </div>
-        </div>
-      </div>
+      <p class="section-sub">Share as much detail as you can — we’ll confirm measurements and give you options.</p>
 
       <form id="quoteForm" novalidate>
-        <!-- Honeypot for spam -->
-        <input type="text" name="website" id="website" autocomplete="off" style="position:absolute; left:-9999px; opacity:0; height:0; width:0" tabindex="-1" aria-hidden="true">
-
         <div class="col-6">
           <label for="name">Your name</label>
-          <input id="name" name="name" type="text" autocomplete="name" required placeholder="John Doe" enterkeyhint="next" />
+          <input id="name" name="name" type="text" autocomplete="name" required placeholder="John Doe" />
         </div>
         <div class="col-6">
           <label for="phone">Phone or WhatsApp</label>
-          <input id="phone" name="phone" type="tel" required inputmode="tel" autocomplete="tel" placeholder="+234 ..." enterkeyhint="next" />
+          <input id="phone" name="phone" type="tel" required inputmode="tel" placeholder="+234 ..." />
         </div>
 
         <div class="col-6">
           <label for="email">Email (optional)</label>
-          <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" enterkeyhint="next" />
+          <input id="email" name="email" type="email" placeholder="you@example.com" />
         </div>
         <div class="col-6">
           <label for="location">Site location</label>
-          <div style="display:flex; gap:.6rem; align-items:center">
-            <input id="location" name="location" type="text" required placeholder="e.g., Oshodi, Ikeja" enterkeyhint="next" />
-            <button class="btn btn-outline hidden-mobile" type="button" id="useLoc" title="Use my location">Use location</button>
-          </div>
-          <button class="btn btn-outline only-mobile" type="button" id="useLocMobile" style="margin-top:.5rem">Use my location</button>
-          <div class="help" id="locHelp" aria-live="polite"></div>
+          <input id="location" name="location" type="text" required placeholder="e.g., Oshodi, Ikeja" />
         </div>
 
+        <!-- SERVICE (chips on mobile, select on desktop) -->
         <div class="col-6">
           <label for="service">Service</label>
-          <select id="service" name="service" required class="hidden-mobile">
+          <div class="chip-group" data-target="service">
+            <button class="chip" type="button" data-value="Custom Gates & Doors">Gates</button>
+            <button class="chip" type="button" data-value="Windows & Burglary Proofs">Windows</button>
+            <button class="chip" type="button" data-value="Rails & Staircases">Rails</button>
+            <button class="chip" type="button" data-value="Street-light Poles">Poles</button>
+            <button class="chip" type="button" data-value="Overhead Water Tanks">Tanks</button>
+            <button class="chip" type="button" data-value="Warehouses & Roofing">Roofing</button>
+            <button class="chip" type="button" data-value="Other / General Steel Work">Other</button>
+          </div>
+          <select id="service" name="service" required class="select-desktop">
             <option value="">Select service</option>
             <option>Custom Gates & Doors</option>
             <option>Windows & Burglary Proofs</option>
@@ -422,9 +402,17 @@
             <option>Other / General Steel Work</option>
           </select>
         </div>
+
+        <!-- FINISH (chips on mobile, select on desktop) -->
         <div class="col-6">
           <label for="finish">Preferred finish</label>
-          <select id="finish" name="finish" class="hidden-mobile">
+          <div class="chip-group" data-target="finish">
+            <button class="chip" type="button" data-value="Primer + paint">Paint</button>
+            <button class="chip" type="button" data-value="Powder-coat">Powder-coat</button>
+            <button class="chip" type="button" data-value="Hot-dip galvanizing">Galvanized</button>
+            <button class="chip" type="button" data-value="Not sure yet">Not sure</button>
+          </div>
+          <select id="finish" name="finish" class="select-desktop">
             <option value="">Select finish</option>
             <option>Primer + paint</option>
             <option>Powder-coat</option>
@@ -435,15 +423,15 @@
 
         <div class="col-4">
           <label for="width">Width (cm)</label>
-          <input id="width" name="width" type="number" inputmode="decimal" step="0.1" min="0" placeholder="e.g., 350" enterkeyhint="next" />
+          <input id="width" name="width" type="number" inputmode="decimal" step="0.1" min="0" placeholder="e.g., 350" />
         </div>
         <div class="col-4">
           <label for="height">Height (cm)</label>
-          <input id="height" name="height" type="number" inputmode="decimal" step="0.1" min="0" placeholder="e.g., 220" enterkeyhint="next" />
+          <input id="height" name="height" type="number" inputmode="decimal" step="0.1" min="0" placeholder="e.g., 220" />
         </div>
         <div class="col-4">
           <label for="budget">Budget range</label>
-          <select id="budget" name="budget" class="hidden-mobile">
+          <select id="budget" name="budget">
             <option value="">Select</option>
             <option>Under ₦300k</option>
             <option>₦300k – ₦700k</option>
@@ -454,11 +442,11 @@
 
         <div class="col-12">
           <label for="details">Project details</label>
-          <textarea id="details" name="details" placeholder="Brief description, measurements, reference style (attach photos in WhatsApp or email)." maxlength="1500" enterkeyhint="done"></textarea>
+          <textarea id="details" name="details" placeholder="Brief description, measurements, reference style (send photos via WhatsApp or attach in email)." maxlength="1500"></textarea>
           <div class="help"><span id="count">0</span>/1500 characters</div>
         </div>
 
-        <div class="col-12 actions hidden-mobile">
+        <div class="col-12 actions">
           <button class="btn" type="button" id="sendEmail">Send via Email</button>
           <button class="btn btn-outline" type="button" id="sendWhatsApp">Send via WhatsApp</button>
           <button class="btn btn-outline" type="button" id="copyText">Copy summary</button>
@@ -528,11 +516,11 @@
     </div>
   </footer>
 
-  <!-- Sticky CTA for mobile (context-aware) -->
-  <div class="cta-bar only-mobile" aria-hidden="false" aria-label="Quick actions">
+  <!-- Sticky CTA for mobile -->
+  <div class="cta-bar m-only" aria-hidden="true">
     <a class="btn" href="tel:+2347010104012" title="Call">Call</a>
-    <button class="btn btn-outline" type="button" id="ctaWA" title="Send via WhatsApp">Send on WhatsApp</button>
-    <button class="btn btn-outline" type="button" id="ctaEmail" title="Send via Email">Email</button>
+    <a class="btn btn-outline" href="https://wa.me/2348025532696?text=Hi%20Gabakssteel%2C%20I%20need%20a%20quote." target="_blank" rel="noopener" title="WhatsApp">WhatsApp</a>
+    <a class="btn" href="#quote" title="Request a Quote">Quote</a>
   </div>
 
   <script>
@@ -584,43 +572,36 @@
     const count = document.getElementById('count');
     details.addEventListener('input', ()=>{ count.textContent = details.value.length; });
 
-    // Chipsets -> sync to selects
-    function bindChipset(cs){
-      const targetSel = cs.getAttribute('data-target');
-      const select = document.querySelector(targetSel);
-      cs.addEventListener('click', e=>{
-        const chip = e.target.closest('.chip'); if(!chip) return;
-        cs.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
-        chip.classList.add('active');
-        if(select){
-          const v = chip.getAttribute('data-value');
-          // Try to match option by text
-          let matched = false;
-          [...select.options].forEach(o=>{
-            if(o.text === v){ select.value = o.text; matched = true; }
-          });
-          if(!matched){
-            // For budget select different typography
-            [...select.options].forEach(o=>{
-              if(o.text.replace(/\s/g,'') === v.replace(/\s/g,'')){ select.value = o.text; matched = true; }
-            });
-            if(!matched){ select.value = v; }
-          }
-        }
+    // Phone auto-clean (+digits only)
+    const phone = document.getElementById('phone');
+    phone.addEventListener('input', ()=>{
+      const start = phone.selectionStart;
+      phone.value = phone.value.replace(/(?!^\+)[^\d]/g, '');
+      phone.setSelectionRange(start, start);
+    });
+
+    // Chip groups -> mirror to selects (mobile UX)
+    document.querySelectorAll('.chip-group').forEach(group=>{
+      const targetId = group.getAttribute('data-target');
+      const select = document.getElementById(targetId);
+      group.addEventListener('click', e=>{
+        const b = e.target.closest('.chip'); if(!b) return;
+        group.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+        b.classList.add('active');
+        const val = b.getAttribute('data-value');
+        // set/select matching option
+        Array.from(select.options).forEach(o=>{ if(o.text === val){ select.value = val; }});
       });
-    }
-    document.querySelectorAll('.chipset').forEach(bindChipset);
+    });
 
     // Build summary text
     function buildSummary(){
       const fd = new FormData(document.getElementById('quoteForm'));
       const get = k => (fd.get(k) || '').toString().trim();
       const dims = [get('width'), get('height')].filter(Boolean).join(' x ');
-      const phone = get('phone').replace(/[^\d+]/g,'');
-      const spamTrap = get('website'); if (spamTrap) return null; // bot
       return (
         `Name: ${get('name')}\n`
-        + `Phone: ${phone}\n`
+        + `Phone: ${get('phone')}\n`
         + (get('email')?`Email: ${get('email')}\n`:``)
         + `Location: ${get('location')}\n`
         + `Service: ${get('service')}\n`
@@ -636,72 +617,33 @@
       const req = ['name','phone','location','service'];
       for(const id of req){
         const el = document.getElementById(id);
-        if(!el.value.trim()) {
-          el.scrollIntoView({behavior:'smooth', block:'center'});
-          el.focus(); return false;
-        }
+        if(!el.value.trim()) { el.focus(); el.scrollIntoView({behavior:'smooth', block:'center'}); return false; }
       }
       return true;
     }
 
-    // Actions (desktop buttons)
-    const emailBtn = document.getElementById('sendEmail');
-    const waBtn = document.getElementById('sendWhatsApp');
-    const copyBtn = document.getElementById('copyText');
-
-    emailBtn?.addEventListener('click', ()=>{
+    // Send via Email
+    document.getElementById('sendEmail').addEventListener('click', ()=>{
       if(!validate()) return;
       const body = encodeURIComponent(buildSummary());
       window.location.href = `mailto:Gabakssteel@yahoo.com?subject=Quote%20Request&body=${body}`;
     });
 
-    waBtn?.addEventListener('click', ()=>{
+    // Send via WhatsApp
+    document.getElementById('sendWhatsApp').addEventListener('click', ()=>{
       if(!validate()) return;
       const text = encodeURIComponent(buildSummary());
       window.open(`https://wa.me/2348025532696?text=${text}`, '_blank');
     });
 
-    copyBtn?.addEventListener('click', async ()=>{
+    // Copy summary
+    document.getElementById('copyText').addEventListener('click', async ()=>{
       try{
         await navigator.clipboard.writeText(buildSummary());
         const s = document.getElementById('success'); s.style.display='inline-block';
         setTimeout(()=>{ s.style.display='none'; }, 2500);
       }catch(e){ alert('Copy failed. Please select and copy manually.'); }
     });
-
-    // Sticky CTA (mobile) wiring
-    $('#ctaWA')?.addEventListener('click', ()=>{
-      if(!validate()) return;
-      const text = encodeURIComponent(buildSummary());
-      window.open(`https://wa.me/2348025532696?text=${text}`, '_blank');
-    });
-    $('#ctaEmail')?.addEventListener('click', ()=>{
-      if(!validate()) return;
-      const body = encodeURIComponent(buildSummary());
-      window.location.href = `mailto:Gabakssteel@yahoo.com?subject=Quote%20Request&body=${body}`;
-    });
-
-    // Geolocation (optional)
-    function useLocation(outputId){
-      const help = document.getElementById('locHelp');
-      if(!navigator.geolocation){ help.textContent = 'Location not supported on this device.'; return; }
-      help.textContent = 'Fetching your location…';
-      navigator.geolocation.getCurrentPosition(
-        (pos)=>{
-          const {latitude, longitude} = pos.coords;
-          const locField = document.getElementById('location');
-          const link = `https://maps.google.com/?q=${latitude},${longitude}`;
-          if(!locField.value.trim()){
-            locField.value = `Pin: ${latitude.toFixed(5)}, ${longitude.toFixed(5)}`;
-          }
-          help.innerHTML = `Location captured. <a href="${link}" target="_blank" rel="noopener">View map</a>`;
-        },
-        (err)=>{ help.textContent = 'Could not get location (permission denied or error).'; },
-        {enableHighAccuracy:true, timeout:10000, maximumAge:60000}
-      );
-    }
-    $('#useLoc')?.addEventListener('click', ()=> useLocation('locHelp'));
-    $('#useLocMobile')?.addEventListener('click', ()=> useLocation('locHelp'));
 
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();
