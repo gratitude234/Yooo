@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>About — Gabakssteel Construction Co. Ltd</title>
-  <meta name="description" content="Gabakssteel Construction Company Ltd — 15+ years delivering precision steel fabrication in Lagos: gates, windows & burglary proofs, rails & staircases, street‑light poles, overhead tanks, roofing & warehouses." />
+  <meta name="description" content="Gabakssteel Construction Company Ltd — 15+ years delivering precision steel fabrication in Lagos: gates, windows & burglary proofs, rails & staircases, street-light poles, overhead tanks, roofing & warehouses." />
   <link rel="canonical" href="https://gabakssteel.example/about.html" />
   <meta name="theme-color" content="#0B0F14" />
 
@@ -56,24 +56,22 @@
       background:linear-gradient(120deg, rgba(255,255,255,0) 30%, rgba(255,255,255,.35) 50%, rgba(255,255,255,0) 70%);
       transform:translateX(-120%); transition:transform .45s ease}
     .btn:hover::before{transform:translateX(120%)}
+    .btn-block{width:100%}
 
     .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
-    /* ------------------ NAV ------------------ */
+    /* ------------------ NAV (identical to index.html) ------------------ */
     .nav{position:sticky; top:0; z-index:80; backdrop-filter:saturate(140%) blur(10px);
       background:linear-gradient(to bottom, rgba(15,19,26,.78), rgba(15,19,26,.4));
-      border-bottom:1px solid var(--border)
+      border-bottom:1px solid var(--border);
     }
     .nav .inner{display:flex; align-items:center; justify-content:space-between; padding:.5rem 0; min-height:var(--nav-h)}
     .brand{font-family:Outfit, Inter, system-ui; font-weight:700; letter-spacing:.4px; font-size:1.2rem}
     .brand span{color:var(--accent)}
-    .navlinks{display:flex; gap:1.2rem; align-items:center}
-    .navlinks a{color:var(--muted); transition:color .2s ease, transform .2s ease}
-    .navlinks a:hover{color:var(--text); transform:translateY(-1px)}
-    .navlinks a[aria-current="page"]{ color:var(--text); font-weight:600 }
 
-    /* Mobile trigger */
-    .mobile-toggle{display:none; position:relative; width:42px; height:42px; place-items:center; border-radius:12px; border:1px solid var(--border); background:transparent; color:var(--text)}
+    /* Mobile-first: hide desktop links, show hamburger */
+    .navlinks{display:none}
+    .mobile-toggle{display:grid; position:relative; width:42px; height:42px; place-items:center; border-radius:12px; border:1px solid var(--border); background:transparent; color:var(--text)}
     .mobile-toggle .bars{display:block; width:20px; height:2px; background:currentColor; position:relative}
     .mobile-toggle .bars:before, .mobile-toggle .bars:after{content:""; position:absolute; left:0; width:20px; height:2px; background:currentColor; transition:transform .2s ease, top .2s ease, opacity .2s ease}
     .mobile-toggle .bars:before{top:-6px}
@@ -82,8 +80,9 @@
     body.menu-open .mobile-toggle .bars:before{top:0; transform:rotate(45deg)}
     body.menu-open .mobile-toggle .bars:after{top:0; transform:rotate(-45deg)}
 
+    /* Full-screen mobile overlay */
     .backdrop{position:fixed; inset:0; background:rgba(2,6,12,.5); backdrop-filter:blur(4px); z-index:79; opacity:0; pointer-events:none; transition:opacity .2s ease}
-    .mobile-panel{position:fixed; inset:0 0 0 30%; max-width:480px; margin-left:auto; background:linear-gradient(180deg, rgba(18,24,31,.98), rgba(18,24,31,.96)); border-left:1px solid var(--border); z-index:90; transform:translateX(105%); transition:transform .25s ease; display:flex; flex-direction:column}
+    .mobile-panel{position:fixed; inset:0; max-width:none; background:linear-gradient(180deg, rgba(18,24,31,.98), rgba(18,24,31,.96)); border-top:1px solid var(--border); z-index:90; transform:translateX(105%); transition:transform .25s ease; display:flex; flex-direction:column}
     .mobile-panel header{display:flex; align-items:center; justify-content:space-between; padding:1rem 1.25rem; border-bottom:1px solid var(--border)}
     .mobile-panel nav{display:flex; flex-direction:column; padding:1rem 1.25rem; gap:.2rem}
     .mobile-panel a{padding:.9rem 1rem; border-radius:12px; color:var(--text); border:1px solid transparent; opacity:0; transform:translateX(8px)}
@@ -91,24 +90,35 @@
     .mobile-panel a[aria-current="page"]{ background:var(--surface); border-color:var(--border) }
     .mobile-panel .quick{margin-top:auto; padding:1rem 1.25rem; border-top:1px solid var(--border); display:grid; gap:.6rem}
 
+    /* Open state */
     body.menu-open{overflow:hidden}
     body.menu-open .backdrop{opacity:1; pointer-events:auto}
     body.menu-open .mobile-panel{transform:translateX(0)}
 
-    /* ------------------ TOGGLEABLE VIEWS ------------------ */
-    .view-desktop{display:none}
-    .view-mobile{display:block}
+    /* Desktop nav underline hover (optional) */
+    .navlinks a{position:relative}
+    .navlinks a::after{
+      content:""; position:absolute; left:0; right:0; bottom:-6px; height:2px;
+      background:linear-gradient(90deg,var(--accent),#ffb673);
+      transform:scaleX(0); transform-origin:left; transition:transform .25s ease;
+    }
+    .navlinks a:hover::after{ transform:scaleX(1); }
 
-    @media (min-width: 960px){
-      .navlinks{display:flex}
-      .mobile-toggle{display:none}
-      .view-desktop{display:block}
-      .view-mobile{display:none}
+    /* Desktop breakpoint (same as index.html) */
+    @media (min-width: 681px){
+      .navlinks{display:flex; gap:1.25rem; align-items:center; white-space:nowrap}
+      .navlinks > a{ padding:.25rem .25rem; }
+      .mobile-toggle{ display:none !important; }
+      .backdrop, .mobile-panel{ display:none !important; }
+      body{ padding-bottom:0; }
     }
 
-    @media (max-width: 959.98px){
-      .navlinks{display:none}
-      .mobile-toggle{display:grid}
+    /* ------------------ TOGGLEABLE VIEWS (desktop vs mobile content) ------------------ */
+    .view-desktop{display:none}
+    .view-mobile{display:block}
+    @media (min-width: 960px){
+      .view-desktop{display:block}
+      .view-mobile{display:none}
     }
 
     /* ------------------ DESKTOP DESIGN ------------------ */
@@ -183,7 +193,7 @@
       <a class="brand" href="index.html" aria-label="Gabakssteel logo">GABAKS<span>STEEL</span></a>
 
       <!-- Desktop links -->
-      <div class="navlinks">
+      <div class="navlinks" role="navigation" aria-label="Desktop">
         <a href="index.html">Home</a>
         <a href="services.html">Services</a>
         <a href="projects.html">Projects</a>
@@ -191,7 +201,7 @@
         <a href="contact.html" class="btn" style="padding:.6rem 1rem;">Request a Quote</a>
       </div>
 
-      <!-- Mobile trigger -->
+      <!-- Mobile trigger (hidden on >=681px) -->
       <button class="mobile-toggle" aria-controls="mobilePanel" aria-expanded="false" id="mobileToggle">
         <span class="sr-only">Toggle menu</span>
         <span class="bars" aria-hidden="true"></span>
@@ -199,9 +209,9 @@
     </div>
   </nav>
 
-  <!-- Mobile overlay -->
+  <!-- Mobile overlay (full-screen) -->
   <div class="backdrop" id="backdrop" hidden></div>
-  <aside class="mobile-panel" id="mobilePanel" hidden>
+  <aside class="mobile-panel" id="mobilePanel" hidden role="dialog" aria-modal="true" aria-label="Mobile Menu">
     <header>
       <span class="brand">GABAKS<span>STEEL</span></span>
       <button class="mobile-toggle" id="closePanel" aria-label="Close menu">
@@ -228,11 +238,11 @@
       <div class="container wrap">
         <div>
           <h1 class="d-headline">About Gabakssteel</h1>
-          <p class="d-sub">Founded in Lagos over <strong>15 years</strong> ago, we deliver dependable steel fabrication with clean finishes and on‑time installation for homes, estates and industrial sites.</p>
+          <p class="d-sub">Founded in Lagos over <strong>15 years</strong> ago, we deliver dependable steel fabrication with clean finishes and on-time installation for homes, estates and industrial sites.</p>
           <div style="display:flex; gap:.8rem; margin-top:1rem; flex-wrap:wrap">
             <span class="m-badge">Insured Installations</span>
             <span class="m-badge">Warranty</span>
-            <span class="m-badge">Safety‑first Team</span>
+            <span class="m-badge">Safety-first Team</span>
             <span class="m-badge">Fair Pricing</span>
           </div>
           <div style="display:flex; gap:.8rem; margin-top:1rem; flex-wrap:wrap">
@@ -276,21 +286,21 @@
       <div class="card">
         <h2 class="section-title">Our story</h2>
         <p class="section-sub">From small residential gates to full warehouse roofing, Gabakssteel has grown through referrals by delivering consistent quality and standing by our work.</p>
-        <p>We operate from Mafoluku, Oshodi — serving Lagos and nearby states. Our team handles design, cutting, welding, surface finishing and on‑site installation with safety compliance.</p>
+        <p>We operate from Mafoluku, Oshodi — serving Lagos and nearby states. Our team handles design, cutting, welding, surface finishing and on-site installation with safety compliance.</p>
         <div style="display:flex; gap:.6rem; flex-wrap:wrap; margin-top:.6rem">
-          <span class="m-badge">Powder‑coat options</span>
-          <span class="m-badge">Hot‑dip galvanizing</span>
-          <span class="m-badge">Anti‑corrosion prep</span>
-          <span class="m-badge">After‑sales support</span>
+          <span class="m-badge">Powder-coat options</span>
+          <span class="m-badge">Hot-dip galvanizing</span>
+          <span class="m-badge">Anti-corrosion prep</span>
+          <span class="m-badge">After-sales support</span>
         </div>
       </div>
       <div class="card">
         <h2 class="section-title">Timeline</h2>
         <ol class="timeline">
           <li class="titem"><strong>2010</strong> — Company founded; first estate gate contracts in Oshodi/Isolo.</li>
-          <li class="titem"><strong>2014</strong> — Added street‑light pole fabrication and municipal installs.</li>
+          <li class="titem"><strong>2014</strong> — Added street-light pole fabrication and municipal installs.</li>
           <li class="titem"><strong>2018</strong> — Expanded to overhead tank towers and warehouse roofing.</li>
-          <li class="titem"><strong>2023</strong> — Laser‑cut patterns and stainless railing offerings.</li>
+          <li class="titem"><strong>2023</strong> — Laser-cut patterns and stainless railing offerings.</li>
           <li class="titem"><strong>Today</strong> — Full service steel fabrication across Lagos.</li>
         </ol>
       </div>
@@ -315,7 +325,7 @@
       <div class="m-wrap">
         <span class="m-badge">Since 2010</span>
         <h1 class="m-headline">About Gabakssteel</h1>
-        <p class="m-sub">15+ years of dependable steel fabrication in Lagos. Clean finishes and on‑time installation for homes, estates and industry.</p>
+        <p class="m-sub">15+ years of dependable steel fabrication in Lagos. Clean finishes and on-time installation for homes, estates and industry.</p>
         <div class="m-portrait">
           <div class="img">
             <picture>
@@ -335,7 +345,7 @@
         <div class="m-quick" style="margin-top:10px">
           <span class="m-badge">Insured Installations</span>
           <span class="m-badge">Warranty</span>
-          <span class="m-badge">Safety‑first Team</span>
+          <span class="m-badge">Safety-first Team</span>
         </div>
       </div>
     </section>
@@ -359,15 +369,15 @@
         <div class="m-acc">
           <details open>
             <summary>Our story</summary>
-            <p>We operate from Mafoluku, Oshodi — serving Lagos and nearby states. Our team handles design, cutting, welding, surface finishing and on‑site installation with safety compliance.</p>
-            <p class="small">Powder‑coat • Galvanizing • Anti‑corrosion prep • After‑sales support</p>
+            <p>We operate from Mafoluku, Oshodi — serving Lagos and nearby states. Our team handles design, cutting, welding, surface finishing and on-site installation with safety compliance.</p>
+            <p class="small">Powder-coat • Galvanizing • Anti-corrosion prep • After-sales support</p>
           </details>
           <details>
             <summary>Timeline</summary>
             <p><strong>2010</strong> — Company founded; first estate gate contracts in Oshodi/Isolo.<br>
-               <strong>2014</strong> — Street‑light pole fabrication begins.<br>
+               <strong>2014</strong> — Street-light pole fabrication begins.<br>
                <strong>2018</strong> — Overhead tank towers & warehouse roofing.<br>
-               <strong>2023</strong> — Laser‑cut patterns & stainless railings.<br>
+               <strong>2023</strong> — Laser-cut patterns & stainless railings.<br>
                <strong>Today</strong> — Full service across Lagos.
             </p>
           </details>
@@ -431,10 +441,10 @@
   </div>
 
   <script>
-    // Query helper
+    // Helper
     const $ = (s, r=document) => r.querySelector(s);
 
-    // Mobile menu (overlay)
+    // Mobile menu (exact behavior from index.html)
     const toggle = $('#mobileToggle');
     const closeBtn = $('#closePanel');
     const panel = $('#mobilePanel');
@@ -442,34 +452,55 @@
 
     function openMenu(open){
       document.body.classList.toggle('menu-open', open);
+      document.documentElement.classList.toggle('menu-open', open); // lock <html> too
       toggle?.setAttribute('aria-expanded', String(open));
-      panel.hidden = !open; backdrop.hidden = !open;
+      if (panel) panel.hidden = !open;
+      if (backdrop) backdrop.hidden = !open;
+
+      // Staggered link animation
       const links = panel?.querySelectorAll('nav a') || [];
-      links.forEach((a, i)=>{ a.style.animation='none'; a.offsetHeight; a.style.animation='slideIn .28s both'; a.style.animationDelay= (i*0.05)+'s'; });
+      links.forEach((a, i)=>{
+        a.style.animation = 'none';
+        a.offsetHeight;            // reflow
+        a.style.animation = `slideIn .28s both`;
+        a.style.animationDelay = `${i * 0.05}s`;
+      });
     }
+
     toggle?.addEventListener('click', ()=> openMenu(!document.body.classList.contains('menu-open')));
     closeBtn?.addEventListener('click', ()=> openMenu(false));
     backdrop?.addEventListener('click', ()=> openMenu(false));
     window.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') openMenu(false) });
 
-    // Reveal on scroll
+    // Auto-close mobile menu when switching up to desktop (>=681px)
+    (function(){
+      const mq = window.matchMedia('(min-width: 681px)');
+      function handle(e){ if(e.matches) openMenu(false); }
+      handle(mq);
+      if (mq.addEventListener) mq.addEventListener('change', handle);
+      else if (mq.addListener) mq.addListener(handle); // older Safari
+    })();
+
+    // Reveal on scroll (optional)
     const io = new IntersectionObserver(entries=>{
       entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target) }});
     }, {threshold:.15});
     document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-    // Show only one semantic tree to AT/SEO (avoid duplicate content)
-    const dMain = document.querySelector('.view-desktop');
-    const mMain = document.querySelector('.view-mobile');
-    function syncViews(){
-      const isDesktop = matchMedia('(min-width: 960px)').matches;
-      dMain.classList.toggle('hidden-view', !isDesktop);
-      mMain.classList.toggle('hidden-view', isDesktop);
-      dMain.setAttribute('aria-hidden', String(!isDesktop));
-      mMain.setAttribute('aria-hidden', String(isDesktop));
-    }
-    syncViews();
-    addEventListener('resize', ()=>{ clearTimeout(window.__rsz); window.__rsz = setTimeout(syncViews, 120); });
+    // Toggle which view is exposed to AT/SEO (keep your 960px content split)
+    (function(){
+      const dMain = document.querySelector('.view-desktop');
+      const mMain = document.querySelector('.view-mobile');
+      function syncViews(){
+        const isDesktop = matchMedia('(min-width: 960px)').matches;
+        dMain.classList.toggle('hidden-view', !isDesktop);
+        mMain.classList.toggle('hidden-view', isDesktop);
+        dMain.setAttribute('aria-hidden', String(!isDesktop));
+        mMain.setAttribute('aria-hidden', String(isDesktop));
+      }
+      syncViews();
+      addEventListener('resize', ()=>{ clearTimeout(window.__rsz); window.__rsz = setTimeout(syncViews, 120); });
+    })();
 
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();
