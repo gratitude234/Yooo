@@ -44,8 +44,6 @@
         radial-gradient(1000px 500px at 10% -10%, #16202b 0%, transparent 60%),
         radial-gradient(900px 500px at 100% 0%, #121a23 0%, transparent 60%),
         var(--bg);
-      /* Mobile-first: reserve space for sticky CTA on phones */
-      padding-bottom:calc(84px + env(safe-area-inset-bottom));
     }
     a{color:inherit; text-decoration:none}
     img{max-width:100%; display:block}
@@ -68,10 +66,11 @@
     .only-mobile{display:block}
     .only-desktop{display:none}
 
-    /* Screen-reader only */
+    /* Screen-reader only + anchor offset */
     .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    html{ scroll-padding-top: var(--nav-h); }
 
-    /* ------------------ NAV ------------------ */
+    /* ------------------ NAV (match other pages) ------------------ */
     .nav{position:sticky; top:0; z-index:80; backdrop-filter:saturate(140%) blur(10px);
       background:linear-gradient(to bottom, rgba(15,19,26,.78), rgba(15,19,26,.4));
       border-bottom:1px solid var(--border);
@@ -80,8 +79,20 @@
     .brand{font-family:Outfit, Inter, system-ui; font-weight:700; letter-spacing:.4px; font-size:1.2rem}
     .brand span{color:var(--accent)}
 
-    /* Nav defaults = mobile */
+    /* Mobile-first: desktop links hidden */
     .navlinks{display:none}
+    .navlinks a{color:var(--muted); transition:color .2s ease, transform .2s ease}
+    .navlinks a:hover{color:var(--text); transform:translateY(-1px)}
+    .navlinks a[aria-current="page"]{ color:var(--text); font-weight:600 }
+    .navlinks a{position:relative}
+    .navlinks a::after{
+      content:""; position:absolute; left:0; right:0; bottom:-6px; height:2px;
+      background:linear-gradient(90deg,var(--accent),#ffb673);
+      transform:scaleX(0); transform-origin:left; transition:transform .25s ease;
+    }
+    .navlinks a:hover::after{transform:scaleX(1)}
+
+    /* Mobile trigger */
     .mobile-toggle{display:grid; position:relative; width:42px; height:42px; place-items:center; border-radius:12px; border:1px solid var(--border); background:transparent; color:var(--text)}
     .mobile-toggle .bars{display:block; width:20px; height:2px; background:currentColor; position:relative}
     .mobile-toggle .bars:before, .mobile-toggle .bars:after{content:""; position:absolute; left:0; width:20px; height:2px; background:currentColor; transition:transform .2s ease, top .2s ease, opacity .2s ease}
@@ -91,17 +102,27 @@
     body.menu-open .mobile-toggle .bars:before{top:0; transform:rotate(45deg)}
     body.menu-open .mobile-toggle .bars:after{top:0; transform:rotate(-45deg)}
 
+    /* Full-screen mobile overlay (hidden by default, opened via JS) */
     .backdrop{position:fixed; inset:0; background:rgba(2,6,12,.5); backdrop-filter:blur(4px); z-index:79; opacity:0; pointer-events:none; transition:opacity .2s ease}
     .mobile-panel{position:fixed; inset:0; max-width:none; background:linear-gradient(180deg, rgba(18,24,31,.98), rgba(18,24,31,.96)); border-top:1px solid var(--border); z-index:90; transform:translateX(105%); transition:transform .25s ease; display:flex; flex-direction:column}
     .mobile-panel header{display:flex; align-items:center; justify-content:space-between; padding:1rem 1.25rem; border-bottom:1px solid var(--border)}
     .mobile-panel nav{display:flex; flex-direction:column; padding:1rem 1.25rem; gap:.2rem}
     .mobile-panel a{padding:.9rem 1rem; border-radius:12px; color:var(--text); border:1px solid transparent; opacity:0; transform:translateX(8px)}
     .mobile-panel a:hover{background:var(--surface); border-color:var(--border)}
+    .mobile-panel a[aria-current="page"]{ background:var(--surface); border-color:var(--border); }
     .mobile-panel .quick{margin-top:auto; padding:1rem 1.25rem; border-top:1px solid var(--border); display:grid; gap:.6rem}
 
     body.menu-open{overflow:hidden}
     body.menu-open .backdrop{opacity:1; pointer-events:auto}
     body.menu-open .mobile-panel{transform:translateX(0)}
+
+    /* Desktop breakpoint */
+    @media (min-width: 681px){
+      .navlinks{display:flex; gap:1.2rem; align-items:center}
+      .mobile-toggle{ display:none !important; }
+      .backdrop, .mobile-panel{ display:none !important; }
+      .container{padding:0 20px}
+    }
 
     /* ------------------ PAGE HEADER ------------------ */
     header.hero{position:relative; overflow:hidden}
@@ -155,7 +176,7 @@
 
     /* ------------------ GALLERY (Masonry) ------------------ */
     .gallery{margin-top:1rem}
-    .masonry{columns:2; column-gap:1rem} /* mobile-first: 2 columns */
+    .masonry{columns:2; column-gap:1rem}
     .masonry .item{break-inside:avoid; margin:0 0 1rem; position:relative; cursor:pointer; border-radius:16px; overflow:hidden; border:1px solid var(--border); background:var(--surface); box-shadow:0 12px 28px rgba(0,0,0,.18)}
     .masonry .item picture{display:block}
     .masonry .item img{width:100%; height:auto; transition:transform .28s ease}
@@ -176,7 +197,7 @@
     .lb-prev{left:6px}
     .lb-next{right:6px}
 
-    /* ------------------ FOOTER (mobile-first) ------------------ */
+    /* ------------------ FOOTER ------------------ */
     footer{border-top:1px solid var(--border); background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02))}
     .foot{display:grid; gap:1.2rem; grid-template-columns:1fr}
     .foot .group{padding:4px 0; border-top:1px dashed var(--border)}
@@ -197,70 +218,29 @@
     /* Disable reveal on phones to prevent jumps */
     @media (max-width: 680px){
       .reveal{opacity:1 !important; transform:none !important; transition:none !important}
+      body{ padding-bottom:84px; } /* reserve space for mobile CTA only on phones */
     }
 
-    /* ------------------ RESPONSIVE (min-width) ------------------ */
+    /* Desktop layout tweaks */
     @media (min-width: 681px){
-      /* Swap variants */
-      .only-mobile{display:none}
-      .only-desktop{display:block}
-
-      /* Desktop nav shows; hamburger hides */
-      .navlinks{display:flex; gap:1.2rem; align-items:center}
-      .navlinks a{color:var(--muted); transition:color .2s ease, transform .2s ease}
-      .navlinks a:hover{color:var(--text); transform:translateY(-1px)}
-      .mobile-toggle{display:none}
-
-      /* Make overlay menu a side-drawer */
-      .mobile-panel{inset:0 0 0 30%; max-width:480px; margin-left:auto; border-left:1px solid var(--border); border-top:none}
-
-      /* Desktop gallery columns */
       .masonry{columns:3}
-
-      /* Desktop lightbox controls offset */
       .lb-prev{left:-14px}
       .lb-next{right:-14px}
-
-      /* Footer layout */
       .foot{grid-template-columns:2fr 1fr 1fr}
       .foot .group{border-top:none; padding-top:4px}
       .foot-bottom{flex-direction:row; align-items:center}
-
-      /* Container padding tightened */
-      .container{padding:0 20px}
-
-      /* Remove mobile CTA reserve */
-      .cta-bar{display:none}
-      body{padding-bottom:0}
     }
     @media (min-width: 1100px){
       .masonry{columns:4}
     }
 
-    @media (prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important} }
+    @media (prefers-reduced-motion: reduce){
+      *{animation:none !important; transition:none !important}
+      .mobile-panel a{ opacity:1 !important; transform:none !important; }
+    }
 
-    /* Anchor offset for sticky nav + lock scroll when menu open */
-    html{ scroll-padding-top: var(--nav-h); }
+    /* Lock background scroll when menu is open */
     html.menu-open, body.menu-open { overflow:hidden; }
-
-/* HIDE ONLY ON DESKTOP, NOT ON MOBILE */
-@media (min-width: 681px){
-  .backdrop, .mobile-panel { display: none; }
-}
-@media (max-width: 680px){
-  .backdrop { display: block; }       /* so it can fade in */
-  .mobile-panel { display: flex; }     /* so the drawer can slide in */
-}
-
-/* Ensure the drawer actually opens when body has menu-open */
-body.menu-open .backdrop{ opacity:1; pointer-events:auto; }
-body.menu-open .mobile-panel{ transform: translateX(0); }
-
-/* Reduced-motion fallback: make links visible even if animations are off */
-@media (prefers-reduced-motion: reduce){
-  .mobile-panel a{ opacity:1 !important; transform:none !important; }
-}
-
   </style>
 </head>
 <body>
@@ -271,13 +251,16 @@ body.menu-open .mobile-panel{ transform: translateX(0); }
     <div class="container inner">
       <a class="brand" href="index.html" aria-label="Gabakssteel logo">GABAKS<span>STEEL</span></a>
 
-      <div class="navlinks">
+      <!-- Desktop links -->
+      <div class="navlinks" role="navigation" aria-label="Desktop">
+        <a href="index.html">Home</a>
         <a href="services.html">Services</a>
         <a href="projects.html" aria-current="page">Projects</a>
         <a href="about.html">About</a>
         <a href="contact.html" class="btn" style="padding:.6rem 1rem;">Request a Quote</a>
       </div>
 
+      <!-- Mobile trigger -->
       <button class="mobile-toggle" aria-controls="mobilePanel" aria-expanded="false" id="mobileToggle">
         <span class="sr-only">Toggle menu</span>
         <span class="bars" aria-hidden="true"></span>
@@ -285,9 +268,9 @@ body.menu-open .mobile-panel{ transform: translateX(0); }
     </div>
   </nav>
 
-  <!-- Mobile overlay -->
+  <!-- Mobile overlay (hidden by default) -->
   <div class="backdrop" id="backdrop" hidden></div>
-  <aside class="mobile-panel" id="mobilePanel" hidden>
+  <aside class="mobile-panel" id="mobilePanel" hidden role="dialog" aria-modal="true" aria-label="Mobile Menu">
     <header>
       <span class="brand">GABAKS<span>STEEL</span></span>
       <button class="mobile-toggle" id="closePanel" aria-label="Close menu">
@@ -295,6 +278,7 @@ body.menu-open .mobile-panel{ transform: translateX(0); }
       </button>
     </header>
     <nav>
+      <a href="index.html">Home</a>
       <a href="services.html">Services</a>
       <a href="projects.html" aria-current="page">Projects</a>
       <a href="about.html">About</a>
@@ -508,7 +492,7 @@ body.menu-open .mobile-panel{ transform: translateX(0); }
   </footer>
 
   <!-- Sticky CTA for mobile -->
-  <div class="cta-bar" aria-hidden="true">
+  <div class="cta-bar only-mobile" aria-hidden="true">
     <a class="btn" href="tel:+2347010104012" title="Call">Call</a>
     <a class="btn btn-outline" href="https://wa.me/2348025532696?text=Hi%20Gabakssteel%2C%20I%20need%20a%20quote." target="_blank" rel="noopener" title="WhatsApp">WhatsApp</a>
     <a class="btn" href="contact.html" title="Request a Quote">Quote</a>
@@ -529,7 +513,7 @@ body.menu-open .mobile-panel{ transform: translateX(0); }
     // Helpers
     const $ = (s, r=document) => r.querySelector(s);
 
-    // Mobile menu
+    // Mobile menu (same behavior as other pages)
     const toggle = $('#mobileToggle');
     const closeBtn = $('#closePanel');
     const panel = $('#mobilePanel');
@@ -537,14 +521,15 @@ body.menu-open .mobile-panel{ transform: translateX(0); }
 
     function openMenu(open){
       document.body.classList.toggle('menu-open', open);
-      document.documentElement.classList.toggle('menu-open', open);
+      document.documentElement.classList.toggle('menu-open', open); // lock <html> too
       toggle?.setAttribute('aria-expanded', String(open));
-      panel.hidden = !open;
-      backdrop.hidden = !open;
+      if (panel) panel.hidden = !open;
+      if (backdrop) backdrop.hidden = !open;
 
+      // Staggered link animation
       const links = panel?.querySelectorAll('nav a') || [];
       links.forEach((a, i)=>{
-        a.style.animation = 'none'; a.offsetHeight;
+        a.style.animation = 'none'; a.offsetHeight; // reflow
         a.style.animation = `slideIn .28s both`;
         a.style.animationDelay = `${i * 0.05}s`;
       });
@@ -553,6 +538,15 @@ body.menu-open .mobile-panel{ transform: translateX(0); }
     closeBtn?.addEventListener('click', ()=> openMenu(false));
     backdrop?.addEventListener('click', ()=> openMenu(false));
     window.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') openMenu(false) });
+
+    // Auto-close mobile menu when switching up to desktop (>=681px)
+    (function(){
+      const mq = window.matchMedia('(min-width: 681px)');
+      function handle(e){ if(e.matches) openMenu(false); }
+      handle(mq);
+      if (mq.addEventListener) mq.addEventListener('change', handle);
+      else if (mq.addListener) mq.addListener(handle); // Safari <14
+    })();
 
     // Reveal on scroll
     const io = new IntersectionObserver(entries=>{
@@ -582,8 +576,8 @@ body.menu-open .mobile-panel{ transform: translateX(0); }
     // Keep mobile & desktop inputs in sync
     function syncInputs(from){
       if(from === 'desktop'){
-        mSearchInput.value = search?.value || '';
-        mSort.value = sortSel?.value || 'new';
+        if(mSearchInput) mSearchInput.value = search?.value || '';
+        if(mSort) mSort.value = sortSel?.value || 'new';
       }else{
         if(search) search.value = mSearchInput.value;
         if(sortSel) sortSel.value = mSort.value;
@@ -613,7 +607,6 @@ body.menu-open .mobile-panel{ transform: translateX(0); }
       items.forEach(it=>it.style.display='none');
       list.forEach((it,i)=>{ it.style.display = i < visibleCount ? '' : 'none'; });
       loadBtn.style.display = list.length > visibleCount ? 'inline-flex' : 'none';
-      // rebuild sequence for lightbox if open
       if(lb.classList.contains('open')) sequence = list;
     }
 
@@ -699,18 +692,7 @@ body.menu-open .mobile-panel{ transform: translateX(0); }
       if(e.key==='ArrowLeft') { index = (index-1 + sequence.length) % sequence.length; show(); }
     });
 
-    // Swipe navigation on mobile
-    let tx=0, ty=0;
-    lbImg.addEventListener('touchstart', e=>{ const t=e.changedTouches[0]; tx=t.clientX; ty=t.clientY; }, {passive:true});
-    lbImg.addEventListener('touchend', e=>{
-      const t=e.changedTouches[0]; const dx=t.clientX - tx; const dy=t.clientY - ty;
-      if(Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)){
-        if(dx < 0){ index = (index+1) % sequence.length; } else { index = (index-1 + sequence.length) % sequence.length; }
-        show();
-      }
-    }, {passive:true});
-
-    // Accessibility: ensure only the visible variant is read (mobile-first mirror)
+    // Accessibility: only the visible variant is read
     (function(){
       const mq = window.matchMedia('(min-width: 681px)');
       const mobileEls = document.querySelectorAll('.only-mobile');
@@ -721,7 +703,8 @@ body.menu-open .mobile-panel{ transform: translateX(0); }
         desktopEls.forEach(el=> isDesktop ? el.removeAttribute('aria-hidden') : el.setAttribute('aria-hidden','true'));
       };
       setAria(mq);
-      mq.addEventListener?.('change', setAria);
+      if (mq.addEventListener) mq.addEventListener('change', setAria);
+      else if (mq.addListener) mq.addListener(setAria);
     })();
 
     // Year
