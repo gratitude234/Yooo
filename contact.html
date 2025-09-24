@@ -63,12 +63,15 @@
     html{ scroll-padding-top: var(--nav-h); }
     [id]{ scroll-margin-top: calc(var(--nav-h) + 8px); }
 
-    /* NAV */
-    .nav{position:sticky; top:0; z-index:80; backdrop-filter:saturate(140%) blur(10px); background:linear-gradient(to bottom, rgba(15,19,26,.78), rgba(15,19,26,.4)); border-bottom:1px solid var(--border)}
+    /* ------------------ NAV (matching index.html) ------------------ */
+    .nav{position:sticky; top:0; z-index:80; backdrop-filter:saturate(140%) blur(10px);
+      background:linear-gradient(to bottom, rgba(15,19,26,.78), rgba(15,19,26,.4)); border-bottom:1px solid var(--border)}
     .nav .inner{display:flex; align-items:center; justify-content:space-between; padding:.5rem 0; min-height:var(--nav-h)}
     .brand{font-family:Outfit, Inter, system-ui; font-weight:700; letter-spacing:.4px; font-size:1.2rem}
     .brand span{color:var(--accent)}
-    .navlinks{display:flex; gap:1.2rem; align-items:center}
+
+    /* Mobile-first: desktop links hidden by default */
+    .navlinks{display:none}
     .navlinks a{color:var(--muted); transition:color .2s ease}
     .navlinks a:hover{color:var(--text)}
     .navlinks a[aria-current="page"]{ color:var(--text); font-weight:600 }
@@ -82,7 +85,7 @@
     .navlinks a:hover::after{transform:scaleX(1)}
 
     /* Mobile trigger */
-    .mobile-toggle{display:none; position:relative; width:42px; height:42px; place-items:center; border-radius:12px; border:1px solid var(--border); background:transparent; color:var(--text)}
+    .mobile-toggle{display:grid; position:relative; width:42px; height:42px; place-items:center; border-radius:12px; border:1px solid var(--border); background:transparent; color:var(--text)}
     .mobile-toggle .bars{display:block; width:20px; height:2px; background:currentColor; position:relative}
     .mobile-toggle .bars:before, .mobile-toggle .bars:after{content:""; position:absolute; left:0; width:20px; height:2px; background:currentColor; transition:transform .2s ease, top .2s ease, opacity .2s ease}
     .mobile-toggle .bars:before{top:-6px}
@@ -91,9 +94,9 @@
     body.menu-open .mobile-toggle .bars:before{top:0; transform:rotate(45deg)}
     body.menu-open .mobile-toggle .bars:after{top:0; transform:rotate(-45deg)}
 
-    /* Mobile overlay menu */
+    /* Full-screen mobile overlay (same as index.html) */
     .backdrop{position:fixed; inset:0; background:rgba(2,6,12,.5); backdrop-filter:blur(4px); z-index:79; opacity:0; pointer-events:none; transition:opacity .2s ease}
-    .mobile-panel{position:fixed; inset:0 0 0 30%; max-width:480px; margin-left:auto; background:linear-gradient(180deg, rgba(18,24,31,.98), rgba(18,24,31,.96)); border-left:1px solid var(--border); z-index:90; transform:translateX(105%); transition:transform .25s ease; display:flex; flex-direction:column}
+    .mobile-panel{position:fixed; inset:0; max-width:none; background:linear-gradient(180deg, rgba(18,24,31,.98), rgba(18,24,31,.96)); border-top:1px solid var(--border); z-index:90; transform:translateX(105%); transition:transform .25s ease; display:flex; flex-direction:column}
     .mobile-panel header{display:flex; align-items:center; justify-content:space-between; padding:1rem 1.25rem; border-bottom:1px solid var(--border)}
     .mobile-panel nav{display:flex; flex-direction:column; padding:1rem 1.25rem; gap:.2rem}
     .mobile-panel a{padding:.9rem 1rem; border-radius:12px; color:var(--text); border:1px solid transparent; opacity:0; transform:translateX(8px)}
@@ -104,6 +107,14 @@
     body.menu-open{overflow:hidden}
     body.menu-open .backdrop{opacity:1; pointer-events:auto}
     body.menu-open .mobile-panel{transform:translateX(0)}
+
+    /* Desktop breakpoint (disable mobile UI, show desktop links) */
+    @media (min-width: 681px){
+      .navlinks{display:flex; gap:1.25rem; align-items:center; white-space:nowrap}
+      .navlinks > a{ padding:.25rem .25rem; }
+      .mobile-toggle{ display:none !important; }
+      .backdrop, .mobile-panel{ display:none !important; }
+    }
 
     /* HERO (DESKTOP) */
     header.hero-desktop{position:relative; overflow:hidden}
@@ -222,9 +233,6 @@
       .d-only{display:none}
       .m-only{display:block}
 
-      .navlinks{display:none}
-      .mobile-toggle{display:grid}
-
       .card{grid-column:span 12}
       .mapwrap iframe{height:300px}
       .actions{flex-direction:column; align-items:stretch}
@@ -255,7 +263,7 @@
       <a class="brand" href="index.html" aria-label="Gabakssteel logo">GABAKS<span>STEEL</span></a>
 
       <!-- Desktop links -->
-      <div class="navlinks" id="menu">
+      <div class="navlinks" role="navigation" aria-label="Desktop">
         <a href="index.html">Home</a>
         <a href="services.html">Services</a>
         <a href="projects.html">Projects</a>
@@ -273,7 +281,7 @@
 
   <!-- Mobile overlay -->
   <div class="backdrop" id="backdrop" hidden></div>
-  <aside class="mobile-panel" id="mobilePanel" hidden>
+  <aside class="mobile-panel" id="mobilePanel" hidden role="dialog" aria-modal="true" aria-label="Mobile Menu">
     <header>
       <span class="brand">GABAKS<span>STEEL</span></span>
       <button class="mobile-toggle" id="closePanel" aria-label="Close menu">
@@ -538,7 +546,7 @@
     // Helpers
     const $ = (s, r=document) => r.querySelector(s);
 
-    // Mobile menu (overlay)
+    // Mobile menu (full-screen overlay like index.html)
     const toggle = $('#mobileToggle');
     const closeBtn = $('#closePanel');
     const panel = $('#mobilePanel');
@@ -548,10 +556,10 @@
       document.body.classList.toggle('menu-open', open);
       document.documentElement.classList.toggle('menu-open', open); // lock <html> too
       toggle?.setAttribute('aria-expanded', String(open));
-      panel.hidden = !open;
-      backdrop.hidden = !open;
+      if (panel) panel.hidden = !open;
+      if (backdrop) backdrop.hidden = !open;
 
-      // Animate links with stagger
+      // Staggered link animation
       const links = panel?.querySelectorAll('nav a') || [];
       links.forEach((a, i)=>{
         a.style.animation = 'none'; a.offsetHeight; // reflow
@@ -563,6 +571,15 @@
     closeBtn?.addEventListener('click', ()=> openMenu(false));
     backdrop?.addEventListener('click', ()=> openMenu(false));
     window.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') openMenu(false) });
+
+    // Auto-close mobile menu when switching up to desktop (>=681px)
+    (function(){
+      const mq = window.matchMedia('(min-width: 681px)');
+      function handle(e){ if(e.matches) openMenu(false); }
+      handle(mq);
+      if (mq.addEventListener) mq.addEventListener('change', handle);
+      else if (mq.addListener) mq.addListener(handle); // older Safari
+    })();
 
     // Reveal on scroll
     const io = new IntersectionObserver(entries=>{
@@ -589,7 +606,7 @@
     const phone = document.getElementById('phone');
     phone.addEventListener('input', ()=>{
       const start = phone.selectionStart;
-      phone.value = phone.value.replace(/(?!^\\+)[^\\d]/g, '');
+      phone.value = phone.value.replace(/(?!^\+)[^\d]/g, '');
       phone.setSelectionRange(start, start);
     });
 
