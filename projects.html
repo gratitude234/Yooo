@@ -4,15 +4,23 @@
   <meta charset="utf-8" />  
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />  
   <title>Projects — Gabakssteel Construction Co. Ltd</title>  
-  <meta name="description" content="See recent steel fabrication projects in Lagos: gates & doors, windows & burglary proofs, rails & staircases, street-light poles, overhead tanks, warehouse roofing and more." />  
+  <meta name="description" content="See recent steel fabrication projects in Lagos: gates & doors, windows & burglary proofs, rails & staircases, street-light poles, overhead tanks, iron roofing, warehouses, carports, pergola & gazebo frames, skylights, roller shutters, and more." />  
   <link rel="canonical" href="https://gabakssteel.example/projects.html" />  
-  <meta name="theme-color" content="#0B0F14" />    <!-- Fonts -->    <link rel="preconnect" href="https://fonts.googleapis.com">  
+  <meta name="theme-color" content="#0B0F14" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">  
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>  
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">    <!-- Open Graph -->    <meta property="og:title" content="Gabakssteel Projects" />  
-  <meta property="og:description" content="Filterable gallery: gates, burglary proofs, rails, street-light poles, overhead tanks, warehouses." />  
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Gabakssteel Projects" />  
+  <meta property="og:description" content="Filterable gallery: gates & doors, windows & burglary proofs, rails & staircases, street-light poles, overhead tanks, iron roofing, warehouses, carports, pergola & gazebo frames, skylights, roller shutters." />  
   <meta property="og:type" content="website" />  
   <meta property="og:url" content="https://gabakssteel.example/projects.html" />  
-  <meta property="og:image" content="images/og-projects.jpg" />    <style>  
+  <meta property="og:image" content="images/og-projects.jpg" />
+
+  <style>  
     /* ------------------ THEME TOKENS ------------------ */  
     :root{  
       --bg:#0B0F14;  
@@ -42,7 +50,7 @@
     a{color:inherit; text-decoration:none}  
     img{max-width:100%; display:block}  
     .container{max-width:var(--container); margin-inline:auto; padding:0 24px}  
-  
+
     .btn{  
       position:relative; display:inline-flex; align-items:center; gap:.6rem; justify-content:center;  
       padding:.9rem 1.2rem; border-radius:999px; font-weight:600; cursor:pointer;  
@@ -55,14 +63,14 @@
     .btn:hover::before{transform:translateX(120%)}  
     .btn-outline{background:transparent; color:var(--text); border:1px solid var(--border); box-shadow:none}  
     .btn-block{width:100%}  
-  
+
     /* Swap helpers (MOBILE-FIRST) */  
     .only-mobile{display:block}  
     .only-desktop{display:none}  
-  
+
     /* Screen-reader only */  
     .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}  
-  
+
     /* ------------------ NAV ------------------ */  
     .nav{position:sticky; top:0; z-index:80; backdrop-filter:saturate(140%) blur(10px);  
       background:linear-gradient(to bottom, rgba(15,19,26,.78), rgba(15,19,26,.4));  
@@ -71,7 +79,7 @@
     .nav .inner{display:flex; align-items:center; justify-content:space-between; padding:.5rem 0; min-height:var(--nav-h)}  
     .brand{font-family:Outfit, Inter, system-ui; font-weight:700; letter-spacing:.4px; font-size:1.2rem}  
     .brand span{color:var(--accent)}  
-  
+
     /* Nav defaults = mobile */  
     .navlinks{display:none}  
     .mobile-toggle{display:grid; position:relative; width:42px; height:42px; place-items:center; border-radius:12px; border:1px solid var(--border); background:transparent; color:var(--text)}  
@@ -82,7 +90,7 @@
     body.menu-open .mobile-toggle .bars{background:transparent}  
     body.menu-open .mobile-toggle .bars:before{top:0; transform:rotate(45deg)}  
     body.menu-open .mobile-toggle .bars:after{top:0; transform:rotate(-45deg)}  
-  
+
     .backdrop{position:fixed; inset:0; background:rgba(2,6,12,.5); backdrop-filter:blur(4px); z-index:79; opacity:0; pointer-events:none; transition:opacity .2s ease}  
     .mobile-panel{position:fixed; inset:0; max-width:none; background:linear-gradient(180deg, rgba(18,24,31,.98), rgba(18,24,31,.96)); border-top:1px solid var(--border); z-index:90; transform:translateX(105%); transition:transform .25s ease; display:flex; flex-direction:column}  
     .mobile-panel header{display:flex; align-items:center; justify-content:space-between; padding:1rem 1.25rem; border-bottom:1px solid var(--border)}  
@@ -90,18 +98,18 @@
     .mobile-panel a{padding:.9rem 1rem; border-radius:12px; color:var(--text); border:1px solid transparent; opacity:0; transform:translateX(8px)}  
     .mobile-panel a:hover{background:var(--surface); border-color:var(--border)}  
     .mobile-panel .quick{margin-top:auto; padding:1rem 1.25rem; border-top:1px solid var(--border); display:grid; gap:.6rem}  
-  
+
     body.menu-open{overflow:hidden}  
     body.menu-open .backdrop{opacity:1; pointer-events:auto}  
     body.menu-open .mobile-panel{transform:translateX(0)}  
-  
+
     /* ------------------ PAGE HEADER ------------------ */  
     header.hero{position:relative; overflow:hidden}  
     .hero-wrap{display:grid; grid-template-columns:1fr; gap:1rem; align-items:center; padding:clamp(3.4rem, 4.8vw + 1rem, 6rem) 0}  
     .headline{font-family:Outfit, Inter; font-size:clamp(2rem, 2.8vw + 1rem, 3.2rem); line-height:1.05; margin:.2rem 0 .4rem}  
     .sub{color:var(--muted); max-width:70ch}  
     .mesh{position:absolute; inset:auto -40% -30% -40%; height:46vh; z-index:-1; filter:blur(70px) saturate(130%); opacity:.55; background: conic-gradient(from 180deg at 50% 50%, rgba(201,162,39,.5), rgba(249,115,22,.35), rgba(201,162,39,.5)); mask-image: radial-gradient(60% 60% at 50% 50%, #000 30%, transparent 100%)}  
-  
+
     /* ------------------ PAGE HEADER (MOBILE VARIANT) ------------------ */  
     .hero-mobile{  
       min-height:calc(48vh - var(--nav-h));  
@@ -119,7 +127,7 @@
     .hero-mobile .headline{font-size:clamp(1.9rem, 6.8vw, 2.4rem); line-height:1.1; margin:.2rem 0 .5rem}  
     .hero-mobile .sub{max-width:46ch}  
     .hero-mobile .cta-stack{display:grid; gap:.6rem; margin-top:1rem}  
-  
+
     /* ------------------ FILTERS ------------------ */  
     .toolbar{display:flex; gap:.8rem; align-items:center; justify-content:space-between; flex-wrap:wrap; margin-top:.6rem}  
     .chips{display:flex; flex-wrap:wrap; gap:.6rem}  
@@ -128,7 +136,7 @@
     .search{display:flex; gap:.5rem; align-items:center}  
     .search input{width:240px; max-width:60vw; background:rgba(255,255,255,.04); color:var(--text); border:1px solid var(--border); border-radius:12px; padding:.6rem .8rem; outline:none}  
     .sort{background:rgba(255,255,255,.04); color:var(--text); border:1px solid var(--border); border-radius:12px; padding:.6rem .8rem}  
-  
+
     /* Mobile sticky filter bar */  
     .toolbar-mobile{position:sticky; top:var(--nav-h); z-index:75; padding:.6rem 0 .4rem; border-bottom:1px solid var(--border);  
       background:linear-gradient(180deg, rgba(15,19,26,.95), rgba(15,19,26,.85)); backdrop-filter:saturate(140%) blur(8px)}  
@@ -144,7 +152,7 @@
     .m-search select{margin-top:.5rem; width:100%; background:rgba(255,255,255,.05); color:var(--text); border:1px solid var(--border); border-radius:12px; padding:.6rem .8rem}  
     .m-search.open{grid-template-rows:1fr}  
     .m-search-toggle{justify-self:end}  
-  
+
     /* ------------------ GALLERY (Masonry) ------------------ */  
     .gallery{margin-top:1rem}  
     .masonry{columns:2; column-gap:1rem} /* mobile-first: 2 columns */  
@@ -153,10 +161,10 @@
     .masonry .item img{width:100%; height:auto; transition:transform .28s ease}  
     .masonry .item:hover img{transform:scale(1.03)}  
     .caption{position:absolute; left:10px; bottom:10px; background:rgba(0,0,0,.55); color:#fff; padding:.35rem .6rem; border-radius:999px; font-size:.8rem}  
-  
+
     /* ------------------ LOAD MORE ------------------ */  
     .load-more{display:flex; justify-content:center; margin:1rem 0}  
-  
+
     /* ------------------ LIGHTBOX ------------------ */  
     .lightbox{position:fixed; inset:0; background:rgba(0,0,0,.84); display:none; z-index:90; align-items:center; justify-content:center}  
     .lightbox.open{display:flex}  
@@ -167,7 +175,7 @@
     .lb-close{top:-14px; right:-14px; transform:none}  
     .lb-prev{left:6px}  
     .lb-next{right:6px}  
-  
+
     /* ------------------ FOOTER (mobile-first) ------------------ */  
     footer{border-top:1px solid var(--border); background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02))}  
     .foot{display:grid; gap:1.2rem; grid-template-columns:1fr}  
@@ -177,50 +185,50 @@
     .foot a{color:var(--text)}  
     .foot-bottom{display:flex; flex-direction:column; align-items:flex-start; gap:1rem; border-top:1px solid var(--border); padding-top:1rem; margin-top:1rem}  
     .small{color:var(--muted); font-size:.95rem}  
-  
+
     /* Sticky mobile CTA bar */  
     .cta-bar{position:fixed; bottom:calc(12px + env(safe-area-inset-bottom)); left:50%; transform:translateX(-50%); z-index:70; display:flex}  
     .cta-bar .btn{padding:.75rem 1rem; margin-right:.6rem}  
-  
+
     /* Reveal on scroll */  
     .reveal{opacity:0; transform:translateY(14px); will-change:opacity, transform; transition:opacity .6s cubic-bezier(.22,.61,.36,1), transform .6s cubic-bezier(.22,.61,.36,1); transition-delay:var(--d,0s)}  
     .reveal.show{opacity:1; transform:none}  
-  
+
     /* Disable reveal on phones to prevent jumps */  
     @media (max-width: 680px){  
       .reveal{opacity:1 !important; transform:none !important; transition:none !important}  
     }  
-  
+
     /* ------------------ RESPONSIVE (min-width) ------------------ */  
     @media (min-width: 681px){  
       /* Swap variants */  
       .only-mobile{display:none}  
       .only-desktop{display:block}  
-  
+
       /* Desktop nav shows; hamburger hides */  
       .navlinks{display:flex; gap:1.2rem; align-items:center}  
       .navlinks a{color:var(--muted); transition:color .2s ease, transform .2s ease}  
       .navlinks a:hover{color:var(--text); transform:translateY(-1px)}  
       .mobile-toggle{display:none}  
-  
+
       /* Make overlay menu a side-drawer */  
       .mobile-panel{inset:0 0 0 30%; max-width:480px; margin-left:auto; border-left:1px solid var(--border); border-top:none}  
-  
+
       /* Desktop gallery columns */  
       .masonry{columns:3}  
-  
+
       /* Desktop lightbox controls offset */  
       .lb-prev{left:-14px}  
       .lb-next{right:-14px}  
-  
+
       /* Footer layout */  
       .foot{grid-template-columns:2fr 1fr 1fr}  
       .foot .group{border-top:none; padding-top:4px}  
       .foot-bottom{flex-direction:row; align-items:center}  
-  
+
       /* Container padding tightened */  
       .container{padding:0 20px}  
-  
+
       /* Remove mobile CTA reserve */  
       .cta-bar{display:none}  
       body{padding-bottom:0}  
@@ -228,49 +236,56 @@
     @media (min-width: 1100px){  
       .masonry{columns:4}  
     }  
-  
+
     @media (prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important} }  
-  
+
     /* Anchor offset for sticky nav + lock scroll when menu open */  
     html{ scroll-padding-top: var(--nav-h); }  
     html.menu-open, body.menu-open { overflow:hidden; }  
-  
-/* HIDE ONLY ON DESKTOP, NOT ON MOBILE */  
-@media (min-width: 681px){  
-  .backdrop, .mobile-panel { display: none; }  
-}  
-@media (max-width: 680px){  
-  .backdrop { display: block; }       /* so it can fade in */  
-  .mobile-panel { display: flex; }     /* so the drawer can slide in */  
-}  
-  
-/* Ensure the drawer actually opens when body has menu-open */  
-body.menu-open .backdrop{ opacity:1; pointer-events:auto; }  
-body.menu-open .mobile-panel{ transform: translateX(0); }  
-  
-/* Reduced-motion fallback: make links visible even if animations are off */  
-@media (prefers-reduced-motion: reduce){  
-  .mobile-panel a{ opacity:1 !important; transform:none !important; }  
-}  
-  
-  </style>  </head>  
+
+    /* HIDE ONLY ON DESKTOP, NOT ON MOBILE */  
+    @media (min-width: 681px){  
+      .backdrop, .mobile-panel { display: none; }  
+    }  
+    @media (max-width: 680px){  
+      .backdrop { display: block; }       /* so it can fade in */  
+      .mobile-panel { display: flex; }     /* so the drawer can slide in */  
+    }  
+
+    /* Ensure the drawer actually opens when body has menu-open */  
+    body.menu-open .backdrop{ opacity:1; pointer-events:auto; }  
+    body.menu-open .mobile-panel{ transform: translateX(0); }  
+
+    /* Reduced-motion fallback: make links visible even if animations are off */  
+    @media (prefers-reduced-motion: reduce){  
+      .mobile-panel a{ opacity:1 !important; transform:none !important; }  
+    }  
+  </style>  
+</head>  
+
 <body>  
-  <a href="#content" class="sr-only">Skip to content</a>    <!-- NAV -->    <nav class="nav" aria-label="Primary">  
+  <a href="#content" class="sr-only">Skip to content</a>
+
+  <!-- NAV -->
+  <nav class="nav" aria-label="Primary">  
     <div class="container inner">  
-      <a class="brand" href="index.html" aria-label="Gabakssteel logo">GABAKS<span>STEEL</span></a>  <div class="navlinks">  
-    <a href="services.html">Services</a>  
-    <a href="projects.html" aria-current="page">Projects</a>  
-    <a href="about.html">About</a>  
-    <a href="contact.html" class="btn" style="padding:.6rem 1rem;">Request a Quote</a>  
-  </div>  
+      <a class="brand" href="index.html" aria-label="Gabakssteel logo">GABAKS<span>STEEL</span></a>  
+      <div class="navlinks">  
+        <a href="services.html">Services</a>  
+        <a href="projects.html" aria-current="page">Projects</a>  
+        <a href="about.html">About</a>  
+        <a href="contact.html" class="btn" style="padding:.6rem 1rem;">Request a Quote</a>  
+      </div>  
 
-  <button class="mobile-toggle" aria-controls="mobilePanel" aria-expanded="false" id="mobileToggle">  
-    <span class="sr-only">Toggle menu</span>  
-    <span class="bars" aria-hidden="true"></span>  
-  </button>  
-</div>
+      <button class="mobile-toggle" aria-controls="mobilePanel" aria-expanded="false" id="mobileToggle">  
+        <span class="sr-only">Toggle menu</span>  
+        <span class="bars" aria-hidden="true"></span>  
+      </button>  
+    </div>
+  </nav>
 
-  </nav>    <!-- Mobile overlay -->    <div class="backdrop" id="backdrop" hidden></div>  
+  <!-- Mobile overlay -->
+  <div class="backdrop" id="backdrop" hidden></div>  
   <aside class="mobile-panel" id="mobilePanel" hidden>  
     <header>  
       <span class="brand">GABAKS<span>STEEL</span></span>  
@@ -288,31 +303,52 @@ body.menu-open .mobile-panel{ transform: translateX(0); }
       <a class="btn btn-block" href="tel:+2347010104012" title="Call">Call us</a>  
       <a class="btn btn-outline btn-block" href="https://wa.me/2348025532696?text=Hi%20Gabakssteel%2C%20I%20need%20a%20quote." target="_blank" rel="noopener" title="WhatsApp">Chat on WhatsApp</a>  
     </div>  
-  </aside>    <!-- DESKTOP HEADER -->    <header class="hero only-desktop" id="content">  
+  </aside>
+
+  <!-- DESKTOP HEADER -->
+  <header class="hero only-desktop" id="content">  
     <div class="mesh" aria-hidden="true"></div>  
     <div class="container hero-wrap">  
       <h1 class="headline">Projects</h1>  
-      <p class="sub">Browse our recent installations. Filter by category or search by location (e.g., Oshodi, Ikeja). Tap any image to open the viewer.</p>  <div class="toolbar">  
-    <div class="chips" role="tablist" aria-label="Project categories">  
-      <button class="chip active" data-filter="all" role="tab" aria-selected="true">All</button>  
-      <button class="chip" data-filter="gates" role="tab" aria-selected="false">Gates & Doors</button>  
-      <button class="chip" data-filter="windows" role="tab" aria-selected="false">Windows & Burglary</button>  
-      <button class="chip" data-filter="rails" role="tab" aria-selected="false">Rails & Staircases</button>  
-      <button class="chip" data-filter="poles" role="tab" aria-selected="false">Street-light Poles</button>  
-      <button class="chip" data-filter="tanks" role="tab" aria-selected="false">Overhead Tanks</button>  
-      <button class="chip" data-filter="warehouses" role="tab" aria-selected="false">Warehouses & Roofing</button>  
-    </div>  
-    <div class="search">  
-      <input id="search" type="search" placeholder="Search location or notes…" aria-label="Search projects" />  
-      <select id="sort" class="sort" aria-label="Sort projects">  
-        <option value="new">Newest first</option>  
-        <option value="old">Oldest first</option>  
-      </select>  
-    </div>  
-  </div>  
-</div>
+      <p class="sub">Browse our recent installations. Filter by category or search by location (e.g., Oshodi, Ikeja). Tap any image to open the viewer.</p>
 
-  </header>    <!-- MOBILE HEADER -->    <header class="hero hero-mobile only-mobile" aria-label="Projects intro (mobile)">  
+      <div class="toolbar">  
+        <div class="chips" role="tablist" aria-label="Project categories">
+          <button class="chip active" data-filter="all" role="tab" aria-selected="true">All</button>
+
+          <!-- Core + expanded -->
+          <button class="chip" data-filter="gates" role="tab">Gates</button>
+          <button class="chip" data-filter="doors" role="tab">Doors</button>
+          <button class="chip" data-filter="windows" role="tab">Windows</button>
+          <button class="chip" data-filter="burglary" role="tab">Burglary Proofs</button>
+          <button class="chip" data-filter="rails" role="tab">Rails</button>
+          <button class="chip" data-filter="staircases" role="tab">Staircases</button>
+          <button class="chip" data-filter="poles" role="tab">Street-light Poles</button>
+          <button class="chip" data-filter="tanks" role="tab">Overhead Tanks</button>
+          <button class="chip" data-filter="warehouses" role="tab">Warehouses</button>
+          <button class="chip" data-filter="roofing" role="tab">Iron Roofing</button>
+
+          <!-- Outdoor frames -->
+          <button class="chip" data-filter="pergola" role="tab">Pergola Frames</button>
+          <button class="chip" data-filter="gazebo" role="tab">Gazebo Frames</button>
+          <button class="chip" data-filter="carports" role="tab">Carports</button>
+          <button class="chip" data-filter="skylight" role="tab">Skylights</button>
+          <button class="chip" data-filter="shutters" role="tab">Roller Shutters</button>
+        </div>
+
+        <div class="search">  
+          <input id="search" type="search" placeholder="Search location or notes…" aria-label="Search projects" />  
+          <select id="sort" class="sort" aria-label="Sort projects">  
+            <option value="new">Newest first</option>  
+            <option value="old">Oldest first</option>  
+          </select>  
+        </div>  
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE HEADER -->
+  <header class="hero hero-mobile only-mobile" aria-label="Projects intro (mobile)">  
     <div class="hero-mobile-media" aria-hidden="true">  
       <picture>  
         <source srcset="images/og-projects.webp" type="image/webp">  
@@ -327,15 +363,27 @@ body.menu-open .mobile-panel{ transform: translateX(0); }
         <a class="btn btn-outline btn-block" href="https://wa.me/2348025532696?text=Hi%20Gabakssteel%2C%20I%20need%20a%20quote." target="_blank" rel="noopener">Chat on WhatsApp</a>  
       </div>  
     </div>  
-  </header>    <!-- MOBILE STICKY FILTERS -->    <div class="toolbar-mobile only-mobile" aria-label="Filters">  
-    <div class="scroll-chips" role="tablist" aria-label="Project categories (mobile)">  
-      <button class="chip active" data-filter="all" role="tab" aria-selected="true">All</button>  
-      <button class="chip" data-filter="gates" role="tab" aria-selected="false">Gates</button>  
-      <button class="chip" data-filter="windows" role="tab" aria-selected="false">Windows</button>  
-      <button class="chip" data-filter="rails" role="tab" aria-selected="false">Rails</button>  
-      <button class="chip" data-filter="poles" role="tab" aria-selected="false">Poles</button>  
-      <button class="chip" data-filter="tanks" role="tab" aria-selected="false">Tanks</button>  
-      <button class="chip" data-filter="warehouses" role="tab" aria-selected="false">Warehouses</button>  
+  </header>
+
+  <!-- MOBILE STICKY FILTERS -->
+  <div class="toolbar-mobile only-mobile" aria-label="Filters">  
+    <div class="scroll-chips" role="tablist" aria-label="Project categories (mobile)">
+      <button class="chip active" data-filter="all" role="tab" aria-selected="true">All</button>
+      <button class="chip" data-filter="gates" role="tab">Gates</button>
+      <button class="chip" data-filter="doors" role="tab">Doors</button>
+      <button class="chip" data-filter="windows" role="tab">Windows</button>
+      <button class="chip" data-filter="burglary" role="tab">Burglary</button>
+      <button class="chip" data-filter="rails" role="tab">Rails</button>
+      <button class="chip" data-filter="staircases" role="tab">Staircases</button>
+      <button class="chip" data-filter="poles" role="tab">Poles</button>
+      <button class="chip" data-filter="tanks" role="tab">Tanks</button>
+      <button class="chip" data-filter="warehouses" role="tab">Warehouses</button>
+      <button class="chip" data-filter="roofing" role="tab">Roofing</button>
+      <button class="chip" data-filter="pergola" role="tab">Pergola</button>
+      <button class="chip" data-filter="gazebo" role="tab">Gazebo</button>
+      <button class="chip" data-filter="carports" role="tab">Carports</button>
+      <button class="chip" data-filter="skylight" role="tab">Skylights</button>
+      <button class="chip" data-filter="shutters" role="tab">Shutters</button>
     </div>  
     <div class="m-search-wrap">  
       <div class="m-search" id="mSearch">  
@@ -349,100 +397,220 @@ body.menu-open .mobile-panel{ transform: translateX(0); }
       </div>  
       <button class="chip m-search-toggle" id="mSearchToggle" aria-expanded="false">Search & Sort</button>  
     </div>  
-  </div>    <!-- GALLERY -->    <main class="container gallery" id="gallery">  
+  </div>
+
+  <!-- GALLERY -->
+  <main class="container gallery" id="gallery">  
     <div class="masonry" id="grid">  
-      <!-- SAMPLE ITEMS -->  
+
+      <!-- SAMPLE / EXISTING ITEMS -->
       <figure class="item reveal" data-cat="gates" data-date="2025-09-01" data-tags="gate oshodi estate modern">  
         <picture>  
           <source srcset="images/projects/gate-01.webp" type="image/webp">  
           <img src="images/projects/gate-01.jpg" alt="Decorative steel gate — Oshodi estate" loading="lazy" width="800" height="600" sizes="(max-width:680px) 50vw, 33vw"/>  
         </picture>  
         <figcaption class="caption">Gate • Oshodi (2025)</figcaption>  
-      </figure>  <figure class="item reveal" data-cat="rails" data-date="2025-08-21" data-tags="stair rail ikeja laser-cut">  
-    <picture>  
-      <source srcset="images/projects/rail-01.webp" type="image/webp">  
-      <img src="images/projects/rail-01.jpg" alt="Laser-cut stair rail — Ikeja" loading="lazy" width="800" height="600" sizes="(max-width:680px) 50vw, 33vw"/>  
-    </picture>  
-    <figcaption class="caption">Rails • Ikeja (2025)</figcaption>  
-  </figure>  
+      </figure>
 
-  <figure class="item reveal" data-cat="poles" data-date="2025-08-10" data-tags="street light pole isolo double arm">  
-    <picture>  
-      <source srcset="images/projects/pole-01.webp" type="image/webp">  
-      <img src="images/projects/pole-01.jpg" alt="Street-light pole — Isolo" loading="lazy" width="800" height="600" sizes="(max-width:680px) 50vw, 33vw"/>  
-    </picture>  
-    <figcaption class="caption">Light Pole • Isolo (2025)</figcaption>  
-  </figure>  
+      <figure class="item reveal" data-cat="rails" data-date="2025-08-21" data-tags="stair rail ikeja laser-cut">  
+        <picture>  
+          <source srcset="images/projects/rail-01.webp" type="image/webp">  
+          <img src="images/projects/rail-01.jpg" alt="Laser-cut stair rail — Ikeja" loading="lazy" width="800" height="600" sizes="(max-width:680px) 50vw, 33vw"/>  
+        </picture>  
+        <figcaption class="caption">Rails • Ikeja (2025)</figcaption>  
+      </figure>  
 
-  <figure class="item reveal" data-cat="tanks" data-date="2025-07-30" data-tags="overhead tank tower ladder">  
-    <picture>  
-      <source srcset="images/projects/tank-01.webp" type="image/webp">  
-      <img src="images/projects/tank-01.jpg" alt="Overhead water tank tower" loading="lazy" width="800" height="600" sizes="(max-width:680px) 50vw, 33vw"/>  
-    </picture>  
-    <figcaption class="caption">Overhead Tank (2025)</figcaption>  
-  </figure>  
+      <figure class="item reveal" data-cat="poles" data-date="2025-08-10" data-tags="street light pole isolo double arm">  
+        <picture>  
+          <source srcset="images/projects/pole-01.webp" type="image/webp">  
+          <img src="images/projects/pole-01.jpg" alt="Street-light pole — Isolo" loading="lazy" width="800" height="600" sizes="(max-width:680px) 50vw, 33vw"/>  
+        </picture>  
+        <figcaption class="caption">Light Pole • Isolo (2025)</figcaption>  
+      </figure>  
 
-  <figure class="item reveal" data-cat="warehouses" data-date="2025-07-02" data-tags="warehouse roofing truss">  
-    <picture>  
-      <source srcset="images/projects/warehouse-01.webp" type="image/webp">  
-      <img src="images/projects/warehouse-01.jpg" alt="Steel warehouse roofing" loading="lazy" width="800" height="600" sizes="(max-width:680px) 50vw, 33vw"/>  
-    </picture>  
-    <figcaption class="caption">Warehouse Roofing (2025)</figcaption>  
-  </figure>  
+      <figure class="item reveal" data-cat="tanks" data-date="2025-07-30" data-tags="overhead tank tower ladder">  
+        <picture>  
+          <source srcset="images/projects/tank-01.webp" type="image/webp">  
+          <img src="images/projects/tank-01.jpg" alt="Overhead water tank tower" loading="lazy" width="800" height="600" sizes="(max-width:680px) 50vw, 33vw"/>  
+        </picture>  
+        <figcaption class="caption">Overhead Tank (2025)</figcaption>  
+      </figure>  
 
-  <figure class="item reveal" data-cat="windows" data-date="2025-06-19" data-tags="window burglary proof retrofitting surulere">  
-    <picture>  
-      <source srcset="images/projects/window-01.webp" type="image/webp">  
-      <img src="images/projects/window-01.jpg" alt="Burglar-proof window — Surulere" loading="lazy" width="800" height="600" sizes="(max-width:680px) 50vw, 33vw"/>  
-    </picture>  
-    <figcaption class="caption">Windows • Surulere (2025)</figcaption>  
-  </figure>  
+      <figure class="item reveal" data-cat="warehouses" data-date="2025-07-02" data-tags="warehouse roofing truss">  
+        <picture>  
+          <source srcset="images/projects/warehouse-01.webp" type="image/webp">  
+          <img src="images/projects/warehouse-01.jpg" alt="Steel warehouse roofing" loading="lazy" width="800" height="600" sizes="(max-width:680px) 50vw, 33vw"/>  
+        </picture>  
+        <figcaption class="caption">Warehouse Roofing (2025)</figcaption>  
+      </figure>  
 
-  <!-- More -->  
-  <figure class="item reveal" data-cat="gates" data-date="2025-05-10" data-tags="gate lekki decorative">  
-    <img src="images/projects/gate-02.jpg" alt="Modern estate gate — Lekki" loading="lazy" width="800" height="600" sizes="(max-width:680px) 50vw, 33vw"/>  
-    <figcaption class="caption">Gate • Lekki (2025)</figcaption>  
-  </figure>  
-  <figure class="item reveal" data-cat="rails" data-date="2025-05-02" data-tags="balustrade victoria island stair vi">  
-    <img src="images/projects/rail-02.jpg" alt="Balustrade — Victoria Island" loading="lazy" width="800" height="600" sizes="(max-width:680px) 50vw, 33vw"/>  
-    <figcaption class="caption">Rails • VI (2025)</figcaption>  
-  </figure>  
-  <figure class="item reveal" data-cat="poles" data-date="2025-04-13" data-tags="street light ajah single arm">  
-    <img src="images/projects/pole-02.jpg" alt="Street-light pole — Ajah" loading="lazy" width="800" height="600" sizes="(max-width:680px) 50vw, 33vw"/>  
-    <figcaption class="caption">Light Pole • Ajah (2025)</figcaption>  
-  </figure>  
-  <figure class="item reveal" data-cat="tanks" data-date="2025-03-25" data-tags="tank ogba platform ladder">  
-    <img src="images/projects/tank-02.jpg" alt="Overhead tank — Ogba" loading="lazy" width="800" height="600" sizes="(max-width:680px) 50vw, 33vw"/>  
-    <figcaption class="caption">Overhead Tank • Ogba (2025)</figcaption>  
-  </figure>  
-  <figure class="item reveal" data-cat="warehouses" data-date="2025-03-11" data-tags="warehouse ikeja trusses">  
-    <img src="images/projects/warehouse-02.jpg" alt="Warehouse trusses — Ikeja" loading="lazy" width="800" height="600" sizes="(max-width:680px) 50vw, 33vw"/>  
-    <figcaption class="caption">Warehouse • Ikeja (2025)</figcaption>  
-  </figure>  
-  <figure class="item reveal" data-cat="windows" data-date="2025-02-16" data-tags="window burglary abule-egba">  
-    <img src="images/projects/window-02.jpg" alt="Burglar-proof window — Abule-Egba" loading="lazy" width="800" height="600" sizes="(max-width:680px) 50vw, 33vw"/>  
-    <figcaption class="caption">Windows • Abule-Egba (2025)</figcaption>  
-  </figure>  
-<!-- Roller Shutter Door (closed) -->
-<figure class="item reveal" data-cat="gates" data-date="2025-09-24"
-        data-tags="roller shutter door ikeja shopfront security closed">
-  <picture>
-    <source srcset="images/projects/shutter-01.webp" type="image/webp">
-    <img src="images/projects/shutter-01.jpg"
-         alt="Roller shutter door (closed) — Ikeja shopfront"
-         loading="lazy" width="800" height="600"
-         sizes="(max-width:680px) 50vw, 33vw">
-  </picture>
-  <figcaption class="caption">Roller Shutter • Ikeja (2025)</figcaption>
-</figure>
+      <figure class="item reveal" data-cat="windows" data-date="2025-06-19" data-tags="window burglary proof retrofitting surulere">  
+        <picture>  
+          <source srcset="images/projects/window-01.webp" type="image/webp">  
+          <img src="images/projects/window-01.jpg" alt="Burglar-proof window — Surulere" loading="lazy" width="800" height="600" sizes="(max-width:680px) 50vw, 33vw"/>  
+        </picture>  
+        <figcaption class="caption">Windows • Surulere (2025)</figcaption>  
+      </figure>  
 
-</div>  
+      <figure class="item reveal" data-cat="gates" data-date="2025-05-10" data-tags="gate lekki decorative">  
+        <img src="images/projects/gate-02.jpg" alt="Modern estate gate — Lekki" loading="lazy" width="800" height="600" sizes="(max-width:680px) 50vw, 33vw"/>  
+        <figcaption class="caption">Gate • Lekki (2025)</figcaption>  
+      </figure>  
 
-<div class="load-more">  
-  <button id="loadMore" class="chip" aria-label="Load more projects">Load more</button>  
-</div>
+      <figure class="item reveal" data-cat="rails" data-date="2025-05-02" data-tags="balustrade victoria island stair vi">  
+        <img src="images/projects/rail-02.jpg" alt="Balustrade — Victoria Island" loading="lazy" width="800" height="600" sizes="(max-width:680px) 50vw, 33vw"/>  
+        <figcaption class="caption">Rails • VI (2025)</figcaption>  
+      </figure>  
 
-  </main>    <!-- CTA STRIP -->    <section>  
+      <figure class="item reveal" data-cat="poles" data-date="2025-04-13" data-tags="street light ajah single arm">  
+        <img src="images/projects/pole-02.jpg" alt="Street-light pole — Ajah" loading="lazy" width="800" height="600" sizes="(max-width:680px) 50vw, 33vw"/>  
+        <figcaption class="caption">Light Pole • Ajah (2025)</figcaption>  
+      </figure>  
+
+      <figure class="item reveal" data-cat="tanks" data-date="2025-03-25" data-tags="tank ogba platform ladder">  
+        <img src="images/projects/tank-02.jpg" alt="Overhead tank — Ogba" loading="lazy" width="800" height="600" sizes="(max-width:680px) 50vw, 33vw"/>  
+        <figcaption class="caption">Overhead Tank • Ogba (2025)</figcaption>  
+      </figure>  
+
+      <figure class="item reveal" data-cat="warehouses" data-date="2025-03-11" data-tags="warehouse ikeja trusses">  
+        <img src="images/projects/warehouse-02.jpg" alt="Warehouse trusses — Ikeja" loading="lazy" width="800" height="600" sizes="(max-width:680px) 50vw, 33vw"/>  
+        <figcaption class="caption">Warehouse • Ikeja (2025)</figcaption>  
+      </figure>  
+
+      <figure class="item reveal" data-cat="windows" data-date="2025-02-16" data-tags="window burglary abule-egba">  
+        <img src="images/projects/window-02.jpg" alt="Burglar-proof window — Abule-Egba" loading="lazy" width="800" height="600" sizes="(max-width:680px) 50vw, 33vw"/>  
+        <figcaption class="caption">Windows • Abule-Egba (2025)</figcaption>  
+      </figure>  
+
+      <!-- ROLLER SHUTTER (existing, changed category to 'shutters') -->
+      <figure class="item reveal" data-cat="shutters" data-date="2025-09-24"
+              data-tags="roller shutter door ikeja shopfront security closed">
+        <picture>
+          <source srcset="images/projects/shutter-01.webp" type="image/webp">
+          <img src="images/projects/shutter-01.jpg"
+               alt="Roller shutter door (closed) — Ikeja shopfront"
+               loading="lazy" width="800" height="600"
+               sizes="(max-width:680px) 50vw, 33vw">
+        </picture>
+        <figcaption class="caption">Roller Shutter • Ikeja (2025)</figcaption>
+      </figure>
+
+      <!-- ******** NEW CATEGORIES / EXAMPLES ******** -->
+
+      <!-- DOORS -->
+      <figure class="item reveal" data-cat="doors" data-date="2025-08-26"
+              data-tags="security door yaba entrance">
+        <picture>
+          <source srcset="images/projects/door-01.webp" type="image/webp">
+          <img src="images/projects/door-01.jpg"
+               alt="Security steel door — Yaba entrance"
+               loading="lazy" width="800" height="600"
+               sizes="(max-width:680px) 50vw, 33vw">
+        </picture>
+        <figcaption class="caption">Door • Yaba (2025)</figcaption>
+      </figure>
+
+      <!-- BURGLARY PROOFS -->
+      <figure class="item reveal" data-cat="burglary" data-date="2025-07-14"
+              data-tags="burglary proof grille egbeda window bars">
+        <picture>
+          <source srcset="images/projects/burglary-01.webp" type="image/webp">
+          <img src="images/projects/burglary-01.jpg"
+               alt="Burglar-proof grille — Egbeda"
+               loading="lazy" width="800" height="600"
+               sizes="(max-width:680px) 50vw, 33vw">
+        </picture>
+        <figcaption class="caption">Burglary Proof • Egbeda (2025)</figcaption>
+      </figure>
+
+      <!-- STAIRCASES -->
+      <figure class="item reveal" data-cat="staircases" data-date="2025-06-22"
+              data-tags="staircase spiral ikorodu indoor">
+        <img src="images/projects/staircase-01.jpg"
+             alt="Spiral staircase — Ikorodu"
+             loading="lazy" width="800" height="600"
+             sizes="(max-width:680px) 50vw, 33vw">
+        <figcaption class="caption">Staircase • Ikorodu (2025)</figcaption>
+      </figure>
+
+      <!-- IRON ROOFING -->
+      <figure class="item reveal" data-cat="roofing" data-date="2025-08-03"
+              data-tags="iron roofing frame badagry truss">
+        <picture>
+          <source srcset="images/projects/roofing-01.webp" type="image/webp">
+          <img src="images/projects/roofing-01.jpg"
+               alt="Iron roofing frame — Badagry"
+               loading="lazy" width="800" height="600"
+               sizes="(max-width:680px) 50vw, 33vw">
+        </picture>
+        <figcaption class="caption">Iron Roofing • Badagry (2025)</figcaption>
+      </figure>
+
+      <!-- PERGOLA FRAME -->
+      <figure class="item reveal" data-cat="pergola" data-date="2025-07-18"
+              data-tags="pergola frame lekki outdoor shade">
+        <img src="images/projects/pergola-01.jpg"
+             alt="Steel pergola frame — Lekki"
+             loading="lazy" width="800" height="600"
+             sizes="(max-width:680px) 50vw, 33vw">
+        <figcaption class="caption">Pergola • Lekki (2025)</figcaption>
+      </figure>
+
+      <!-- GAZEBO FRAME -->
+      <figure class="item reveal" data-cat="gazebo" data-date="2025-07-09"
+              data-tags="gazebo frame magodo outdoor seating">
+        <img src="images/projects/gazebo-01.jpg"
+             alt="Gazebo frame — Magodo"
+             loading="lazy" width="800" height="600"
+             sizes="(max-width:680px) 50vw, 33vw">
+        <figcaption class="caption">Gazebo • Magodo (2025)</figcaption>
+      </figure>
+
+      <!-- CARPORT -->
+      <figure class="item reveal" data-cat="carports" data-date="2025-08-28"
+              data-tags="carport canopy frame ikeja driveway">
+        <picture>
+          <source srcset="images/projects/carport-01.webp" type="image/webp">
+          <img src="images/projects/carport-01.jpg"
+               alt="Carport canopy frame — Ikeja driveway"
+               loading="lazy" width="800" height="600"
+               sizes="(max-width:680px) 50vw, 33vw">
+        </picture>
+        <figcaption class="caption">Carport • Ikeja (2025)</figcaption>
+      </figure>
+
+      <!-- SKYLIGHT -->
+      <figure class="item reveal" data-cat="skylight" data-date="2025-06-30"
+              data-tags="skylight steel frame victoria island roof light">
+        <img src="images/projects/skylight-01.jpg"
+             alt="Skylight frame — Victoria Island"
+             loading="lazy" width="800" height="600"
+             sizes="(max-width:680px) 50vw, 33vw">
+        <figcaption class="caption">Skylight • VI (2025)</figcaption>
+      </figure>
+
+      <!-- ROLLER SHUTTER (second sample) -->
+      <figure class="item reveal" data-cat="shutters" data-date="2025-09-24"
+              data-tags="roller shutter door ikeja shopfront security open">
+        <picture>
+          <source srcset="images/projects/shutter-02.webp" type="image/webp">
+          <img src="images/projects/shutter-02.jpg"
+               alt="Roller shutter door (open) — Ikeja shopfront"
+               loading="lazy" width="800" height="600"
+               sizes="(max-width:680px) 50vw, 33vw">
+        </picture>
+        <figcaption class="caption">Roller Shutter • Ikeja (2025)</figcaption>
+      </figure>
+
+    </div>  
+
+    <div class="load-more">  
+      <button id="loadMore" class="chip" aria-label="Load more projects">Load more</button>  
+    </div>
+  </main>
+
+  <!-- CTA STRIP -->
+  <section>  
     <div class="container" style="margin-top:.2rem">  
       <div class="strip" style="border:1px solid var(--border); background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03)); border-radius:var(--radius); padding:1rem; display:flex; align-items:center; justify-content:space-between; gap:1rem">  
         <div>  
@@ -455,7 +623,10 @@ body.menu-open .mobile-panel{ transform: translateX(0); }
         </div>  
       </div>  
     </div>  
-  </section>    <!-- FOOTER -->    <footer>  
+  </section>
+
+  <!-- FOOTER -->
+  <footer>  
     <div class="container" style="padding:2rem 0">  
       <div class="foot">  
         <div class="group">  
@@ -482,11 +653,17 @@ body.menu-open .mobile-panel{ transform: translateX(0); }
         </div>  
       </div>  
     </div>  
-  </footer>    <!-- Sticky CTA for mobile -->    <div class="cta-bar" aria-hidden="true">  
+  </footer>
+
+  <!-- Sticky CTA for mobile -->
+  <div class="cta-bar" aria-hidden="true">  
     <a class="btn" href="tel:+2347010104012" title="Call">Call</a>  
     <a class="btn btn-outline" href="https://wa.me/2348025532696?text=Hi%20Gabakssteel%2C%20I%20need%20a%20quote." target="_blank" rel="noopener" title="WhatsApp">WhatsApp</a>  
     <a class="btn" href="contact.html" title="Request a Quote">Quote</a>  
-  </div>    <!-- LIGHTBOX -->    <div class="lightbox" id="lightbox" aria-modal="true" role="dialog" aria-label="Image viewer">  
+  </div>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" aria-modal="true" role="dialog" aria-label="Image viewer">  
     <div class="lightbox-inner">  
       <img src="" alt="" id="lbImg">  
       <div class="lb-cap" id="lbCap"></div>  
@@ -494,23 +671,25 @@ body.menu-open .mobile-panel{ transform: translateX(0); }
       <button class="lb-prev" id="lbPrev" aria-label="Previous">‹</button>  
       <button class="lb-next" id="lbNext" aria-label="Next">›</button>  
     </div>  
-  </div>    <script>  
+  </div>
+
+  <script>  
     // Helpers  
     const $ = (s, r=document) => r.querySelector(s);  
-  
+
     // Mobile menu  
     const toggle = $('#mobileToggle');  
     const closeBtn = $('#closePanel');  
     const panel = $('#mobilePanel');  
     const backdrop = $('#backdrop');  
-  
+
     function openMenu(open){  
       document.body.classList.toggle('menu-open', open);  
       document.documentElement.classList.toggle('menu-open', open);  
       toggle?.setAttribute('aria-expanded', String(open));  
       panel.hidden = !open;  
       backdrop.hidden = !open;  
-  
+
       const links = panel?.querySelectorAll('nav a') || [];  
       links.forEach((a, i)=>{  
         a.style.animation = 'none'; a.offsetHeight;  
@@ -522,32 +701,32 @@ body.menu-open .mobile-panel{ transform: translateX(0); }
     closeBtn?.addEventListener('click', ()=> openMenu(false));  
     backdrop?.addEventListener('click', ()=> openMenu(false));  
     window.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') openMenu(false) });  
-  
+
     // Reveal on scroll  
     const io = new IntersectionObserver(entries=>{  
       entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target) }});  
     }, {threshold:.15});  
     document.querySelectorAll('.reveal').forEach(el=>io.observe(el));  
-  
+
     // Filtering / search / sort / load more  
     const grid = document.getElementById('grid');  
     const items = Array.from(grid.querySelectorAll('.item'));  
     const chips = Array.from(document.querySelectorAll('.chip[data-filter]'));  
-  
+
     const search = document.getElementById('search');          // desktop  
     const sortSel = document.getElementById('sort');           // desktop  
     const mSearch = document.getElementById('mSearch');        // mobile wrapper  
     const mSearchInput = document.getElementById('mSearchInput');  
     const mSort = document.getElementById('mSort');  
     const mSearchToggle = document.getElementById('mSearchToggle');  
-  
+
     const loadBtn = document.getElementById('loadMore');  
-  
+
     let currentFilter = 'all';  
     let visibleCount = 9;  
-  
+
     const normalize = s => (s||'').toLowerCase();  
-  
+
     // Keep mobile & desktop inputs in sync  
     function syncInputs(from){  
       if(from === 'desktop'){  
@@ -558,7 +737,7 @@ body.menu-open .mobile-panel{ transform: translateX(0); }
         if(sortSel) sortSel.value = mSort.value;  
       }  
     }  
-  
+
     function filteredList(){  
       const q = normalize((search?.value || '').trim());  
       let list = items.filter(it => {  
@@ -576,7 +755,7 @@ body.menu-open .mobile-panel{ transform: translateX(0); }
       });  
       return list;  
     }  
-  
+
     function apply(){  
       const list = filteredList();  
       items.forEach(it=>it.style.display='none');  
@@ -585,17 +764,17 @@ body.menu-open .mobile-panel{ transform: translateX(0); }
       // rebuild sequence for lightbox if open  
       if(lb.classList.contains('open')) sequence = list;  
     }  
-  
+
     chips.forEach(ch => ch.addEventListener('click', ()=>{  
       chips.forEach(c=>{ c.classList.remove('active'); c.setAttribute('aria-selected','false'); });  
       ch.classList.add('active'); ch.setAttribute('aria-selected','true');  
       currentFilter = ch.dataset.filter; visibleCount = 9; apply();  
     }));  
-  
+
     // Desktop inputs  
     search?.addEventListener('input', ()=>{ syncInputs('desktop'); visibleCount = 9; apply(); });  
     sortSel?.addEventListener('change', ()=>{ syncInputs('desktop'); apply(); });  
-  
+
     // Mobile inputs  
     mSearchInput.addEventListener('input', ()=>{ syncInputs('mobile'); visibleCount = 9; apply(); });  
     mSort.addEventListener('change', ()=>{ syncInputs('mobile'); apply(); });  
@@ -605,9 +784,9 @@ body.menu-open .mobile-panel{ transform: translateX(0); }
       mSearchToggle.setAttribute('aria-expanded', String(open));  
       if(open) mSearchInput.focus();  
     });  
-  
+
     loadBtn.addEventListener('click', ()=>{ visibleCount += 9; apply(); });  
-  
+
     // Auto "infinite" load on mobile when Load more is visible  
     const mobInfinite = new IntersectionObserver(entries=>{  
       entries.forEach(e=>{  
@@ -617,11 +796,11 @@ body.menu-open .mobile-panel{ transform: translateX(0); }
       });  
     }, {rootMargin:'200px'});  
     mobInfinite.observe(loadBtn);  
-  
+
     // Initialize  
     syncInputs('desktop');  
     apply();  
-  
+
     // Lightbox  
     const lb = document.getElementById('lightbox');  
     const lbImg = document.getElementById('lbImg');  
@@ -629,10 +808,10 @@ body.menu-open .mobile-panel{ transform: translateX(0); }
     const lbClose = document.getElementById('lbClose');  
     const lbPrev = document.getElementById('lbPrev');  
     const lbNext = document.getElementById('lbNext');  
-  
+
     let sequence = [];  
     let index = 0;  
-  
+
     function buildSequence(){ return filteredList().filter(el=>el.style.display !== 'none'); }  
     function openAt(el){  
       sequence = buildSequence();  
@@ -651,23 +830,23 @@ body.menu-open .mobile-panel{ transform: translateX(0); }
       const p1 = sequence[index-1]?.querySelector('img'); if(p1){ const p=new Image(); p.src = p1.currentSrc || p1.src; }  
     }  
     function close(){ lb.classList.remove('open'); }  
-  
+
     grid.addEventListener('click', e=>{  
       const fig = e.target.closest('.item'); if(!fig) return; openAt(fig);  
     });  
     lbClose.addEventListener('click', close);  
     lb.addEventListener('click', e=>{ if(e.target === lb) close(); });  
-  
+
     lbNext.addEventListener('click', ()=>{ index = (index+1) % sequence.length; show(); });  
     lbPrev.addEventListener('click', ()=>{ index = (index-1 + sequence.length) % sequence.length; show(); });  
-  
+
     document.addEventListener('keydown', e=>{  
       if(!lb.classList.contains('open')) return;  
       if(e.key==='Escape') close();  
       if(e.key==='ArrowRight') { index = (index+1) % sequence.length; show(); }  
       if(e.key==='ArrowLeft') { index = (index-1 + sequence.length) % sequence.length; show(); }  
     });  
-  
+
     // Swipe navigation on mobile  
     let tx=0, ty=0;  
     lbImg.addEventListener('touchstart', e=>{ const t=e.changedTouches[0]; tx=t.clientX; ty=t.clientY; }, {passive:true});  
@@ -678,7 +857,7 @@ body.menu-open .mobile-panel{ transform: translateX(0); }
         show();  
       }  
     }, {passive:true});  
-  
+
     // Accessibility: ensure only the visible variant is read (mobile-first mirror)  
     (function(){  
       const mq = window.matchMedia('(min-width: 681px)');  
@@ -692,8 +871,9 @@ body.menu-open .mobile-panel{ transform: translateX(0); }
       setAria(mq);  
       mq.addEventListener?.('change', setAria);  
     })();  
-  
+
     // Year  
     document.getElementById('year').textContent = new Date().getFullYear();  
-  </script>  </body>  
+  </script>
+</body>  
 </html>
